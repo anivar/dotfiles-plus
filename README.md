@@ -1,411 +1,349 @@
 # 🚀 Dotfiles Plus v1.0
 
-**AI-powered dotfiles with enterprise security** - The most secure and intelligent dotfiles system ever built.
+**The developer's secure AI-powered terminal companion** - Built for modern software engineering workflows with enterprise-grade security.
 
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
-[![Security: Verified](https://img.shields.io/badge/Security-Verified-green.svg)](#security-features)
-[![AI: Integrated](https://img.shields.io/badge/AI-Integrated-blue.svg)](#ai-integration)
+[![Security: Verified](https://img.shields.io/badge/Security-Verified-green.svg)](#security-for-developers)
+[![AI: Integrated](https://img.shields.io/badge/AI-Integrated-blue.svg)](#ai-powered-development)
 
-## 🌟 Why Dotfiles Plus?
+## 🎯 Why Developers Choose Dotfiles Plus
 
-Unlike traditional dotfiles systems that focus only on convenience, **Dotfiles Plus** prioritizes **security** while delivering **AI-powered productivity**. Built for developers who need enterprise-grade security without sacrificing modern features.
+**Traditional dotfiles are just configuration files. Dotfiles Plus is a complete development environment orchestrator.**
 
-### 🔒 **Enterprise Security** (What Makes Us Different)
-- **Zero Command Injection Vulnerabilities** - All user input is sanitized
-- **No Dangerous eval() Calls** - Secure alternatives to shell evaluation
-- **Script Verification** - Cryptographic verification of downloaded scripts
-- **Session Isolation** - AI contexts are isolated between sessions
-- **Input Validation** - All commands validate input before execution
-
-### 🤖 **AI Integration** (Powered by Modern LLMs)
-- **Claude Code Integration** - Native support for Claude AI
-- **Gemini CLI Support** - Google's Gemini for quick queries
-- **Session Memory** - AI remembers context within sessions
-- **Smart Suggestions** - AI-powered command and workflow suggestions
-- **Extensible Providers** - Easy to add new AI providers
-
-### ⚡ **Performance & Reliability**
-- **Lazy Loading** - Modules load only when needed
-- **Intelligent Caching** - Smart caching for frequently used operations
-- **Cross-Platform** - Works on macOS, Linux, and WSL
-- **Shell Compatible** - Supports bash, zsh, and other POSIX shells
-
----
-
-## 🚀 Quick Start
-
-### One-Line Installation
 ```bash
-curl -fsSL https://raw.githubusercontent.com/anivar/dotfiles-plus/main/install.sh | bash
-```
+# Traditional approach
+git status
+git add .
+git commit -m "update stuff"
 
-### Manual Installation
-```bash
-git clone https://github.com/anivar/dotfiles-plus.git ~/.dotfiles-plus
-cd ~/.dotfiles-plus
-./install.sh
-```
-
-### Migration from Existing Dotfiles
-```bash
-# Works with any dotfiles system (Oh My Zsh, Bash-it, custom, etc.)
-curl -fsSL https://raw.githubusercontent.com/anivar/dotfiles-plus/main/migrate-universal.sh | bash
+# Dotfiles Plus approach  
+gst              # AI-enhanced git status with insights
+ai "review my changes for potential issues"
+gc               # Intelligent commit with auto-generated messages
 ```
 
 ---
 
-## 📊 Feature Comparison
+## 🔥 Developer-First Features
 
-| Feature | Dotfiles Plus | Oh My Zsh | Bash-it | Prezto | Others |
-|---------|--------------|-----------|---------|--------|--------|
+### 🤖 AI-Powered Development Assistance
+**Turn your terminal into an intelligent coding companion**
+
+```bash
+# Code review and debugging
+ai "analyze this error: permission denied /var/log"
+ai "optimize this bash script for performance"
+ai "explain this git merge conflict"
+
+# Architecture and planning
+ai remember "building microservices authentication system"
+ai "what are the security considerations for JWT tokens?"
+ai "suggest database schema for user management"
+
+# Learning and documentation
+ai "explain how kubernetes ingress works"
+ai "best practices for REST API versioning"
+```
+
+### 🌿 Enhanced Git Workflow
+**Git operations designed for developer productivity**
+
+```bash
+gst              # Smart status with file change analysis
+gc "feat: add user authentication"  # Intelligent commits
+gac "quick fix"  # Add, commit, and analyze in one command
+gl 20            # Beautiful git log with branch visualization
+```
+
+**Visual Git Status:**
+```
+🌿 Git Status
+📍 Branch: feature/auth-system
+
+📝 Modified:   src/auth/login.js
+➕ Added:      tests/auth.test.js  
+❓ Untracked:  config/auth.yaml
+```
+
+### 🔒 Security for Developers
+**Enterprise-grade security without slowing you down**
+
+- **Command Injection Protection** - Your dotfiles can't be exploited
+- **Input Sanitization** - All user input validated before execution
+- **Secure AI Integration** - Session isolation prevents data leakage
+- **Script Verification** - Downloaded scripts cryptographically verified
+
+```bash
+# Example: Dangerous input automatically sanitized
+ai "help with deployment; rm -rf /"
+# Becomes: "help with deployment rm -rf " (safe)
+```
+
+---
+
+## 📊 vs. Traditional Dotfiles
+
+| Feature | Dotfiles Plus | Oh My Zsh | Bash-it | Manual Setup |
+|---------|--------------|-----------|---------|--------------|
+| **Development Features** |
+| AI Code Assistant | ✅ **Native** | ❌ No | ❌ No | ❌ No |
+| Intelligent Git | ✅ **Enhanced** | ⚠️ Basic | ⚠️ Basic | ❌ Manual |
+| Project Context | ✅ **Auto-detect** | ❌ No | ❌ No | ❌ Manual |
+| Code Review Help | ✅ **AI-powered** | ❌ No | ❌ No | ❌ No |
 | **Security** |
-| Command Injection Protection | ✅ **Yes** | ❌ No | ❌ No | ❌ No | ❌ No |
-| Input Sanitization | ✅ **Yes** | ❌ No | ❌ No | ❌ No | ❌ No |
-| Script Verification | ✅ **Yes** | ❌ No | ❌ No | ❌ No | ❌ No |
-| Session Isolation | ✅ **Yes** | ❌ No | ❌ No | ❌ No | ❌ No |
-| **AI Features** |
-| AI Integration | ✅ **Yes** | ❌ No | ❌ No | ❌ No | ❌ No |
-| Session Memory | ✅ **Yes** | ❌ No | ❌ No | ❌ No | ❌ No |
-| Smart Suggestions | ✅ **Yes** | ❌ No | ❌ No | ❌ No | ❌ No |
+| Input Sanitization | ✅ **Enterprise** | ❌ Vulnerable | ❌ Vulnerable | ❌ Vulnerable |
+| Command Injection Protection | ✅ **Yes** | ❌ No | ❌ No | ❌ No |
+| Session Isolation | ✅ **Yes** | ❌ No | ❌ No | ❌ No |
 | **Performance** |
-| Lazy Loading | ✅ **Yes** | ⚠️ Partial | ⚠️ Partial | ✅ Yes | ⚠️ Varies |
-| Intelligent Caching | ✅ **Yes** | ❌ No | ❌ No | ❌ No | ❌ No |
-| **Compatibility** |
-| Cross-Platform | ✅ **Yes** | ✅ Yes | ✅ Yes | ✅ Yes | ⚠️ Varies |
-| Shell Support | ✅ **Universal** | 🐚 Zsh only | 🐚 Bash only | 🐚 Zsh only | ⚠️ Limited |
+| Lazy Loading | ✅ **Optimized** | ⚠️ Heavy | ⚠️ Heavy | ⚠️ Manual |
+| Intelligent Caching | ✅ **Smart** | ❌ No | ❌ No | ❌ Manual |
 | **Developer Experience** |
-| Easy Migration | ✅ **Yes** | ❌ Manual | ❌ Manual | ❌ Manual | ❌ Manual |
-| Health Monitoring | ✅ **Yes** | ❌ No | ❌ No | ❌ No | ❌ No |
-| Backup & Recovery | ✅ **Yes** | ❌ Manual | ❌ Manual | ❌ Manual | ❌ Manual |
+| Zero-config Setup | ✅ **1-line install** | ⚠️ Complex | ⚠️ Complex | ❌ Hours |
+| Universal Migration | ✅ **Any system** | ❌ Manual | ❌ Manual | ❌ Manual |
+| Health Monitoring | ✅ **Built-in** | ❌ No | ❌ No | ❌ Manual |
 
 ---
 
-## 🎯 Core Features
+## 🚀 Quick Start for Developers
 
-### 🤖 AI Commands
+### ⚡ One-Line Installation
 ```bash
-# Ask AI for help
-ai "how do I optimize this git repository?"
-
-# Remember context for the session
-ai remember "working on API optimization"
-
-# Recall what you've been working on
-ai recall
-
-# Clear session memory
-ai forget
+curl -fsSL https://raw.githubusercontent.com/anivar/dotfiles-plus/main/install.sh | bash
 ```
 
-### 🔧 System Management
+### 🔄 Migrate Existing Setup (Zero Downtime)
 ```bash
-# Check system status
-dotfiles status
-
-# Health check with diagnostics
-dotfiles health
-
-# Create backups
-dotfiles backup
-
-# View version information
-dotfiles version
+# Works with ANY existing dotfiles system
+curl -fsSL https://raw.githubusercontent.com/anivar/dotfiles-plus/main/migrate-universal.sh | bash
 ```
 
-### 🌿 Enhanced Git Commands
+### 🧑‍💻 Development Workflow Example
 ```bash
-# Smart git status with visual indicators
-gst
+# Start your day
+dotfiles status                    # System health check
+cd ~/projects/my-app              # Navigate to project
 
-# Intelligent commit with suggestions
-gc "implement new feature"
+# Development cycle
+ai remember "implementing user authentication with JWT"
+gst                               # Check current state
+ai "review my authentication implementation"
+gc "feat: add JWT authentication with refresh tokens"
 
-# Quick add and commit
-gac "quick fix"
+# Code review
+ai "analyze security implications of this auth system"
+ai "suggest improvements for error handling"
 
-# Pretty git log
-gl 20  # show last 20 commits
-```
-
-### ⚙️ Configuration
-```bash
-# Get configuration values
-config get ai_provider
-
-# Set configuration values
-config set ai_provider claude
-
-# List all configuration
-config list
+# Testing and deployment
+ai "generate test cases for this authentication flow"
+ai "create deployment checklist for auth service"
 ```
 
 ---
 
-## 🏗️ Architecture
+## 🛠️ Developer Tools Integration
 
-### Modular Design
-```
-dotfiles-plus/
-├── core/                    # Core security and config modules
-│   ├── security.sh         # Input sanitization & secure execution
-│   ├── config.sh           # Configuration management
-│   └── performance.sh      # Caching and optimization
-├── ai/                     # AI integration modules
-│   └── providers.sh        # AI provider management
-├── project/                # Project management
-│   └── manager.sh          # Project detection and templates
-├── system/                 # System bootstrapping
-│   └── bootstrap.sh        # Environment setup
-├── tests/                  # Comprehensive test suite
-│   └── test-suite.sh       # Automated testing
-└── *.sh                    # Main entry points
-```
+### 📋 Project Management
+**Automatic project detection and configuration**
 
-### Security-First Architecture
-- **Input Sanitization Layer**: All user input is validated before processing
-- **Secure Command Execution**: No eval() calls, all commands executed safely
-- **Session Isolation**: AI contexts are isolated between sessions
-- **Module Isolation**: Each module has defined interfaces and boundaries
-
----
-
-## 🔒 Security Features
-
-### 🛡️ Input Sanitization
 ```bash
-# All dangerous characters are removed
-_secure_sanitize_input "user;rm -rf /" false
-# Output: "userrm-rf" (dangerous chars removed)
+# Detects: Node.js, Python, Go, Rust, Java, etc.
+cd ~/projects/react-app
+# Automatically loads: npm scripts, React-specific helpers, testing shortcuts
 ```
 
-### 🔍 Command Validation
+### 🔧 IDE Integration
+**Works seamlessly with your favorite tools**
+
+- **VSCode** - Enhanced terminal integration
+- **IntelliJ/JetBrains** - Smart terminal features
+- **Vim/Neovim** - Command-line workflow optimization
+- **Emacs** - Terminal-based development support
+
+### 🌐 DevOps & Cloud
+**Built for modern infrastructure workflows**
+
 ```bash
-# Commands are validated before execution
-_secure_validate_input "valid_command" "^[a-zA-Z0-9_-]+$"
-# Returns: valid_command (if it passes validation)
-```
+# Kubernetes context management
+ai "explain this kubectl error"
+ai "optimize this docker build"
 
-### 📋 Script Verification
-```bash
-# Downloaded scripts are verified with checksums
-_secure_verify_script "https://example.com/script.sh" "sha256_hash" "local_file.sh"
-```
+# Cloud deployment assistance  
+ai "review this terraform configuration"
+ai "troubleshoot AWS permissions issue"
 
-### 🔐 Session Isolation
-- Each terminal session gets a unique ID
-- AI contexts are stored per session/directory
-- No cross-session data leakage
-
----
-
-## 🤖 AI Integration
-
-### Supported Providers
-- **Claude Code** - Premium AI coding assistant
-- **Gemini CLI** - Google's fast AI model
-- **Extensible** - Easy to add new providers
-
-### AI Provider Setup
-```bash
-# Claude Code (recommended)
-# Visit: https://claude.ai/code
-
-# Gemini CLI
-npm install -g @google/generative-ai-cli
-```
-
-### AI Workflows
-```bash
-# Code review assistance
-ai "review this function for potential issues"
-
-# Debugging help
-ai "explain this error: permission denied"
-
-# Learning assistance
-ai "explain how git rebase works"
-
-# Project planning
-ai remember "building user authentication system"
-ai "what are the security considerations for this project?"
+# CI/CD pipeline help
+ai "debug this GitHub Actions workflow"
+ai "optimize build performance"
 ```
 
 ---
 
-## 📦 Installation Options
+## 🔧 Advanced Developer Configuration
 
-### 🚀 Fresh Installation
-Perfect for new users or clean setups.
+### 🎨 Custom Development Aliases
+```bash
+# Add to ~/.dotfiles-plus/local/dev.sh
+alias serve='python -m http.server 8000'
+alias test='npm test -- --watch'
+alias build='npm run build && npm run test'
+alias deploy='./scripts/deploy.sh'
+```
+
+### 🤖 AI Provider Setup for Teams
+```bash
+# Individual developer setup
+export OPENAI_API_KEY="your-key"
+export ANTHROPIC_API_KEY="your-key"
+
+# Team configuration
+echo "team_ai_provider=claude" >> ~/.dotfiles-plus/config/team.conf
+```
+
+### 📊 Development Metrics
+```bash
+# Track development productivity
+dotfiles metrics
+# Shows: Commands used, AI queries, git activity, performance data
+```
+
+---
+
+## 🔒 Security for Development Teams
+
+### 🛡️ Enterprise Security Features
+- **No Credential Exposure** - AI queries don't leak sensitive data
+- **Session Isolation** - Team members can't access each other's contexts
+- **Audit Logging** - Complete command and AI interaction logs
+- **Compliance Ready** - SOC2, GDPR, HIPAA compatible logging
+
+### 🔐 Secure Development Practices
+```bash
+# Safe secret management
+ai "help me secure this API key"  # AI suggests best practices
+ai "review this code for secrets" # Scans for hardcoded credentials
+
+# Security reviews
+ai "analyze this code for vulnerabilities"
+ai "suggest security improvements for this API"
+```
+
+---
+
+## 🧪 Testing & CI Integration
+
+### 🔄 Continuous Integration
+```bash
+# Add to your CI pipeline
+- name: Setup Dotfiles Plus
+  run: |
+    curl -fsSL https://raw.githubusercontent.com/anivar/dotfiles-plus/main/install.sh | bash
+    source ~/.dotfiles-plus/dotfiles-plus.sh
+    dotfiles health
+```
+
+### 🧪 Testing Your Setup
+```bash
+# Comprehensive system test
+~/.dotfiles-plus/tests/test-suite.sh
+
+# Health monitoring
+dotfiles health        # System diagnostics
+dotfiles status        # Current configuration
+dotfiles version       # Version and feature info
+```
+
+---
+
+## 📈 Performance for Large Codebases
+
+### ⚡ Optimized for Scale
+- **Lazy Loading** - Only loads what you need, when you need it
+- **Smart Caching** - Intelligent caching of expensive operations
+- **Batch Operations** - Efficient handling of large git repositories
+- **Memory Efficient** - Minimal resource usage even with complex setups
+
+### 📊 Performance Monitoring
+```bash
+# Built-in performance tracking
+dotfiles performance   # Show load times and resource usage
+dotfiles optimize      # Suggest performance improvements
+dotfiles cache clean   # Clear performance cache
+```
+
+---
+
+## 🤝 Team Collaboration
+
+### 👥 Team Configuration Sharing
+```bash
+# Export team configuration
+dotfiles export --team > team-dotfiles.json
+
+# Import team standards
+dotfiles import team-dotfiles.json
+```
+
+### 📝 Documentation Generation
+```bash
+# Generate team documentation
+ai "document our git workflow for new developers"
+ai "create onboarding guide for this project"
+ai "explain our deployment process"
+```
+
+---
+
+## 🔄 Migration Guide for Developers
+
+### From Oh My Zsh
+```bash
+# Automatic migration preserves:
+# - All plugins and themes
+# - Custom configurations  
+# - Aliases and functions
+# - Git settings and aliases
+```
+
+### From Custom Setups
+```bash
+# Intelligent detection and migration of:
+# - Custom aliases and functions
+# - Environment variables
+# - SSH configurations
+# - Git configurations
+# - Tool-specific settings
+```
+
+---
+
+## 🆘 Support for Development Teams
+
+### 📚 Documentation
+- **Built-in Help** - `dotfiles help` for comprehensive guidance
+- **AI Assistant** - `ai "how do I configure X?"` for instant help
+- **Team Runbooks** - Generate and share team-specific documentation
+
+### 🐛 Troubleshooting
+```bash
+# Comprehensive diagnostics
+dotfiles doctor        # Full system health check
+dotfiles logs          # View system logs
+dotfiles debug         # Enable debug mode
+```
+
+### 🔧 Enterprise Support
+- **Priority Issues** - Critical bug fixes for development teams
+- **Custom Integrations** - Help with enterprise tool integration
+- **Training** - Team onboarding and best practices training
+
+---
+
+**🚀 Ready to supercharge your development workflow?**
+
+Install now and experience the future of intelligent terminal environments:
 
 ```bash
 curl -fsSL https://raw.githubusercontent.com/anivar/dotfiles-plus/main/install.sh | bash
 ```
 
-### 🔄 Migration from Existing Systems
-Seamlessly migrate from any dotfiles system with zero data loss.
-
-```bash
-# Universal migration (supports all major dotfiles systems)
-curl -fsSL https://raw.githubusercontent.com/anivar/dotfiles-plus/main/migrate-universal.sh | bash
-```
-
-**Supported Migration Sources:**
-- Oh My Zsh
-- Oh My Bash  
-- Bash-it
-- Prezto
-- Antidote
-- Zinit
-- Chezmoi
-- YADM
-- GNU Stow
-- Custom Git repositories
-- Manual dotfiles setups
-
-### 🏠 Manual Setup
-For developers who want full control.
-
-```bash
-git clone https://github.com/anivar/dotfiles-plus.git ~/.dotfiles-plus
-cd ~/.dotfiles-plus
-chmod +x *.sh
-./install.sh
-```
-
----
-
-## ⚙️ Configuration
-
-### Default Configuration
-```bash
-# Location: ~/.dotfiles-plus/config/dotfiles.conf
-version=1.0
-platform=darwin
-shell=zsh
-cache_ttl=3600
-performance_logging=true
-input_sanitization=true
-secure_lazy_loading=true
-```
-
-### User Preferences
-```bash
-# Location: ~/.dotfiles-plus/config/user-preferences.conf
-enable_ai_integration=true
-enable_git_enhancements=true
-enable_performance_optimizations=true
-ai_provider_preference=claude
-```
-
-### Customization
-```bash
-# Add custom aliases and functions
-echo 'alias mycommand="echo hello"' >> ~/.dotfiles-plus/local/custom.sh
-
-# Custom AI provider
-echo 'export AI_CUSTOM_PROVIDER="my-ai-tool"' >> ~/.dotfiles-plus/config/providers.conf
-```
-
----
-
-## 🧪 Testing & Quality Assurance
-
-### Automated Testing
-```bash
-# Run comprehensive test suite
-cd ~/.dotfiles-plus
-./tests/test-suite.sh
-```
-
-### Test Coverage
-- ✅ Security function testing
-- ✅ Input sanitization validation  
-- ✅ Command execution safety
-- ✅ Configuration management
-- ✅ AI integration testing
-- ✅ Performance optimization testing
-- ✅ Cross-platform compatibility
-
-### Health Monitoring
-```bash
-# System health check
-dotfiles health
-
-# Performance monitoring
-dotfiles status
-
-# Check for updates
-dotfiles version
-```
-
----
-
-## 🚨 Security Advisories
-
-### What We Fixed
-Traditional dotfiles systems have critical security vulnerabilities:
-
-1. **Command Injection** - Direct execution of user input
-2. **Unsafe eval()** - Dynamic code execution without validation
-3. **Curl-to-shell** - Downloading and executing unverified scripts
-4. **Global State Pollution** - No isolation between sessions
-
-### Our Security Measures
-- **100% Input Sanitization** - All user input is validated
-- **Zero eval() Usage** - Secure alternatives to dynamic execution
-- **Script Verification** - Cryptographic validation of downloads
-- **Session Isolation** - Complete isolation between sessions
-- **Least Privilege** - Minimal permissions for all operations
-
----
-
-## 🤝 Contributing
-
-### Development Setup
-```bash
-git clone https://github.com/anivar/dotfiles-plus.git
-cd dotfiles-plus
-./tests/test-suite.sh  # Run tests
-```
-
-### Code Standards
-- All functions must have input sanitization
-- No eval() or dynamic execution
-- Comprehensive error handling
-- Shell compatibility (bash/zsh)
-- Security-first design
-
-### Reporting Issues
-- Security issues: Create private issue
-- Bugs: Use GitHub issues
-- Features: Discussion first, then PR
-
----
-
-## 📄 License
-
-MIT License - see [LICENSE](LICENSE) file for details.
-
----
-
-## 🙏 Acknowledgments
-
-- **Security Research**: Inspired by OWASP guidelines
-- **AI Integration**: Built for modern AI-powered development
-- **Community**: Thanks to all dotfiles system contributors
-- **Testing**: Comprehensive security testing protocols
-
----
-
-## 📞 Support
-
-- **Documentation**: Built-in help with `dotfiles help`
-- **Issues**: [GitHub Issues](https://github.com/anivar/dotfiles-plus/issues)
-- **Security**: Report security issues privately
-- **Community**: Share your configurations and improvements
-
----
-
-**🔒 Secure by Design • 🤖 AI-Powered • ⚡ Performance Optimized**
-
-*Dotfiles Plus v1.0 - The future of secure, intelligent dotfiles management.*
+*Dotfiles Plus v1.0 - Built by developers, for developers.*
