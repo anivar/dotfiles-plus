@@ -431,7 +431,7 @@ _secure_dotfiles_init() {
     # Initialize configuration
     _config_init
     
-    echo "✅ Secure dotfiles-plus v$(_config_get version) loaded successfully"
+    echo "✅ Dotfiles Plus v$(_config_get version) loaded successfully"
 }
 
 # Initialize
