@@ -375,8 +375,8 @@ update_shell_configuration() {
 # ============================================================================
 
 # Load Dotfiles Plus (compatible version for better shell support)
-if [[ -f "$SCRIPT_DIR/secure-dotfiles-compatible.sh" ]]; then
-    source "$SCRIPT_DIR/secure-dotfiles-compatible.sh"
+if [[ -f "$SCRIPT_DIR/dotfiles-plus.sh" ]]; then
+    source "$SCRIPT_DIR/dotfiles-plus.sh"
 fi
 EOF
         

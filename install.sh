@@ -233,7 +233,7 @@ update_shell_configuration() {
         *)
             log_warning "Unknown shell: $shell_name. Manual configuration required."
             log_info "Add this line to your shell configuration:"
-            echo "  source \"$INSTALL_DIR/secure-dotfiles-compatible.sh\""
+            echo "  source \"$INSTALL_DIR/dotfiles-plus.sh\""
             return
             ;;
     esac
@@ -254,8 +254,8 @@ update_shell_configuration() {
 # ============================================================================
 
 # Load Dotfiles Plus (compatible version for better shell support)
-if [[ -f "$INSTALL_DIR/secure-dotfiles-compatible.sh" ]]; then
-    source "$INSTALL_DIR/secure-dotfiles-compatible.sh"
+if [[ -f "$INSTALL_DIR/dotfiles-plus.sh" ]]; then
+    source "$INSTALL_DIR/dotfiles-plus.sh"
 fi
 EOF
         
@@ -267,7 +267,7 @@ run_initial_tests() {
     log_info "Running initial tests..."
     
     # Source the system to test it
-    if source "$INSTALL_DIR/secure-dotfiles-compatible.sh" >/dev/null 2>&1; then
+    if source "$INSTALL_DIR/dotfiles-plus.sh" >/dev/null 2>&1; then
         log_success "System loads successfully"
     else
         log_error "Failed to load system"

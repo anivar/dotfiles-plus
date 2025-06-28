@@ -232,13 +232,13 @@ update_shell_configuration() {
         # Add new secure dotfiles source line
         echo "" >> "$shell_rc"
         echo "# Dotfiles Plus v1.0 (migrated $(date))" >> "$shell_rc"
-        echo "source \"$SCRIPT_DIR/secure-dotfiles.sh\"" >> "$shell_rc"
+        echo "source \"$SCRIPT_DIR/dotfiles-plus-full.sh\"" >> "$shell_rc"
         
         log_success "Updated $shell_rc configuration"
         log_info "Shell configuration backed up to ${shell_rc}.backup-*"
     else
         log_warning "Shell configuration file not found: $shell_rc"
-        log_info "You may need to manually add: source \"$SCRIPT_DIR/secure-dotfiles.sh\""
+        log_info "You may need to manually add: source \"$SCRIPT_DIR/dotfiles-plus-full.sh\""
     fi
 }
 
@@ -278,7 +278,7 @@ run_post_migration_tests() {
     log_info "Running post-migration tests..."
     
     # Source the new secure dotfiles
-    if source "$SCRIPT_DIR/secure-dotfiles.sh" >/dev/null 2>&1; then
+    if source "$SCRIPT_DIR/dotfiles-plus-full.sh" >/dev/null 2>&1; then
         log_success "Secure dotfiles loaded successfully"
     else
         log_error "Failed to load secure dotfiles"
