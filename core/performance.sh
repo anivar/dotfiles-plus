@@ -225,7 +225,8 @@ _perf_execute_deferred() {
     if [[ -f "$defer_file" ]]; then
         while read -r operation; do
             if [[ -n "$operation" ]]; then
-                eval "$operation" 2>/dev/null &
+                # Execute operation securely without eval
+                _secure_execute_command $operation 2>/dev/null &
             fi
         done < "$defer_file"
         

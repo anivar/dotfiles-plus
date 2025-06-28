@@ -310,17 +310,17 @@ project_exec() {
         build)
             local build_cmd
             build_cmd=$(project_config_get "$project_config" "detection" "build_command")
-            [[ -n "$build_cmd" ]] && eval "$build_cmd" || echo "❌ No build command configured"
+            [[ -n "$build_cmd" ]] && _secure_execute_command $build_cmd || echo "❌ No build command configured"
             ;;
         test)
             local test_cmd
             test_cmd=$(project_config_get "$project_config" "detection" "test_command")
-            [[ -n "$test_cmd" ]] && eval "$test_cmd" || echo "❌ No test command configured"
+            [[ -n "$test_cmd" ]] && _secure_execute_command $test_cmd || echo "❌ No test command configured"
             ;;
         dev)
             local dev_cmd
             dev_cmd=$(project_config_get "$project_config" "detection" "dev_command")
-            [[ -n "$dev_cmd" ]] && eval "$dev_cmd" || echo "❌ No dev command configured"
+            [[ -n "$dev_cmd" ]] && _secure_execute_command $dev_cmd || echo "❌ No dev command configured"
             ;;
         install)
             project_install_dependencies "$project_type" "$package_manager"
