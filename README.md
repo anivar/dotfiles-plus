@@ -1,11 +1,12 @@
-# 🚀 Dotfiles Plus v1.0
+# 🚀 Dotfiles Plus
 
 A security-focused dotfiles manager with built-in AI integration, smart context awareness, and seamless migration from existing setups. Works with bash 3.2+ and zsh.
 
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
-[![Version: 1.0](https://img.shields.io/badge/Version-1.0-blue.svg)](https://github.com/anivar/dotfiles-plus/releases)
+[![GitHub Release](https://img.shields.io/github/v/release/anivar/dotfiles-plus)](https://github.com/anivar/dotfiles-plus/releases)
 [![Shell: Bash 3.2+/Zsh](https://img.shields.io/badge/Shell-Bash%203.2%2B%2FZsh-green.svg)](https://github.com/anivar/dotfiles-plus)
 [![Security: Hardened](https://img.shields.io/badge/Security-Hardened-red.svg)](https://github.com/anivar/dotfiles-plus)
+[![Sponsor](https://img.shields.io/badge/Sponsor-%E2%9D%A4-pink)](https://github.com/sponsors/anivar)
 
 ## 🎯 Why Dotfiles Plus?
 
@@ -42,10 +43,9 @@ ai recall                    # Shows context at multiple levels
 ai forget                    # Clear current session context
 ai stack                     # Navigate context hierarchy
 ai projects                  # View memories across all projects
-
-# Supports multiple AI providers
-# Works with: Claude (claude.ai/code), Gemini CLI, and others
 ```
+
+📖 **[See all AI commands →](COMMANDS.md#-ai-commands)**
 
 #### 🧠 How the Smart Memory System Works
 The AI memory system maintains context at multiple hierarchical levels:
@@ -120,24 +120,18 @@ gst              # Visual git status with icons and colors
 gc "fix: typo"   # Smart commit with auto-generated messages
 gac "wip"        # Quick add-all + commit
 gl               # Pretty log graph (last 10 commits)
-g                # Alias for git
-
-# Git status shows:
-# 📍 Repository name and current branch
-# 📝 Modified files
-# ➕ Added files  
-# 🗑️  Deleted files
-# ❓ Untracked files
 ```
+
+📖 **[See all git shortcuts →](COMMANDS.md#-git-shortcuts)**
 
 ### 📊 System Management
 ```bash
-dotfiles status   # Show system status, version, and session info
+dotfiles status   # Show system status and session info
 dotfiles health   # Run comprehensive health check
-dotfiles version  # Display version and security features
-dotfiles backup   # Create timestamped backup of all configs
-dotfiles help     # Show all available commands
+dotfiles backup   # Create timestamped backup
 ```
+
+📖 **[See all system commands →](COMMANDS.md#-dotfiles-system-commands)**
 
 ### 🎯 What's Included
 
@@ -329,17 +323,13 @@ Contributions welcome! Areas that need help:
 
 If you find Dotfiles Plus useful, consider:
 
-- ⭐ Starring the repository
-- 🐛 Reporting issues you encounter
-- 💡 Suggesting features you'd like to see
-- 📣 Sharing with other developers
+- ⭐ **Star** this repository
+- 💝 **[Sponsor](https://github.com/sponsors/anivar)** the development
+- 🐛 **Report** issues you encounter
+- 💡 **Suggest** features you'd like to see
+- 📣 **Share** with other developers
 
-### Sponsorship
-If you'd like to support development:
-
-[![Sponsor](https://img.shields.io/badge/Sponsor-%E2%9D%A4-pink)](https://github.com/sponsors/anivar)
-
-Every bit helps keep the project going and motivates new features!
+Your support helps keep the project active and motivates new features!
 
 ## 📁 Project Structure
 
@@ -382,12 +372,19 @@ MIT - Because sharing is caring.
 
 ---
 
-## 🚦 Quick Start Guide
+## 📖 Documentation
+
+- **[Complete Command Reference](COMMANDS.md)** - All commands with examples
+- **[Context Features Guide](CONTEXT_FEATURES.md)** - Deep dive into AI memory system
+- **[Installation Guide](#-installation)** - Setup instructions
+- **[Troubleshooting](#-troubleshooting)** - Common issues and solutions
+
+## 🚦 Quick Start
 
 1. **Clone**: `git clone https://github.com/anivar/dotfiles-plus.git`
 2. **Source**: `source dotfiles-plus/dotfiles-plus.sh`
 3. **Test**: `ai "hello world"` and `dotfiles status`
-4. **Customize**: Add to your `.bashrc` or `.zshrc`
+4. **Explore**: Check out the [Command Reference](COMMANDS.md)
 
 ---
 
