@@ -31,34 +31,64 @@ ai "what was I working on?"
 ```
 
 #### 🧠 AI Context Memory Explained
-The AI memory system maintains separate contexts for each terminal session and directory:
+The AI memory system is intelligently context-aware, understanding where you are and what you're working on:
 
 ```bash
-# Each terminal session gets a unique ID
-$ echo $DOTFILES_PLUS_SESSION_ID
-session_1703684521_12345
-
-# Remember things specific to your current work
+# Context is automatically scoped to multiple levels
 $ cd ~/projects/auth-service
+$ git branch
+* feature/oauth-implementation
+
+# The AI knows:
+# - Current directory: ~/projects/auth-service
+# - Git repository: auth-service
+# - Current branch: feature/oauth-implementation
+# - Project type: Node.js (auto-detected)
+# - Parent directories in your stack
+
 $ ai remember "implementing OAuth2 with refresh tokens"
-$ ai remember "need to add rate limiting to login endpoint"
+# This memory is tagged with ALL context levels
 
-# Later, in the same directory
+# Navigate to a subdirectory
+$ cd src/controllers
+$ ai remember "rate limiting should be 10 requests per minute"
+
+# The AI maintains hierarchical context
 $ ai recall
-📚 Context for this session/directory:
-[14:22] implementing OAuth2 with refresh tokens
-[14:35] need to add rate limiting to login endpoint
+📚 Context Stack:
+├── Repository: auth-service (Node.js)
+│   └── Branch: feature/oauth-implementation
+│       ├── ~/projects/auth-service
+│       │   └── "implementing OAuth2 with refresh tokens"
+│       └── ~/projects/auth-service/src/controllers
+│           └── "rate limiting should be 10 requests per minute"
 
-# The AI includes this context automatically
-$ ai "what's the best way to implement the rate limiting?"
-# AI responds with awareness of your OAuth2 implementation
+# Switch branches - get different context!
+$ git checkout feature/user-profiles
+$ ai recall
+📚 Context for feature/user-profiles:
+[Yesterday 15:30] "working on user avatar upload"
+[Yesterday 16:45] "need to add image compression"
+
+# The AI automatically includes relevant context hierarchy
+$ ai "how should I implement the rate limiting?"
+# AI sees: repo context + branch context + directory context + parent memories
 ```
 
+**Smart Context Features**:
+- **Repository Awareness**: Separate contexts per git repository
+- **Branch Isolation**: Each git branch maintains its own memory
+- **Directory Stack**: Memories inherit from parent directories
+- **Project Type Context**: Language/framework-specific knowledge
+- **Time Awareness**: Recent memories weighted higher
+- **Cross-Reference**: Find related memories across contexts
+
 **Coming Soon**: 
-- Persistent memory across sessions
-- Team knowledge sharing
-- Project-specific AI training
-- Integration with documentation
+- Global knowledge base across all your projects
+- Team shared contexts (opt-in)
+- Context templates for common patterns
+- Automatic context from README/docs
+- Integration with issue trackers
 
 ### 🔒 Security Features (Because We've All Been There)
 - No more `eval` commands that keep security teams up at night
@@ -83,6 +113,37 @@ cd ~/projects/my-node-app
 cd ~/projects/django-site  
 # Automatically detects: Python project with Django
 # Configures: virtual env awareness, manage.py shortcuts
+```
+
+### 📚 Intelligent Folder Stack Context
+```bash
+# The AI remembers your navigation patterns
+$ cd ~/projects/api
+$ ai remember "working on v2 API design"
+
+$ cd src/routes
+$ ai remember "need to add pagination to GET endpoints"
+
+$ cd ../models
+$ ai remember "User model needs email verification field"
+
+# Later, from anywhere in the project:
+$ ai "what did I need to do in this project?"
+
+📚 Context-Aware Memory Stack:
+~/projects/api (git: main)
+├── "working on v2 API design"
+├── /src
+│   ├── /routes
+│   │   └── "need to add pagination to GET endpoints"
+│   └── /models
+│       └── "User model needs email verification field"
+└── Related contexts from feature branches...
+
+# Jump between projects and maintain context
+$ cd ~/projects/frontend
+$ ai "what APIs am I integrating with?"
+# AI knows you were just in the api project and provides relevant context
 ```
 
 ### 🔄 Universal Migration (Keep Everything You Love)
@@ -139,10 +200,24 @@ $ ai "npm error Module not found react-router-dom"
 ### The "What Was I Doing?" Monday Morning
 ```bash
 $ ai recall
-📚 Context for session dotfiles_plus_1234:
-[09:30] debugging authentication issue in user service
-[10:15] working on JWT token expiration
-[11:45] implementing refresh token logic
+📚 Smart Context Recall:
+
+Current Location:
+- Repo: api-backend (main branch)
+- Path: ~/projects/api-backend/src/auth
+
+Relevant Memories:
+[Last Week - This Directory] "implement JWT with 15min expiry"
+[Friday - Parent Directory] "add refresh token endpoint"
+[Friday - Same Branch] "need to update API docs"
+[2 Days Ago - Related Branch] "check auth middleware performance"
+
+$ ai "show me what I was doing across all projects"
+📊 Cross-Project Context:
+- api-backend: Working on JWT authentication
+- frontend-app: Integrating with new auth endpoints  
+- mobile-app: Updating token refresh logic
+- docs: Writing authentication guide
 ```
 
 ### The "Make Git Less Painful" Experience
