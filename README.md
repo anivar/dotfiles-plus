@@ -28,7 +28,7 @@ Dotfiles Plus addresses common developer needs with a security-first approach:
    - Modular architecture with lazy loading
    - Extended performance optimizations
 
-## ✅ Tested & Working Features
+## 🚀 Features
 
 ### 🤖 AI Integration
 ```bash
@@ -47,7 +47,7 @@ ai projects                  # View memories across all projects
 # Works with: Claude (claude.ai/code), Gemini CLI, and others
 ```
 
-#### 🧠 Multi-Level Context Memory (Tested & Working)
+#### 🧠 How the Smart Memory System Works
 The AI memory system maintains context at multiple hierarchical levels:
 
 ```bash
@@ -139,25 +139,21 @@ dotfiles backup   # Create timestamped backup of all configs
 dotfiles help     # Show all available commands
 ```
 
-### 📚 Working Features by Version
+### 🎯 What's Included
 
-#### Shell-Compatible Version (bash 3.2+/zsh)
-- ✅ AI integration with multiple providers
-- ✅ Multi-level context memory (with context-compat.sh)
-- ✅ Security hardening and input sanitization
-- ✅ Enhanced git commands
-- ✅ System status and health checks
-- ✅ Configuration backup
-- ✅ Session isolation
-- ✅ Basic aliases and shortcuts
+#### Core Features (All Versions)
+- **AI Assistant Integration** - Ask questions without leaving your terminal
+- **Smart Context Memory** - Remembers what you're working on across sessions
+- **Security Hardening** - No eval, comprehensive input sanitization
+- **Visual Git Commands** - Beautiful status displays and smart commits
+- **System Health Monitoring** - Know when something's wrong
+- **Universal Migration** - Keep your existing setup
 
-#### Full Version (bash 4+ only)
-- ✅ All shell-compatible features
-- ✅ Advanced project detection
-- ✅ Bootstrap automation
-- ✅ Performance optimizations
-- ✅ Modular lazy loading
-- ✅ Extended configuration management
+#### Advanced Features (Full Version)
+- **Project Auto-Detection** - Knows if you're in Node, Python, or other projects
+- **Bootstrap Automation** - Set up new machines in minutes
+- **Performance Caching** - Lightning-fast command execution
+- **Modular Architecture** - Load only what you need
 
 ### 📁 Smart Context Navigation
 ```bash
