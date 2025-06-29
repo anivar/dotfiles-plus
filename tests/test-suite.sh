@@ -73,9 +73,9 @@ assert_failure() {
 setup_test_environment() {
     echo "🔧 Setting up test environment..."
     
-    # Source the secure dotfiles system
+    # Source the dotfiles-plus system
     local script_dir="$(cd "$(dirname "${BASH_SOURCE[0]}")/.." && pwd)"
-    source "$script_dir/secure-dotfiles.sh"
+    source "$script_dir/dotfiles-plus.sh"
     
     # Create test directories
     TEST_HOME="/tmp/dotfiles-test-$$"
