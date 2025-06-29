@@ -69,36 +69,42 @@ _ai_execute_query() {
 
 # Build session context
 _ai_build_context() {
-    local session_id="$(_config_get session_id)"
-    local context_file="$(_config_get_session_file)"
-    
-    # Session isolation instruction
-    local isolation="[ISOLATED SESSION: $session_id] Treat this as completely separate from other conversations. "
-    
-    # Session information
-    local session_info="Session: $session_id"$'\n'
-    session_info+="Directory: $(_perf_cache_get_or_set "current_dir" 60 "_perf_directory_basename")"$'\n'
-    
-    # Git information (cached)
-    local git_info=""
-    local git_data
-    git_data=$(_perf_cache_get_or_set "git_info" 30 "_perf_git_info_batch")
-    
-    if [[ "$git_data" != "not_a_repo||||" ]]; then
-        IFS='|' read -r branch repo_name status commit_count <<< "$git_data"
-        git_info="Repository: $repo_name"$'\n'
-        git_info+="Branch: $branch"$'\n'
-        git_info+="Status: $status files changed"$'\n'$'\n'
+    # Source the smart context builder if available
+    if declare -f _ai_build_smart_context >/dev/null 2>&1; then
+        _ai_build_smart_context
+    else
+        # Fallback to basic context
+        local session_id="$(_config_get session_id)"
+        local context_file="$(_config_get_session_file)"
+        
+        # Session isolation instruction
+        local isolation="[ISOLATED SESSION: $session_id] Treat this as completely separate from other conversations. "
+        
+        # Session information
+        local session_info="Session: $session_id"$'\n'
+        session_info+="Directory: $(_perf_cache_get_or_set "current_dir" 60 "_perf_directory_basename")"$'\n'
+        
+        # Git information (cached)
+        local git_info=""
+        local git_data
+        git_data=$(_perf_cache_get_or_set "git_info" 30 "_perf_git_info_batch")
+        
+        if [[ "$git_data" != "not_a_repo||||" ]]; then
+            IFS='|' read -r branch repo_name status commit_count <<< "$git_data"
+            git_info="Repository: $repo_name"$'\n'
+            git_info+="Branch: $branch"$'\n'
+            git_info+="Status: $status files changed"$'\n'$'\n'
+        fi
+        
+        # Session context
+        local context=""
+        if [[ -f "$context_file" ]]; then
+            context="Session Context:"$'\n'
+            context+="$(cat "$context_file")"$'\n'$'\n'
+        fi
+        
+        echo "${isolation}${session_info}"$'\n'"${git_info}${context}"
     fi
-    
-    # Session context
-    local context=""
-    if [[ -f "$context_file" ]]; then
-        context="Session Context:"$'\n'
-        context+="$(cat "$context_file")"$'\n'$'\n'
-    fi
-    
-    echo "${isolation}${session_info}"$'\n'"${git_info}${context}Query: "
 }
 
 # ============================================================================
@@ -107,29 +113,34 @@ _ai_build_context() {
 
 # Remember information in session context
 ai_remember() {
-    local info="$*"
-    
-    if [[ -z "$info" ]]; then
-        echo "Usage: ai remember <information>" >&2
-        return 1
+    # Use smart remember if available, otherwise fallback
+    if declare -f ai_remember_smart >/dev/null 2>&1; then
+        ai_remember_smart "$@"
+    else
+        local info="$*"
+        
+        if [[ -z "$info" ]]; then
+            echo "Usage: ai remember <information>" >&2
+            return 1
+        fi
+        
+        # Sanitize input
+        local safe_info
+        safe_info=$(_secure_sanitize_input "$info" "true")
+        if [[ $? -ne 0 ]]; then
+            echo "❌ Invalid information - contains unsafe characters" >&2
+            return 1
+        fi
+        
+        local context_file="$(_config_get_session_file)"
+        local timestamp="[$(date '+%H:%M')]"
+        
+        echo "$timestamp $safe_info" >> "$context_file"
+        echo "💾 Remembered: $safe_info"
+        
+        # Update provider context files if they exist
+        _ai_update_provider_contexts
     fi
-    
-    # Sanitize input
-    local safe_info
-    safe_info=$(_secure_sanitize_input "$info" "true")
-    if [[ $? -ne 0 ]]; then
-        echo "❌ Invalid information - contains unsafe characters" >&2
-        return 1
-    fi
-    
-    local context_file="$(_config_get_session_file)"
-    local timestamp="[$(date '+%H:%M')]"
-    
-    echo "$timestamp $safe_info" >> "$context_file"
-    echo "💾 Remembered: $safe_info"
-    
-    # Update provider context files if they exist
-    _ai_update_provider_contexts
 }
 
 # Forget session context
@@ -149,13 +160,18 @@ ai_forget() {
 
 # Recall session context
 ai_recall() {
-    local context_file="$(_config_get_session_file)"
-    
-    if [[ -f "$context_file" ]]; then
-        echo "📚 Context for session $(_config_get session_id):"
-        cat "$context_file"
+    # Use smart recall if available, otherwise fallback
+    if declare -f ai_recall_smart >/dev/null 2>&1; then
+        ai_recall_smart
     else
-        echo "No context for this session/directory"
+        local context_file="$(_config_get_session_file)"
+        
+        if [[ -f "$context_file" ]]; then
+            echo "📚 Context for session $(_config_get session_id):"
+            cat "$context_file"
+        else
+            echo "No context for this session/directory"
+        fi
     fi
 }
 
@@ -365,6 +381,28 @@ _ai_update_provider_contexts() {
 }
 
 # ============================================================================
+# CONTEXT NAVIGATION FUNCTIONS
+# ============================================================================
+
+# Show context stack (wrapper for compatibility)
+ai_context_stack() {
+    if declare -f _ai_context_stack >/dev/null 2>&1; then
+        _ai_context_stack
+    else
+        echo "Context stack navigation not available in this version."
+    fi
+}
+
+# Show all projects (wrapper for compatibility)
+ai_show_all_projects() {
+    if declare -f _ai_show_all_projects >/dev/null 2>&1; then
+        _ai_show_all_projects
+    else
+        echo "Cross-project context not available in this version."
+    fi
+}
+
+# ============================================================================
 # EXPORTS
 # ============================================================================
 
@@ -375,3 +413,5 @@ export -f ai_forget
 export -f ai_recall
 export -f ai_memory
 export -f ai_provider_setup
+export -f ai_context_stack
+export -f ai_show_all_projects

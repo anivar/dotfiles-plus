@@ -26,6 +26,7 @@ source "$SECURE_DOTFILES_DIR/core/security.sh"
 source "$SECURE_DOTFILES_DIR/core/config.sh"
 source "$SECURE_DOTFILES_DIR/core/performance.sh"
 source "$SECURE_DOTFILES_DIR/ai/providers.sh"
+source "$SECURE_DOTFILES_DIR/ai/context.sh"
 source "$SECURE_DOTFILES_DIR/project/manager.sh"
 source "$SECURE_DOTFILES_DIR/system/bootstrap.sh"
 
@@ -77,6 +78,12 @@ ai() {
         memory)
             ai_memory
             ;;
+        stack)
+            ai_context_stack
+            ;;
+        projects)
+            ai_show_all_projects
+            ;;
         provider)
             case "$1" in
                 setup)
@@ -96,10 +103,12 @@ ai() {
         help)
             echo "🤖 AI Commands:"
             echo "  ai \"query\"              # Ask AI with secure execution"
-            echo "  ai remember \"info\"       # Save context for session"
+            echo "  ai remember \"info\"      # Save context (multi-level aware)"
             echo "  ai forget               # Clear session context"
-            echo "  ai recall               # Show session context"
+            echo "  ai recall               # Show smart context hierarchy"
             echo "  ai memory               # Show all memories"
+            echo "  ai stack                # Show context stack navigation"
+            echo "  ai projects             # Show cross-project contexts"
             echo "  ai provider setup <name> # Setup provider context file"
             echo "  ai provider list        # List available providers"
             ;;

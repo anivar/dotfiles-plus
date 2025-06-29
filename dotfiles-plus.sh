@@ -148,12 +148,20 @@ ai() {
         recall)
             _ai_recall
             ;;
+        stack)
+            _ai_context_stack
+            ;;
+        projects)
+            _ai_show_all_projects
+            ;;
         help)
             echo "🤖 AI Commands:"
             echo "  ai \"query\"        # Ask AI with secure execution"
-            echo "  ai remember \"info\" # Save context for session"
+            echo "  ai remember \"info\" # Save context (multi-level aware)"
             echo "  ai forget          # Clear session context"
-            echo "  ai recall          # Show session context"
+            echo "  ai recall          # Show smart context hierarchy"
+            echo "  ai stack           # Show context stack navigation"
+            echo "  ai projects        # Show cross-project contexts"
             ;;
         *)
             # Default: treat as query
@@ -180,7 +188,14 @@ _ai_query() {
         return 1
     fi
     
-    echo "🤖 AI Query [$DOTFILES_PLUS_SESSION_ID]: $safe_query"
+    # Build smart context if available
+    local context=""
+    if declare -f _ai_build_smart_context_compat >/dev/null 2>&1; then
+        context=$(_ai_build_smart_context_compat)
+        safe_query="${context}Query: ${safe_query}"
+    fi
+    
+    echo "🤖 AI Query [$DOTFILES_PLUS_SESSION_ID]: $query"
     echo "📍 Directory: $(basename "$(pwd)")"
     
     # Check for available AI providers
@@ -191,7 +206,7 @@ _ai_query() {
         echo "🔵 Using gemini..."
         _secure_execute_command "gemini" "-p" "$safe_query"
     else
-        echo "🤖 AI Response: $safe_query
+        echo "🤖 AI Response: $query
 
 💡 No AI providers available. Install providers:
   Claude Code: Visit https://claude.ai/code
@@ -201,26 +216,31 @@ _ai_query() {
 
 # Remember information
 _ai_remember() {
-    local info="$*"
-    
-    if [[ -z "$info" ]]; then
-        echo "Usage: ai remember <information>" >&2
-        return 1
+    # Use smart remember if available, otherwise fallback
+    if declare -f _ai_remember_smart >/dev/null 2>&1; then
+        _ai_remember_smart "$@"
+    else
+        local info="$*"
+        
+        if [[ -z "$info" ]]; then
+            echo "Usage: ai remember <information>" >&2
+            return 1
+        fi
+        
+        # Sanitize input
+        local safe_info
+        safe_info=$(_secure_sanitize_input "$info" "true")
+        if [[ $? -ne 0 ]]; then
+            echo "❌ Invalid information - contains unsafe characters" >&2
+            return 1
+        fi
+        
+        local context_file="$DOTFILES_CONFIG_HOME/contexts/${DOTFILES_PLUS_SESSION_ID}_$(pwd | sed 's|/|_|g')"
+        local timestamp="[$(date '+%H:%M')]"
+        
+        echo "$timestamp $safe_info" >> "$context_file"
+        echo "💾 Remembered: $safe_info"
     fi
-    
-    # Sanitize input
-    local safe_info
-    safe_info=$(_secure_sanitize_input "$info" "true")
-    if [[ $? -ne 0 ]]; then
-        echo "❌ Invalid information - contains unsafe characters" >&2
-        return 1
-    fi
-    
-    local context_file="$DOTFILES_CONFIG_HOME/contexts/${DOTFILES_PLUS_SESSION_ID}_$(pwd | sed 's|/|_|g')"
-    local timestamp="[$(date '+%H:%M')]"
-    
-    echo "$timestamp $safe_info" >> "$context_file"
-    echo "💾 Remembered: $safe_info"
 }
 
 # Forget session context
@@ -237,13 +257,18 @@ _ai_forget() {
 
 # Recall session context
 _ai_recall() {
-    local context_file="$DOTFILES_CONFIG_HOME/contexts/${DOTFILES_PLUS_SESSION_ID}_$(pwd | sed 's|/|_|g')"
-    
-    if [[ -f "$context_file" ]]; then
-        echo "📚 Context for session $DOTFILES_PLUS_SESSION_ID:"
-        cat "$context_file"
+    # Use smart recall if available, otherwise fallback
+    if declare -f _ai_recall_smart >/dev/null 2>&1; then
+        _ai_recall_smart
     else
-        echo "No context for this session/directory"
+        local context_file="$DOTFILES_CONFIG_HOME/contexts/${DOTFILES_PLUS_SESSION_ID}_$(pwd | sed 's|/|_|g')"
+        
+        if [[ -f "$context_file" ]]; then
+            echo "📚 Context for session $DOTFILES_PLUS_SESSION_ID:"
+            cat "$context_file"
+        else
+            echo "No context for this session/directory"
+        fi
     fi
 }
 
@@ -425,6 +450,11 @@ gl() { git log --oneline --graph --decorate -n "${1:-10}"; }
 # ============================================================================
 # INITIALIZATION
 # ============================================================================
+
+# Source enhanced context if available
+if [[ -f "$HOME/.dotfiles-plus/ai/context-compat.sh" ]]; then
+    source "$HOME/.dotfiles-plus/ai/context-compat.sh"
+fi
 
 # Initialize the system
 _secure_dotfiles_init() {
