@@ -57,12 +57,33 @@ _ai_get_context_file() {
 # SMART MEMORY FUNCTIONS
 # ============================================================================
 
-# Enhanced remember function
+# Enhanced remember function with auto-tagging and importance levels
 _ai_remember_smart() {
     local info="$*"
+    local importance="normal"
+    local tags=""
+    
+    # Parse flags for importance and tags
+    while [[ $# -gt 0 ]]; do
+        case $1 in
+            --important|-i)
+                importance="high"
+                shift
+                ;;
+            --tag|-t)
+                tags="$2"
+                shift 2
+                ;;
+            *)
+                break
+                ;;
+        esac
+    done
+    
+    info="$*"
     
     if [[ -z "$info" ]]; then
-        echo "Usage: ai remember <information>" >&2
+        echo "Usage: ai remember [--important] [--tag <tag>] <information>" >&2
         return 1
     fi
     
@@ -74,14 +95,31 @@ _ai_remember_smart() {
         return 1
     fi
     
+    # Auto-detect content type and add tags
+    if [[ "$safe_info" =~ (TODO|FIXME|BUG) ]]; then
+        tags="${tags:+$tags,}task"
+    fi
+    if [[ "$safe_info" =~ (http://|https://) ]]; then
+        tags="${tags:+$tags,}link"
+    fi
+    if [[ "$safe_info" =~ (error|failed|issue) ]]; then
+        tags="${tags:+$tags,}issue"
+        importance="high"
+    fi
+    
     local timestamp="$(date '+%Y-%m-%d %H:%M:%S')"
     local levels_saved=0
+    
+    # Format with importance and tags
+    local formatted_info="$safe_info"
+    [[ "$importance" == "high" ]] && formatted_info="⚠️  $formatted_info"
+    [[ -n "$tags" ]] && formatted_info="$formatted_info [#$tags]"
     
     # Save at directory level
     local dir_file=$(_ai_get_context_file "dir")
     if [[ -n "$dir_file" ]]; then
         mkdir -p "$(dirname "$dir_file")"
-        echo "[$timestamp] $safe_info" >> "$dir_file"
+        echo "[$timestamp] $formatted_info" >> "$dir_file"
         ((levels_saved++))
     fi
     
@@ -89,7 +127,7 @@ _ai_remember_smart() {
     local branch_file=$(_ai_get_context_file "branch")
     if [[ -n "$branch_file" ]]; then
         mkdir -p "$(dirname "$branch_file")"
-        echo "[$timestamp] [$(pwd)] $safe_info" >> "$branch_file"
+        echo "[$timestamp] [$(pwd)] $formatted_info" >> "$branch_file"
         ((levels_saved++))
     fi
     
@@ -98,14 +136,21 @@ _ai_remember_smart() {
     local branch=$(_ai_get_branch)
     if [[ -n "$repo_file" ]]; then
         mkdir -p "$(dirname "$repo_file")"
-        echo "[$timestamp] [$branch:$(pwd)] $safe_info" >> "$repo_file"
+        echo "[$timestamp] [$branch:$(pwd)] $formatted_info" >> "$repo_file"
         ((levels_saved++))
     fi
     
     # Save at session level
     local session_file=$(_ai_get_context_file "session")
     mkdir -p "$(dirname "$session_file")"
-    echo "[$timestamp] $safe_info" >> "$session_file"
+    echo "[$timestamp] $formatted_info" >> "$session_file"
+    
+    # Auto-cleanup old entries (keep last 100 per file)
+    for file in "$dir_file" "$branch_file" "$repo_file"; do
+        if [[ -f "$file" ]] && [[ $(wc -l < "$file") -gt 100 ]]; then
+            tail -100 "$file" > "$file.tmp" && mv "$file.tmp" "$file"
+        fi
+    done
     
     echo "💾 Remembered at $levels_saved context levels: $safe_info"
 }
@@ -261,9 +306,10 @@ _ai_build_smart_context_compat() {
     local dir_file=$(_ai_get_context_file "dir")
     if [[ -f "$dir_file" ]]; then
         context+="Current Directory Context:"$'\n'
-        tail -3 "$dir_file" 2>/dev/null | while IFS= read -r line; do
-            context+="$line"$'\n'
-        done
+        local dir_lines=$(tail -3 "$dir_file" 2>/dev/null)
+        if [[ -n "$dir_lines" ]]; then
+            context+="$dir_lines"$'\n'
+        fi
         context+=$'\n'
     fi
     
@@ -272,9 +318,10 @@ _ai_build_smart_context_compat() {
     if [[ -f "$branch_file" ]]; then
         local branch=$(_ai_get_branch)
         context+="Branch Context ($branch):"$'\n'
-        tail -3 "$branch_file" 2>/dev/null | while IFS= read -r line; do
-            context+="$line"$'\n'
-        done
+        local branch_lines=$(tail -3 "$branch_file" 2>/dev/null)
+        if [[ -n "$branch_lines" ]]; then
+            context+="$branch_lines"$'\n'
+        fi
         context+=$'\n'
     fi
     
@@ -282,12 +329,79 @@ _ai_build_smart_context_compat() {
 }
 
 # ============================================================================
+# MEMORY MANAGEMENT
+# ============================================================================
+
+# Show memory statistics
+_ai_memory_stats() {
+    echo "📊 Memory Statistics:"
+    echo ""
+    
+    local context_dir="$DOTFILES_CONFIG_HOME/contexts"
+    local total_memories=0
+    local total_size=0
+    
+    # Count memories by type
+    echo "Memory Distribution:"
+    
+    # Directory memories
+    local dir_count=$(find "$context_dir" -name "dir_*.context" -type f 2>/dev/null | wc -l)
+    local dir_lines=$(find "$context_dir" -name "dir_*.context" -type f -exec wc -l {} + 2>/dev/null | tail -1 | awk '{print $1}')
+    echo "  📁 Directory contexts: $dir_count files, ${dir_lines:-0} memories"
+    
+    # Branch memories
+    local branch_count=$(find "$context_dir" -name "repo_*_branch_*.context" -type f 2>/dev/null | wc -l)
+    local branch_lines=$(find "$context_dir" -name "repo_*_branch_*.context" -type f -exec wc -l {} + 2>/dev/null | tail -1 | awk '{print $1}')
+    echo "  🌿 Branch contexts: $branch_count files, ${branch_lines:-0} memories"
+    
+    # Repo memories
+    local repo_count=$(find "$context_dir" -name "repo_*.context" ! -name "*_branch_*" -type f 2>/dev/null | wc -l)
+    local repo_lines=$(find "$context_dir" -name "repo_*.context" ! -name "*_branch_*" -type f -exec wc -l {} + 2>/dev/null | tail -1 | awk '{print $1}')
+    echo "  📦 Repository contexts: $repo_count files, ${repo_lines:-0} memories"
+    
+    # Total size
+    if command -v du >/dev/null 2>&1; then
+        total_size=$(du -sh "$context_dir" 2>/dev/null | cut -f1)
+        echo ""
+        echo "Total storage: $total_size"
+    fi
+    
+    # Show top tags
+    echo ""
+    echo "Top Tags:"
+    grep -h "\[#" "$context_dir"/*.context 2>/dev/null | grep -o "#[^]]*" | sort | uniq -c | sort -nr | head -5 | while read count tag; do
+        echo "  $tag: $count uses"
+    done
+}
+
+# Clean old memories
+_ai_memory_clean() {
+    local days="${1:-30}"
+    
+    echo "🧹 Cleaning memories older than $days days..."
+    
+    local context_dir="$DOTFILES_CONFIG_HOME/contexts"
+    local cleaned=0
+    
+    # Find and remove old session files
+    find "$context_dir" -name "session_*" -type f -mtime +$days -delete 2>/dev/null
+    cleaned=$?
+    
+    # Compact other context files by keeping only recent entries
+    for file in "$context_dir"/*.context; do
+        if [[ -f "$file" ]] && [[ $(wc -l < "$file") -gt 200 ]]; then
+            tail -100 "$file" > "$file.tmp" && mv "$file.tmp" "$file"
+            ((cleaned++))
+        fi
+    done
+    
+    echo "✅ Cleaned $cleaned files"
+}
+
+# ============================================================================
 # EXPORTS
 # ============================================================================
 
 # Export functions for use
-export -f _ai_remember_smart
-export -f _ai_recall_smart
-export -f _ai_context_stack
-export -f _ai_show_all_projects
-export -f _ai_build_smart_context_compat
+# Note: Removed export -f statements to prevent function definitions from
+# being displayed on terminal startup

@@ -37,15 +37,26 @@ Dotfiles Plus addresses common developer needs with a security-first approach:
 ai "how do I fix this error: permission denied"
 ai "explain this regex: ^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$"
 
-# Context-aware memory system
+# Context-aware memory system with enhanced features
 ai remember "debugging authentication issue in user service"
-ai recall                    # Shows context at multiple levels
+ai remember --important "critical bug: user data not saving"
+ai remember --tag todo "implement rate limiting"
+
+# Advanced recall with filtering
+ai recall                    # Shows all recent context
+ai recall "authentication"   # Search for specific terms
+ai recall --important        # Show only important items
+ai recall --tag todo        # Filter by specific tags
+
+# Memory management
+ai stats                     # View memory distribution and top tags
+ai clean 7                   # Clean memories older than 7 days
 ai forget                    # Clear current session context
 ai stack                     # Navigate context hierarchy
 ai projects                  # View memories across all projects
 ```
 
-📖 **[See all AI commands →](COMMANDS.md#-ai-commands)**
+📖 **[See all AI commands →](COMMANDS.md#-ai-commands)** | **[Configuration Guide →](CONFIGURATION.md)**
 
 #### 🧠 How the Smart Memory System Works
 The AI memory system maintains context at multiple hierarchical levels:
@@ -306,6 +317,7 @@ $ dotfiles health
 
 **AI commands not working**
 - Install an AI provider: [Claude](https://claude.ai/code) or [Gemini CLI](https://www.npmjs.com/package/@google/generative-ai-cli)
+- Configure API keys if needed: See [Configuration Guide](CONFIGURATION.md)
 - Check with `dotfiles health`
 
 **Context features not available**

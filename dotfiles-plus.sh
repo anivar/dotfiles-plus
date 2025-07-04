@@ -146,7 +146,11 @@ ai() {
             _ai_forget
             ;;
         recall)
-            _ai_recall
+            if declare -f _ai_recall_smart >/dev/null 2>&1; then
+                _ai_recall_smart "$@"
+            else
+                _ai_recall
+            fi
             ;;
         stack)
             _ai_context_stack
@@ -154,14 +158,34 @@ ai() {
         projects)
             _ai_show_all_projects
             ;;
+        stats)
+            if declare -f _ai_memory_stats >/dev/null 2>&1; then
+                _ai_memory_stats
+            else
+                echo "❌ Memory stats not available in this version"
+            fi
+            ;;
+        clean)
+            if declare -f _ai_memory_clean >/dev/null 2>&1; then
+                _ai_memory_clean "$@"
+            else
+                echo "❌ Memory clean not available in this version"
+            fi
+            ;;
         help)
             echo "🤖 AI Commands:"
-            echo "  ai \"query\"        # Ask AI with secure execution"
-            echo "  ai remember \"info\" # Save context (multi-level aware)"
-            echo "  ai forget          # Clear session context"
-            echo "  ai recall          # Show smart context hierarchy"
-            echo "  ai stack           # Show context stack navigation"
-            echo "  ai projects        # Show cross-project contexts"
+            echo "  ai \"query\"                  # Ask AI with secure execution"
+            echo "  ai remember [opts] \"info\"   # Save context (multi-level aware)"
+            echo "    --important|-i            # Mark as important"
+            echo "    --tag|-t <tag>           # Add tag (task, link, issue, etc.)"
+            echo "  ai forget                   # Clear session context"
+            echo "  ai recall [opts] [search]   # Show smart context with filtering"
+            echo "    --important|-i            # Show only important items"
+            echo "    --tag|-t <tag>           # Filter by tag"
+            echo "  ai stack                    # Show context stack navigation"
+            echo "  ai projects                 # Show cross-project contexts"
+            echo "  ai stats                    # Show memory statistics"
+            echo "  ai clean [days]            # Clean memories older than N days (default: 30)"
             ;;
         *)
             # Default: treat as query
