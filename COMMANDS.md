@@ -33,27 +33,51 @@ ai "what's the regex for email validation?"
 
 #### `ai remember`
 ```bash
-ai remember "information to save"
+ai remember [options] "information to save"
 ```
-Stores information at multiple context levels (directory, branch, repository, session). This creates a persistent memory that survives terminal restarts.
+Stores information at multiple context levels with support for importance and tagging.
 
-**Example:**
+**Options:**
+- `--important`, `-i` - Mark memory as important (shows with ⚠️)
+- `--tag <tag>`, `-t <tag>` - Add a custom tag for categorization
+
+**Auto-tagging:**
+- Content with TODO/FIXME/BUG gets tagged as `task`
+- URLs get tagged as `link`
+- Content with error/failed/issue gets tagged as `issue` and marked important
+
+**Examples:**
 ```bash
 ai remember "API endpoint is at /api/v2/users"
-ai remember "working on authentication bug - JWT expiry issue"
+ai remember --important "critical bug: user data not saving"
+ai remember --tag todo "implement rate limiting"
+ai remember --tag meeting "discussed new architecture with team"
 ```
 
 #### `ai recall`
 ```bash
-ai recall
+ai recall [options] [search_term]
 ```
-Displays all relevant memories for your current context, organized hierarchically.
+Displays relevant memories with powerful filtering capabilities.
+
+**Options:**
+- `--important`, `-i` - Show only important memories
+- `--tag <tag>`, `-t <tag>` - Filter by specific tag
+
+**Examples:**
+```bash
+ai recall                    # Show all recent memories
+ai recall "authentication"   # Search for specific term
+ai recall --important        # Show only important items
+ai recall --tag todo        # Show all TODO items
+ai recall --tag meeting "api" # Search meetings about API
+```
 
 **Output includes:**
 - Current directory memories
 - Current git branch memories
 - Repository-wide memories
-- Parent directory memories
+- Filtered by your criteria
 
 #### `ai forget`
 ```bash
@@ -92,6 +116,58 @@ Displays memories from all projects you've worked on, giving you a cross-project
 📦 api-backend:
   working on JWT authentication
   need to add rate limiting
+```
+
+#### `ai stats`
+```bash
+ai stats
+```
+Shows memory distribution statistics and usage patterns.
+
+**Output includes:**
+- Number of memories by context level (directory, branch, repository)
+- Total storage used
+- Top 5 most used tags
+- Memory distribution across projects
+
+**Example output:**
+```
+📊 Memory Statistics:
+
+Memory Distribution:
+  📁 Directory contexts: 15 files, 342 memories
+  🌿 Branch contexts: 8 files, 156 memories
+  📦 Repository contexts: 4 files, 89 memories
+
+Total storage: 124K
+
+Top Tags:
+  #todo: 23 uses
+  #bug: 15 uses
+  #feature: 12 uses
+  #meeting: 8 uses
+  #api: 7 uses
+```
+
+#### `ai clean`
+```bash
+ai clean [days]
+```
+Cleans up old memories to prevent storage bloat.
+
+**Parameters:**
+- `days` - Number of days to keep (default: 30)
+
+**Actions:**
+- Removes session files older than specified days
+- Compacts context files by keeping only recent 100 entries
+- Preserves important memories regardless of age
+
+**Examples:**
+```bash
+ai clean        # Clean memories older than 30 days
+ai clean 7      # Clean memories older than 7 days
+ai clean 90     # Clean memories older than 90 days
 
 📦 frontend-app:
   integrating with new auth API
