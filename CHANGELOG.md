@@ -5,6 +5,30 @@ All notable changes to Dotfiles Plus will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [1.1.0] - 2025-07-04
+
+### Fixed
+- Function definitions no longer displayed on terminal startup (#1)
+- Fixed string concatenation issues in context building functions
+- Removed problematic export -f statements
+
+### Added
+- **Enhanced AI Memory System** (#2)
+  - Auto-tagging for TODOs, links, and issues
+  - Importance levels with `--important` flag
+  - Custom tags with `--tag` option
+  - Advanced recall with search and filtering
+  - Memory statistics with `ai stats` command
+  - Memory cleanup with `ai clean` command
+  - Auto-cleanup to prevent memory bloat (keeps last 100 entries)
+- Comprehensive configuration documentation (CONFIGURATION.md)
+- API key setup guide for AI providers
+
+### Changed
+- Improved ai recall command with search and filtering capabilities
+- Enhanced ai remember with automatic content detection
+- Updated documentation with new features and examples
+
 ## [1.0.0] - 2024-06-28
 
 ### Added
