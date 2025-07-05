@@ -4,86 +4,126 @@ layout: default
 
 # 🚀 Transform Your Terminal with AI
 
-**Dotfiles Plus** brings the power of AI directly into your command line. Whether you're using **Claude**, **ChatGPT**, **Gemini**, or **Ollama**, get instant help, smart automation, and enterprise-grade security.
+> 💡 **A Personal Story**: As a developer, I was tired of switching between my terminal and AI chat windows. I needed AI right where I work - in my command line. So I built **Dotfiles Plus** - bringing the power of **Claude**, **ChatGPT**, **Gemini**, and **Ollama** directly into the terminal where we spend our days.
+
+**Born from a developer's need, built for developers everywhere** 🛠️
 
 <div style="text-align: center; margin: 2em 0;">
   <a href="#quick-install" class="btn">Get Started</a>
   <a href="https://github.com/anivar/dotfiles-plus" class="btn-secondary">View on GitHub</a>
 </div>
 
-## ✨ Why Dotfiles Plus?
+## ✨ Why I Built This (And Why You'll Love It)
 
-### 🤖 **Universal AI Integration**
-Works seamlessly with all major AI providers - Claude Code, ChatGPT, Google Gemini, Ollama, OpenRouter, and any OpenAI-compatible API.
+<div class="feature-card">
+<h3>🤖 <strong>Universal AI Integration</strong></h3>
+<p>Frustrated with copy-pasting between terminal and ChatGPT? Me too! Now you can use <strong>Claude Code</strong>, <strong>ChatGPT</strong>, <strong>Google Gemini</strong>, <strong>Ollama</strong>, and more - all without leaving your terminal.</p>
+</div>
 
-### 🧠 **Intelligent Memory System**
-Context-aware AI that remembers your work across projects, branches, and directories. Never lose important context again.
+<div class="feature-card">
+<h3>🧠 <strong>AI That Remembers</strong></h3>
+<p>Ever explained the same project context to AI multiple times? Not anymore! The intelligent memory system remembers your work across projects, branches, and sessions. Your AI assistant finally has context!</p>
+</div>
 
-### 🔒 **Enterprise Security**
-Built with security first - no `eval`, input sanitization, encrypted secrets, audit logging, and session isolation.
+<div class="feature-card">
+<h3>🔐 <strong>Security You Can Trust</strong></h3>
+<p>As someone who's paranoid about security, I built this with protection first - no dangerous <code>eval</code>, full input sanitization, encrypted secrets, and complete audit trails. Sleep well knowing your code is safe.</p>
+</div>
 
-### ⚡ **Blazing Fast**
-Shell startup under 100ms guaranteed with lazy loading, intelligent caching, and async operations.
+<div class="feature-card">
+<h3>⚡ <strong>Lightning Fast</strong></h3>
+<p>Nobody likes slow shells. With lazy loading, intelligent caching, and async operations, your shell starts in under 100ms. Because every millisecond counts when you're in the flow.</p>
+</div>
 
-## 🎯 Features
+## 🎯 Real Features That Save Real Time
 
-### AI-Powered Commands
+### 🤖 Natural Language in Your Terminal
 ```bash
-# Natural language queries
-ai "how do I find files larger than 100MB?"
+# Stop googling, just ask! 
+ai "how do I find files larger than 100MB?" 
+# → AI: Use: find . -type f -size +100M
+
 ai "explain this error: permission denied on port 80"
+# → AI: Port 80 requires root access. Try: sudo your-command or use port 3000
 
-# Smart command fixes
-ai fix                    # Auto-fix the last failed command
-ai explain-last          # Understand what just happened
-ai suggest               # Get next command suggestions
+# When commands fail, AI has your back 🛡️
+npm start
+# Error: EADDRINUSE :::3000
+ai fix
+# → AI: Port 3000 is busy. Running: lsof -ti:3000 | xargs kill -9
+# ✅ Fixed! Restarting your server...
 
-# AI-powered tools
-aig "search for TODO"    # Natural language grep
-aif "find config files"  # Smart file search
-ais "change var to let" app.js  # AI-powered sed
+# AI-powered tools that understand what you mean 🎯
+aig "search for TODO"    # Smarter than grep - finds TODOs, FIXME, etc.
+aif "find config files"  # Knows .conf, .config, .env, settings.json...
+ais "change var to let" app.js  # Understands JavaScript context!
 ```
 
-### Intelligent Context Memory
+### 🧠 AI Memory That Actually Works
 ```bash
-# Remember important information
+# Your AI assistant finally has a memory! 🎉
 ai remember "using PostgreSQL 15 with TimescaleDB"
 ai remember --tag bug "users report slow login after 5pm"
 ai remember --important "API keys rotate every 30 days"
 
-# Smart recall
-ai recall                 # Show all context
-ai recall --tag bug      # Filter by tags
-ai recall "password"     # Search memories
+# Weeks later, your AI still knows your project 🤯
+ai recall "database"
+# → PostgreSQL 15 with TimescaleDB
+# → Connection pool: 20 max (remembered 2 weeks ago)
+# → Recent issue: slow queries on user_sessions table
 ```
 
-### File-Aware AI (v2.0)
+### 📁 AI That Reads Your Files (Game Changer!)
 ```bash
-# Include files in queries
+# The @ symbol includes files - mind blown! 🤯
 ai "explain @package.json"
 ai "find security issues in @server.js"
 ai "compare @old-config.json @new-config.json"
 ai "review @src/*.js and suggest improvements"
+
+# My favorite: instant code reviews 💅
+ai "is this production ready?" @api/auth.js
+# → AI: Found 3 issues:
+# → 1. No rate limiting on login endpoint
+# → 2. Passwords logged in line 47
+# → 3. Missing input validation
 ```
 
-### Enhanced Git Experience
+### 🌿 Git Commands That Spark Joy
 ```bash
-# Visual git status
+# Visual git status that actually makes sense! 
 gst
-📊 Git Status
-🌿 Branch: feature/auth
-⬆️  Ahead by 2 commits
+📊 Git Status for awesome-project
+🌿 Branch: feature/auth  
+📍 Tracking: origin/feature/auth (↑2 commits ahead)
 
-✏️  Modified: auth.js
-➕ Added: jwt-helper.js
-❓ Untracked: test.log
+✏️  Modified:
+    src/auth.js (45 lines changed)
+    src/utils/jwt.js (12 lines changed)
+    
+➕ New Files:
+    tests/auth.test.js
+    
+❓ Untracked:
+    .env.local (⚠️ contains secrets!)
 
-# Smart commits
+# Commits that follow conventions automatically! 🎨
 gc "add user authentication"
-# AI detects type: "feat: add user authentication"
+# → AI writes: "feat(auth): add JWT-based user authentication
+#             
+#             - Implement login/logout endpoints
+#             - Add JWT token generation
+#             - Include refresh token flow"
 ```
 
-## 💾 Quick Install
+## 🎁 My Gift to Fellow Developers
+
+<div class="cta-section">
+<p><strong>This started as a personal tool</strong> to solve my daily frustrations. Now it's saving hours for developers worldwide. If it helps you too, that's all the reward I need! 💝</p>
+<p style="margin-top: 1rem;"><em>Though if you want to buy me coffee while I add more features... ☕</em></p>
+</div>
+
+## 💾 Quick Install (Under 30 Seconds!)
 
 ### Homebrew (Recommended)
 ```bash
@@ -171,16 +211,30 @@ MIT © [anivar](https://github.com/anivar)
 
 ---
 
-<div style="text-align: center; margin-top: 3em;">
-  <h2>🤝 Support Development</h2>
-  <p>Love using Dotfiles Plus? Help us make it even better!</p>
+<div class="cta-section" style="margin-top: 4em;">
+  <h2>💖 Support a Fellow Developer's Passion Project</h2>
+  <p style="font-size: 1.1em; margin: 1.5em 0;">
+    <strong>Hi, I'm Anivar!</strong> 👋<br>
+    I built Dotfiles Plus because I needed AI in my terminal, not in another browser tab.<br>
+    If this tool saves you time (or just makes you smile), consider supporting its development!
+  </p>
+  
   <div style="margin: 2em 0;">
     <a href="https://github.com/sponsors/anivar" class="btn">💖 GitHub Sponsors</a>
     <a href="https://buymeacoffee.com/anivar" class="btn-secondary">☕ Buy Me a Coffee</a>
   </div>
+  
+  <p style="font-size: 0.9em; color: #666; margin-top: 2em;">
+    Every sponsor helps me dedicate more time to features you'll love! 🚀<br>
+    <strong>Recent additions:</strong> Gemma & Qwen support, Jekyll website, auto-sync docs
+  </p>
+  
+  <hr style="margin: 2em 0; opacity: 0.3;">
+  
   <p style="margin-top: 2em;">
+    <strong>Join the Community:</strong><br>
     <a href="https://github.com/anivar/dotfiles-plus" style="margin: 0 1em;">⭐ Star on GitHub</a>
-    <a href="https://github.com/anivar/dotfiles-plus/discussions" style="margin: 0 1em;">💬 Join Discussions</a>
+    <a href="https://github.com/anivar/dotfiles-plus/discussions" style="margin: 0 1em;">💬 Share Your Story</a>
     <a href="https://github.com/anivar/dotfiles-plus/issues" style="margin: 0 1em;">🐛 Report Issues</a>
   </p>
 </div>

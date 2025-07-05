@@ -288,12 +288,20 @@ dotfiles config set ai_provider gemini-cli
 ```bash
 # Install and setup
 brew install ollama
-ollama pull llama3
-ollama pull codellama
+
+# Pull models - Choose based on your needs
+ollama pull llama3              # General purpose (8B)
+ollama pull codellama          # Code-focused
+ollama pull mistral            # Fast & efficient (7B)
+ollama pull gemma:2b           # Google's Gemma (2B) - ultra fast
+ollama pull gemma              # Google's Gemma (7B)
+ollama pull qwen:0.5b          # Alibaba's Qwen (0.5B) - ultra light
+ollama pull qwen               # Alibaba's Qwen (7B)
+ollama pull qwen2.5-coder      # Specialized for coding (7B)
 
 # Configure
 dotfiles config set ai_provider ollama
-dotfiles config set ollama_model llama3
+dotfiles config set ollama_model llama3  # or gemma, qwen, qwen2.5-coder
 dotfiles config set ollama_url http://localhost:11434
 ```
 
