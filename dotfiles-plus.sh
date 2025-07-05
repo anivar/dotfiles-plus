@@ -134,7 +134,7 @@ _config_set() {
 # ============================================================================
 
 # AI query with secure execution
-ai() {
+function ai() {
     local subcommand="$1"
     shift
     
@@ -195,7 +195,7 @@ ai() {
 }
 
 # Execute AI query securely
-_ai_query() {
+function _ai_query() {
     local query="$*"
     
     # Validate and sanitize input
@@ -239,7 +239,7 @@ _ai_query() {
 }
 
 # Remember information
-_ai_remember() {
+function _ai_remember() {
     # Use smart remember if available, otherwise fallback
     if declare -f _ai_remember_smart >/dev/null 2>&1; then
         _ai_remember_smart "$@"
@@ -268,7 +268,7 @@ _ai_remember() {
 }
 
 # Forget session context
-_ai_forget() {
+function _ai_forget() {
     local context_file="$DOTFILES_CONFIG_HOME/contexts/${DOTFILES_PLUS_SESSION_ID}_$(pwd | sed 's|/|_|g')"
     
     if [[ -f "$context_file" ]]; then
@@ -280,7 +280,7 @@ _ai_forget() {
 }
 
 # Recall session context
-_ai_recall() {
+function _ai_recall() {
     # Use smart recall if available, otherwise fallback
     if declare -f _ai_recall_smart >/dev/null 2>&1; then
         _ai_recall_smart

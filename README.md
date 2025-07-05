@@ -244,11 +244,14 @@ source dotfiles-plus-full.sh
 
 ### Add to Your Shell
 ```bash
-# Add to ~/.bashrc or ~/.zshrc
+# For Bash users
 echo 'source ~/path/to/dotfiles-plus/dotfiles-plus.sh' >> ~/.bashrc
 
-# For enhanced AI context features
-echo 'source ~/path/to/dotfiles-plus/ai/context-compat.sh' >> ~/.bashrc
+# For Zsh users
+echo 'source ~/path/to/dotfiles-plus/dotfiles-plus.sh' >> ~/.zshrc
+
+# Note: Some advanced features may work better in bash
+# If you experience issues in zsh, try using bash or report an issue
 ```
 
 ### Migrate Existing Setup
@@ -321,7 +324,13 @@ $ dotfiles health
 - Check with `dotfiles health`
 
 **Context features not available**
-- Source the context module: `source ~/path/to/dotfiles-plus/ai/context-compat.sh`
+- The context module is automatically sourced with dotfiles-plus.sh
+- If using zsh and experiencing issues, try using bash: `bash -l`
+
+**Functions not found in zsh**
+- This is a known compatibility issue with some zsh configurations
+- Try using bash for full functionality: `bash`
+- Or add `setopt NO_KSH_ARRAYS` to your .zshrc before sourcing
 
 ## 🤝 Contributing
 
