@@ -1,0 +1,166 @@
+name: Sync Documentation to GitHub Pages
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - 'README.md'
+      - 'INSTALL.md'
+      - 'CHANGELOG.md'
+      - 'ROADMAP.md'
+      - 'CONTRIBUTING.md'
+      - 'COMMANDS.md'
+      - 'CONFIGURATION.md'
+  workflow_dispatch:
+
+jobs:
+  sync-docs:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout main branch
+        uses: actions/checkout@v4
+        with:
+          ref: main
+          path: main
+
+      - name: Checkout gh-pages branch
+        uses: actions/checkout@v4
+        with:
+          ref: gh-pages
+          path: gh-pages
+
+      - name: Sync documentation files
+        run: |
+          # Copy and transform main docs to Jekyll pages
+          cd main
+          
+          # Create frontmatter for Jekyll
+          add_frontmatter() {
+            local file=$1
+            local title=$2
+            local output=$3
+            
+            echo "---" > "../gh-pages/$output"
+            echo "layout: default" >> "../gh-pages/$output"
+            echo "title: $title" >> "../gh-pages/$output"
+            echo "---" >> "../gh-pages/$output"
+            echo "" >> "../gh-pages/$output"
+            
+            # Remove the first # heading since Jekyll adds it
+            sed '1{/^# /d;}' "$file" >> "../gh-pages/$output"
+          }
+          
+          # Sync main documentation files
+          add_frontmatter "INSTALL.md" "Installation Guide" "install.md"
+          add_frontmatter "CHANGELOG.md" "Changelog" "changelog.md"
+          add_frontmatter "ROADMAP.md" "Roadmap" "roadmap.md"
+          add_frontmatter "COMMANDS.md" "Command Reference" "commands.md"
+          add_frontmatter "CONFIGURATION.md" "Configuration" "configuration.md"
+          add_frontmatter "CONTRIBUTING.md" "Contributing" "contributing.md"
+          
+          # Update main page content from README
+          cd ../gh-pages
+          
+          # Extract key sections from README for the homepage
+          python3 << 'EOF'
+import re
+
+# Read README from main
+with open('../main/README.md', 'r') as f:
+    readme = f.read()
+
+# Read current index.md
+with open('index.md', 'r') as f:
+    index = f.read()
+
+# Extract features section from README
+features_match = re.search(r'## 💡 Features That Transform Your Terminal.*?(?=## )', readme, re.DOTALL)
+if features_match:
+    features = features_match.group(0)
+    
+    # Update features section in index.md
+    index = re.sub(
+        r'## 🎯 Features.*?(?=## 💾 Quick Install)',
+        '## 🎯 Features\n\n' + features.replace('## 💡 Features That Transform Your Terminal', '').strip() + '\n\n',
+        index,
+        flags=re.DOTALL
+    )
+
+# Extract requirements from README  
+req_match = re.search(r'## 🛠️ System Requirements.*?(?=## )', readme, re.DOTALL)
+if req_match:
+    requirements = req_match.group(0)
+    
+    # Update requirements in index.md
+    index = re.sub(
+        r'## 🛠️ Requirements.*?(?=## 🔧 Configuration)',
+        requirements.replace('System Requirements', 'Requirements') + '\n',
+        index,
+        flags=re.DOTALL
+    )
+
+# Save updated index.md
+with open('index.md', 'w') as f:
+    f.write(index)
+EOF
+
+      - name: Update navigation
+        run: |
+          cd gh-pages
+          
+          # Create navigation include
+          mkdir -p _includes
+          cat > _includes/navigation.html << 'EOF'
+          <nav style="background: #1a1f36; padding: 1em 0; margin-bottom: 2em;">
+            <div class="container" style="text-align: center;">
+              <a href="{{ site.baseurl }}/" style="margin: 0 1em;">Home</a>
+              <a href="{{ site.baseurl }}/install" style="margin: 0 1em;">Install</a>
+              <a href="{{ site.baseurl }}/commands" style="margin: 0 1em;">Commands</a>
+              <a href="{{ site.baseurl }}/configuration" style="margin: 0 1em;">Configuration</a>
+              <a href="{{ site.baseurl }}/changelog" style="margin: 0 1em;">Changelog</a>
+              <a href="{{ site.baseurl }}/roadmap" style="margin: 0 1em;">Roadmap</a>
+              <a href="https://github.com/anivar/dotfiles-plus" style="margin: 0 1em;">GitHub</a>
+            </div>
+          </nav>
+          EOF
+          
+          # Update layout to include navigation
+          mkdir -p _layouts
+          cat > _layouts/default.html << 'EOF'
+          <!DOCTYPE html>
+          <html lang="{{ site.lang | default: "en-US" }}">
+            <head>
+              <meta charset="UTF-8">
+              <meta http-equiv="X-UA-Compatible" content="IE=edge">
+              <meta name="viewport" content="width=device-width, initial-scale=1">
+              {% seo %}
+              <link rel="stylesheet" href="{{ "/assets/css/style.css?v=" | append: site.github.build_revision | relative_url }}">
+            </head>
+            <body>
+              {% include navigation.html %}
+              <div class="container-lg px-3 my-5 markdown-body">
+                {{ content }}
+              </div>
+              <script src="https://cdnjs.cloudflare.com/ajax/libs/anchor-js/4.1.0/anchor.min.js" integrity="sha256-lZaRhKri35AyJSypXXs4o6OPFTbTmUoltBbDCbdzegg=" crossorigin="anonymous"></script>
+              <script>anchors.add();</script>
+            </body>
+          </html>
+          EOF
+
+      - name: Commit and push changes
+        run: |
+          cd gh-pages
+          git config --local user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git config --local user.name "github-actions[bot]"
+          git add -A
+          if git diff --staged --quiet; then
+            echo "No changes to commit"
+          else
+            git commit -m "chore: sync documentation from main branch
+
+            - Updated from latest markdown files
+            - Auto-generated by GitHub Actions
+            
+            [skip ci]"
+            git push origin gh-pages
+          fi

@@ -1,0 +1,25 @@
+# Jekyll configuration for Dotfiles Plus website
+title: Dotfiles Plus
+description: AI-powered terminal enhancement with enterprise security
+url: https://anivar.github.io
+baseurl: /dotfiles-plus
+theme: jekyll-theme-cayman
+
+# Theme customization
+show_downloads: true
+google_analytics: 
+
+# GitHub metadata
+github:
+  repository_url: https://github.com/anivar/dotfiles-plus
+  zip_url: https://github.com/anivar/dotfiles-plus/archive/refs/tags/v2.0.1.zip
+  tar_url: https://github.com/anivar/dotfiles-plus/archive/refs/tags/v2.0.1.tar.gz
+
+# SEO
+tagline: Transform your terminal with AI integration, smart automation, and enterprise-grade security
+keywords: dotfiles, shell enhancement, terminal AI, bash configuration, zsh plugins, Claude CLI, ChatGPT terminal, Gemini shell
+
+# Social
+twitter:
+  username: 
+  card: summary_large_image
