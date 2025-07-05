@@ -27,8 +27,8 @@
 ### Option 1: Homebrew (Recommended for macOS/Linux)
 
 ```bash
-# Add tap and install
-brew tap anivar/dotfiles-plus
+# Add tap from GitHub branch and install
+brew tap anivar/dotfiles-plus https://github.com/anivar/dotfiles-plus
 brew install dotfiles-plus
 
 # After installation, add to your shell:

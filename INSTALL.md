@@ -5,8 +5,8 @@ Choose your preferred installation method:
 ## 🍺 Install with Homebrew (Recommended)
 
 ```bash
-# Add the official tap
-brew tap anivar/dotfiles-plus
+# Add the official tap from GitHub branch
+brew tap anivar/dotfiles-plus https://github.com/anivar/dotfiles-plus
 
 # Install Dotfiles Plus
 brew install dotfiles-plus

@@ -51,6 +51,13 @@ test-features-simulated.sh
 # Session files
 SESSION_SUMMARY.md
 TODO_REMAINING.md
+SETUP_GUIDE.md
+HOMEBREW_SUBMISSION.md
 
 # AI context (contains project-specific memory)
 # CLAUDE.md is tracked in git for AI context persistence
+
+# Local development
+homebrew-tap/
+.vscode/
+.idea/
