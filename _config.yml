@@ -29,6 +29,8 @@ navigation:
     url: /ai-features
   - title: Docs
     url: /docs
+  - title: Support
+    url: /support
 
 # Social links
 social:
