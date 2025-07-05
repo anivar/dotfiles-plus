@@ -5,26 +5,38 @@ Choose your preferred installation method:
 ## 🍺 Install with Homebrew (Recommended)
 
 ```bash
-# Add the tap
+# Add the official tap
 brew tap anivar/dotfiles-plus
 
-# Install
+# Install Dotfiles Plus
 brew install dotfiles-plus
 
-# Run setup
+# Add to your shell configuration:
+# For Bash:
+echo 'source $(brew --prefix)/opt/dotfiles-plus/bin/dotfiles-plus-init' >> ~/.bashrc
+
+# For Zsh:
+echo 'source $(brew --prefix)/opt/dotfiles-plus/bin/dotfiles-plus-init' >> ~/.zshrc
+
+# Reload your shell
+exec $SHELL
+
+# Run initial setup
 dotfiles setup
 ```
+
+**Note**: The Homebrew formula automatically installs Bash 5+ if needed.
 
 ## 📦 Quick Install (One-liner)
 
 ```bash
-curl -sSL https://dotfiles.plus/install | bash
+curl -sSL https://raw.githubusercontent.com/anivar/dotfiles-plus/main/install.sh | bash
 ```
 
 Or with wget:
 
 ```bash
-wget -qO- https://dotfiles.plus/install | bash
+wget -qO- https://raw.githubusercontent.com/anivar/dotfiles-plus/main/install.sh | bash
 ```
 
 ## 🐳 Docker Try-Out

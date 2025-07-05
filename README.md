@@ -24,25 +24,39 @@
 
 ## 🚀 Quick Install
 
-### One-Line Install
+### Option 1: Homebrew (Recommended for macOS/Linux)
 
 ```bash
-# With curl
-curl -sSL https://dotfiles.plus/install | bash
+# Add tap and install
+brew tap anivar/dotfiles-plus
+brew install dotfiles-plus
 
-# With Homebrew
-brew tap anivar/dotfiles-plus && brew install dotfiles-plus
-
-# Docker try-out
-docker run -it anivar/dotfiles-plus
+# After installation, add to your shell:
+# For Bash: echo 'source $(brew --prefix)/opt/dotfiles-plus/bin/dotfiles-plus-init' >> ~/.bashrc
+# For Zsh:  echo 'source $(brew --prefix)/opt/dotfiles-plus/bin/dotfiles-plus-init' >> ~/.zshrc
 ```
 
-### Manual Install
+### Option 2: One-Line Install
 
 ```bash
+# Quick install script
+curl -sSL https://raw.githubusercontent.com/anivar/dotfiles-plus/main/install.sh | bash
+```
+
+### Option 3: Manual Install
+
+```bash
+# Clone and install
 git clone https://github.com/anivar/dotfiles-plus.git ~/.dotfiles-plus
 cd ~/.dotfiles-plus
 ./install.sh
+```
+
+### Option 4: Try with Docker
+
+```bash
+# Coming soon - Test without installing
+docker run -it anivar/dotfiles-plus
 ```
 
 ## 💡 Features That Transform Your Terminal
