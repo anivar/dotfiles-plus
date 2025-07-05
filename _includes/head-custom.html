@@ -1,0 +1,14 @@
+<!-- Custom head content -->
+<meta name="author" content="anivar">
+<meta property="og:title" content="{{ page.title | default: site.title }}">
+<meta property="og:description" content="{{ page.description | default: site.description }}">
+<meta property="og:url" content="{{ page.url | absolute_url }}">
+<meta property="og:type" content="website">
+
+<!-- Favicon -->
+<link rel="icon" type="image/png" href="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACAAAAAgCAYAAABzenr0AAAABHNCSVQICAgIfAhkiAAAAAlwSFlzAAAA7AAAAOwBeShxvQAAABl0RVh0U29mdHdhcmUAd3d3Lmlua3NjYXBlLm9yZ5vuPBoAAAM6SURBVFiFtZdPaBxVHMc/781sNrubTbJJmqZNa6tVqFWLeCgIXqQHL4IgeBE8eBUPXryIB/HixYsHL168eBEEQfAgCILgQRBEEFGrVqtWa9Ommm02yW52Z2bn937vPTKz2d1kk0377cDAvPn95vf5/X7z3sx7QkRoc7UAuwEBaGAD8ALYwH8C2AeUgQJQAtJAAhgC+oEMkATGgO3AVWAT0A8YQBzYBOwEtgNbgC7ABCzAAzzAF5Gac1prpQCl1FoElNaaBOABVWAJKAJLwCxwETgNnALOAXNAGagBvtZa+wDiOE5NRKrAIuAqpRZrtVpQKBSCfD5fyefzQalUCizLCjzPC1zXDTzPU7VaraarK0WtVgtc161Za1RKKXFdNygWi8HCwkJQLpcDz/NUzbbted5KKxwA13VtEQmBKmEzrAAQCdJKU1YKpJH+TfVo1foMTYloA2isQKVSCQqFwjJAq0xgJgCRHqBQKCybRS6Xsz3Pi7quG3Vdt+a6bs1xnKrneVXP82qe51mO49iu69Y8z4u6rhtxHMe2bdsSkYBlWZJIJCSRSEgymZRUKiWmaUpXV5d0dXVJOp2WTCYjmUxGuru7pb+/XwYGBqS3t1d6e3slm81KNpuVnp4eSafTYhiGGIYhhmFILBaTWCwmiURC4vG4NDXCjQD1ZhQzRyQSiZJhGBXDMCqJRKISi8WscLt6DcNQhmGoeDyuTNNUpmkqx3Fst7bSQgOAQGutGyrgBwFBEGilVGBZll8sFoNSqRQ4jhNEIhEvHo97iUTCs217pX/rtU1EZAJwRUSJiIW1ViIia1XcEJHKkjO9/ysWoAC8DpwA/gayIrJdRGKhVVZEJLKGgRUichlYAN4FXgGagxCgeXwTEAP2AGkRGVyr+xvRCoABPB2OTRHpbFUBE9gMPMHqU7EmWilgAtuAx1k9CMeBo6z+mTajtYfoa/rwJPABcBm4o5VcCMf6gEHqz4kI8F1o24bWCkSAB4DHgYNhQzaAt4DHgJ2ACSzXYUUBUATmgXFgCvgZ+AG4ADy3YhY8z6vJGjPg1gHQWuug8edaRERXq1WpVquyEZRKJZmbm5PJyUm5du2anDlzRr777jv5Pw1cfMVhKfGyAAAAAElFTkSuQmCC">
+
+<!-- Analytics placeholder -->
+{% if site.google_analytics %}
+<!-- Google Analytics -->
+{% endif %}

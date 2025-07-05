@@ -1,0 +1,196 @@
+<!DOCTYPE html>
+<html lang="{{ site.lang | default: "en-US" }}">
+  <head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+{% seo %}
+    <link rel="stylesheet" href="{{ "/assets/css/style.css?v=" | append: site.github.build_revision | relative_url }}">
+    {% include head-custom.html %}
+    
+    <style>
+      /* Custom styles */
+      .btn {
+        display: inline-block;
+        margin-bottom: 1rem;
+        color: rgba(255, 255, 255, 0.9);
+        background-color: #159957;
+        border-color: rgba(255, 255, 255, 0.2);
+        border-style: solid;
+        border-width: 1px;
+        border-radius: 0.3rem;
+        padding: 0.75rem 1rem;
+        text-decoration: none;
+        transition: all 0.2s;
+      }
+      
+      .btn:hover {
+        background-color: #127f48;
+        border-color: rgba(255, 255, 255, 0.3);
+        color: white;
+        text-decoration: none;
+      }
+      
+      .btn-secondary {
+        display: inline-block;
+        margin-bottom: 1rem;
+        color: #159957;
+        background-color: white;
+        border-color: #159957;
+        border-style: solid;
+        border-width: 1px;
+        border-radius: 0.3rem;
+        padding: 0.75rem 1rem;
+        text-decoration: none;
+        transition: all 0.2s;
+      }
+      
+      .btn-secondary:hover {
+        background-color: #159957;
+        color: white;
+        text-decoration: none;
+      }
+      
+      /* Navigation */
+      .site-nav {
+        background: rgba(21, 153, 87, 0.95);
+        padding: 0.5rem 0;
+        position: sticky;
+        top: 0;
+        z-index: 1000;
+        box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+      }
+      
+      .nav-wrapper {
+        max-width: 64rem;
+        margin: 0 auto;
+        padding: 0 2rem;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+      }
+      
+      .nav-links {
+        display: flex;
+        gap: 1.5rem;
+        list-style: none;
+        margin: 0;
+        padding: 0;
+      }
+      
+      .nav-links a {
+        color: white;
+        text-decoration: none;
+        font-weight: 500;
+        transition: opacity 0.2s;
+      }
+      
+      .nav-links a:hover {
+        opacity: 0.8;
+      }
+      
+      .support-links {
+        display: flex;
+        gap: 1rem;
+      }
+      
+      .support-links a {
+        color: white;
+        text-decoration: none;
+        padding: 0.25rem 0.75rem;
+        border: 1px solid rgba(255,255,255,0.3);
+        border-radius: 0.25rem;
+        font-size: 0.9rem;
+        transition: all 0.2s;
+      }
+      
+      .support-links a:hover {
+        background: rgba(255,255,255,0.1);
+        border-color: rgba(255,255,255,0.5);
+      }
+      
+      /* Mobile menu */
+      @media screen and (max-width: 768px) {
+        .nav-wrapper {
+          flex-direction: column;
+          padding: 0.5rem 1rem;
+        }
+        
+        .nav-links {
+          flex-wrap: wrap;
+          justify-content: center;
+          margin-top: 0.5rem;
+        }
+        
+        .support-links {
+          margin-top: 0.5rem;
+        }
+      }
+      
+      /* Code highlighting */
+      pre {
+        background-color: #f6f8fa;
+        border-radius: 0.3rem;
+        padding: 1rem;
+        overflow: auto;
+      }
+      
+      code {
+        background-color: rgba(27,31,35,0.05);
+        border-radius: 0.2rem;
+        padding: 0.2em 0.4em;
+        font-size: 85%;
+      }
+      
+      pre code {
+        background-color: transparent;
+        padding: 0;
+      }
+    </style>
+  </head>
+  <body>
+    <a id="skip-to-content" href="#content">Skip to the content.</a>
+
+    <nav class="site-nav">
+      <div class="nav-wrapper">
+        <ul class="nav-links">
+          {% for item in site.navigation %}
+          <li><a href="{{ item.url | relative_url }}">{{ item.title }}</a></li>
+          {% endfor %}
+        </ul>
+        <div class="support-links">
+          <a href="{{ site.social.github_sponsor }}">💖 Sponsor</a>
+          <a href="{{ site.social.buymeacoffee }}">☕ Buy Coffee</a>
+        </div>
+      </div>
+    </nav>
+
+    <header class="page-header" role="banner">
+      <h1 class="project-name">{{ page.title | default: site.title | default: site.github.repository_name }}</h1>
+      <h2 class="project-tagline">{{ page.description | default: site.description | default: site.github.project_tagline }}</h2>
+      {% if site.github.is_project_page %}
+        <a href="{{ site.github.repository_url }}" class="btn">View on GitHub</a>
+      {% endif %}
+      {% if site.show_downloads %}
+        <a href="{{ site.github.zip_url }}" class="btn">Download .zip</a>
+        <a href="{{ site.github.tar_url }}" class="btn">Download .tar.gz</a>
+      {% endif %}
+    </header>
+
+    <main id="content" class="main-content" role="main">
+      {{ content }}
+
+      <footer class="site-footer">
+        {% if site.github.is_project_page %}
+          <span class="site-footer-owner"><a href="{{ site.github.repository_url }}">{{ site.github.repository_name }}</a> is maintained by <a href="{{ site.github.owner_url }}">{{ site.github.owner_name }}</a>.</span>
+        {% endif %}
+        <span class="site-footer-credits">
+          Transform your terminal with AI. 
+          <a href="{{ site.social.github_sponsor }}">Support on GitHub Sponsors</a> | 
+          <a href="{{ site.social.buymeacoffee }}">Buy Me a Coffee</a>
+        </span>
+      </footer>
+    </main>
+  </body>
+</html>

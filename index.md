@@ -172,7 +172,15 @@ MIT © [anivar](https://github.com/anivar)
 ---
 
 <div style="text-align: center; margin-top: 3em;">
-  <a href="https://github.com/anivar/dotfiles-plus" class="github-button" data-size="large" data-show-count="true">Star</a>
-  <a href="https://github.com/anivar/dotfiles-plus/discussions" class="github-button" data-size="large">Discuss</a>
-  <a href="https://buymeacoffee.com/anivar" class="github-button" data-size="large">Support</a>
+  <h2>🤝 Support Development</h2>
+  <p>Love using Dotfiles Plus? Help us make it even better!</p>
+  <div style="margin: 2em 0;">
+    <a href="https://github.com/sponsors/anivar" class="btn">💖 GitHub Sponsors</a>
+    <a href="https://buymeacoffee.com/anivar" class="btn-secondary">☕ Buy Me a Coffee</a>
+  </div>
+  <p style="margin-top: 2em;">
+    <a href="https://github.com/anivar/dotfiles-plus" style="margin: 0 1em;">⭐ Star on GitHub</a>
+    <a href="https://github.com/anivar/dotfiles-plus/discussions" style="margin: 0 1em;">💬 Join Discussions</a>
+    <a href="https://github.com/anivar/dotfiles-plus/issues" style="margin: 0 1em;">🐛 Report Issues</a>
+  </p>
 </div>
