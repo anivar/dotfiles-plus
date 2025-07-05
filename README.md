@@ -54,6 +54,14 @@ ai clean 7                   # Clean memories older than 7 days
 ai forget                    # Clear current session context
 ai stack                     # Navigate context hierarchy
 ai projects                  # View memories across all projects
+
+# Advanced AI features (v1.2.0+)
+ai think "complex problem"   # Extended thinking mode for deep analysis
+ai import file.txt           # Import memories from files or URLs
+ai discover                  # Auto-discover project memories
+ai template list             # Manage reusable prompt templates
+ai continue                  # Continue previous conversation
+ai resume                    # Resume with full context
 ```
 
 📖 **[See all AI commands →](COMMANDS.md#-ai-commands)** | **[Configuration Guide →](CONFIGURATION.md)**
