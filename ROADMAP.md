@@ -1,169 +1,194 @@
 # 🚀 Dotfiles Plus Roadmap
 
-> Smart dotfiles management with AI integration for modern shell workflows
+> Building the most secure and intelligent dotfiles manager for modern developers
 
-## ✅ Completed Features
+## 📌 Project Vision
 
-### Version 1.2.0 - Advanced AI Features
-- [x] AI Thinking Mode (`ai think`) - Extended reasoning for complex problems
-- [x] Memory Import System (`ai import @file`) - Import memories from files
-- [x] Memory Discovery (`ai discover`) - Auto-find memory files in parent dirs
-- [x] AI Templates (`ai template`) - Reusable prompt templates
-- [x] Conversation Continuity (`ai continue/resume`)
-- [x] Context Perspectives (ai-arch, ai-dev, ai-fix, etc.)
-- [x] AI Hints System - Context-aware command suggestions
+Dotfiles Plus aims to be the definitive solution for developers who want:
+- 🤖 Seamless AI integration in their terminal workflow
+- 🔒 Enterprise-grade security for configuration management
+- 🚀 Modern shell features without compatibility compromises
+- 💡 Intelligent automation that learns from usage patterns
 
-### Version 1.1.0 - Enhanced Memory System
-- [x] Smart memory tagging (--important, --tag)
-- [x] Advanced recall with filtering
-- [x] Memory statistics (`ai stats`)
-- [x] Memory cleanup (`ai clean`)
-- [x] Multi-level context awareness (repo/branch/directory)
+## ✅ Released Versions
 
-## 🎯 Version 1.3 - Direct File Context & Shell Integration
+### v1.0.0 - Foundation (Released)
+- Core dotfiles management
+- Basic AI integration with provider support
+- Security-first architecture
+- Git shortcuts and visual commands
 
-### AI File Context
-- [ ] Direct @file inclusion in queries: `ai "explain @config.json"`
-- [ ] Multiple file support: `ai "compare @old.sh @new.sh"`
-- [ ] Glob patterns: `ai "review @src/*.js"`
-- [ ] Auto-detect and include relevant project files (package.json, Makefile, etc.)
+### v1.1.0 - Smart Memory (Released)
+- Multi-level context awareness (repo/branch/directory)
+- Memory tagging and importance levels
+- Advanced recall with filtering
+- Statistics and cleanup commands
+- Auto-cleanup for memory management
 
-### Shell Workflow Automation
-- [ ] `ai fix` - Auto-fix common shell/code issues with confirmation
-- [ ] `ai organize` - Organize files by type/date with AI suggestions
-- [ ] `ai gitflow` - Smart git workflow assistance
-- [ ] `ai dockerize` - Generate Docker configs for current project
+### v1.2.0 - Advanced AI (Released)
+- 🧠 Thinking mode for complex problems
+- 📥 Memory import from files and URLs
+- 🔍 Auto-discovery of project memories
+- 📝 Template system for prompts
+- 🔄 Conversation continuity (continue/resume)
+- 👥 Context perspectives (architect/developer/tester)
 
-### Enhanced Context
-- [ ] Auto-include git diff in relevant queries
-- [ ] Project type detection (Node, Python, Go, etc.)
-- [ ] Smart .gitignore awareness
-- [ ] Directory-specific AI personalities
+## 🎯 Next Release: v1.3.0 - File Context & Automation
 
-## 🔧 Version 1.4 - Shell Command Intelligence
+**Target: Q1 2025**
 
-### Command Assistance
-- [ ] `ai explain-last` - Explain last command's output
-- [ ] `ai fix-error` - Fix last command error
-- [ ] `ai suggest` - Suggest next logical command
-- [ ] Command history analysis and patterns
+### Direct File Integration
+- `ai "explain @config.json"` - Include files in queries
+- `ai "compare @old.sh @new.sh"` - Multi-file analysis
+- `ai "review @src/*.js"` - Glob pattern support
+- Auto-detect project files (package.json, Makefile, etc.)
 
-### Smart Aliases
-- [ ] `aig` - AI-powered grep with natural language
-- [ ] `aif` - AI-powered find
-- [ ] `ais` - AI-powered sed/awk operations
-- [ ] Custom shell functions for common patterns
+### Shell Automation
+- `ai fix` - Auto-fix last command error
+- `ai explain-last` - Explain previous command output
+- `ai suggest` - Next command suggestions
+- `ai pipe` - Process piped input: `ls | ai "summarize"`
+
+### Quick Wins
+- Git diff auto-inclusion for relevant queries
+- Project type detection (Node, Python, Go)
+- Smart .gitignore awareness
+- Directory-specific AI personalities
+
+## 🔧 v1.4.0 - Intelligent Shell Assistant
+
+**Target: Q2 2025**
+
+### AI-Powered Commands
+- `aig <query>` - Natural language grep
+- `aif <query>` - Smart file finding
+- `ais <transform>` - AI-powered sed/awk
+- `aih` - Intelligent history search
+
+### Command Intelligence
+- Error prediction and prevention
+- Command completion with AI
+- Workflow pattern detection
+- Performance optimization suggestions
 
 ### Integration
-- [ ] Pipe support: `ls -la | ai "summarize"`
-- [ ] Error stream capture and analysis
-- [ ] Background command monitoring
+- Shell hook system for events
+- Background process monitoring
+- Automated command corrections
+- Context-aware aliases
 
-## 🧠 Version 1.5 - Advanced Memory & Learning
+## 🔐 v1.5.0 - Secure Configuration
 
-### Memory Evolution
-- [ ] Memory importance decay over time
-- [ ] Cross-project memory connections
-- [ ] Memory compression for old entries
-- [ ] Semantic memory search
+**Target: Q3 2025**
 
-### Learning System
-- [ ] Learn from command corrections
-- [ ] Pattern recognition from shell history
-- [ ] Personalized command suggestions
-- [ ] Workflow optimization tips
+### Secret Management
+- Encrypted vault for API keys
+- Secure credential storage
+- Environment-specific secrets
+- Rotation reminders
 
-### Collaboration
-- [ ] Export/import memory snapshots
-- [ ] Team memory sharing (opt-in)
-- [ ] Project handoff packages
-- [ ] Shared context templates
+### Configuration Features
+- Machine-specific templates
+- Symlink management
+- Bootstrap automation
+- Conflict resolution
 
-## 🚀 Version 1.6 - Performance & Scale
+### Security Enhancements
+- Audit trail for changes
+- Encrypted backups
+- Team sharing (opt-in)
+- Zero-knowledge sync
+
+## 🚀 v1.6.0 - Performance & Scale
+
+**Target: Q4 2025**
 
 ### Optimization
-- [ ] Lazy loading of AI features
-- [ ] Memory indexing for fast search
-- [ ] Async command processing
-- [ ] Resource usage limits
+- Lazy loading architecture
+- Indexed memory search
+- Async operations
+- Resource limits
 
 ### Advanced Features
-- [ ] Multi-repo memory navigation
-- [ ] Time-travel (view past memory states)
-- [ ] Memory merge conflict resolution
-- [ ] Advanced query language
+- Multi-repo navigation
+- Time-travel for memories
+- Provider chain fallback
+- Cost tracking
 
-### Provider Support
-- [ ] OpenAI integration
-- [ ] Local LLM support (Ollama)
-- [ ] Provider fallback chains
-- [ ] Cost tracking per provider
+### Platform Support
+- OpenAI integration
+- Local LLM support (Ollama)
+- Custom provider plugins
+- Provider-specific features
 
-## 🔐 Version 1.7 - Secure Configuration Management
+## 🔮 Future Ideas (2026+)
 
-### Environment & Secrets (inspired by dotenvx)
-- [ ] Encrypted environment files (.env.vault)
-- [ ] Multi-environment support (work/home/dev/prod)
-- [ ] Secure vault for API keys and credentials
-- [ ] Variable expansion and references
-- [ ] Public-key cryptography for team sharing
-
-### Dotfiles Features (from popular managers)
-- [ ] Template engine for machine-specific configs
-- [ ] Symlink management with backup/restore
-- [ ] Bootstrap hooks (pre/post install)
-- [ ] Machine profiles and roles
-- [ ] Conflict resolution strategies
-
-### Advanced Security
-- [ ] Encrypted backup/restore
-- [ ] Secure credential rotation
-- [ ] Audit trail for sensitive operations
-- [ ] Zero-knowledge sync option
-
-## 🔮 Future Considerations
-
-### Potential Features (Research Phase)
-- Shell script generation and validation
-- Automated documentation from shell history
-- Voice input support (where available)
+### Under Consideration
+- Voice input for commands
 - Terminal multiplexer integration
-- CI/CD pipeline assistance
+- IDE synchronization
+- Mobile companion app
+- Team collaboration features
 
-### Community Features
-- Public memory templates repository
-- Community workflow sharing
-- Best practices database
-- Integration marketplace
+### Community Requested
+- Public template repository
+- Workflow marketplace
+- Integration hub
+- Video tutorials
 
-## ❌ Explicitly Excluded Features
+## ❌ Out of Scope
 
-These don't align with shell-based dotfiles management:
-- Image/video generation or processing
-- GUI/visual interfaces
-- Complex web service integrations
-- Real-time collaboration features
-- Cloud-dependent functionality
+These features don't align with our shell-first philosophy:
+- GUI applications
+- Cloud-dependent features
+- Image/video generation
+- Real-time collaboration
+- Web service hosting
+- Container orchestration
+- CI/CD pipeline management
 
-## 📋 Design Principles
+## 🎨 Design Principles
 
-1. **Shell-First**: Every feature must work naturally in shell environments
-2. **Security**: No eval, no arbitrary code execution, sanitized inputs
-3. **Performance**: Features cannot slow shell startup or basic operations
-4. **Privacy**: All data local by default, explicit opt-in for sharing
-5. **Simplicity**: Intuitive commands that follow Unix philosophy
-6. **Compatibility**: Support bash 4.0+ and zsh (modern shells only)
-7. **Practical**: Focus on real developer workflow improvements
+1. **Shell-First**: Every feature must enhance terminal productivity
+2. **Security**: No eval, sanitized inputs, encrypted storage
+3. **Performance**: Cannot slow shell startup or basic operations
+4. **Privacy**: Local by default, explicit opt-in for sharing
+5. **Simplicity**: Intuitive commands following Unix philosophy
+6. **Modern**: Leverage bash 4+ and zsh capabilities fully
+7. **Practical**: Solve real developer pain points
 
-## 🤝 Contributing
+## 📊 Success Metrics
 
-We welcome contributions! Priority areas:
-- Shell compatibility testing
-- Security auditing
-- Performance optimization
-- Documentation improvements
-- Real-world workflow examples
+- Shell startup time < 100ms
+- Zero security vulnerabilities
+- 90%+ command success rate
+- Active community contributions
+- Cross-platform compatibility
+
+## 🤝 How to Contribute
+
+### Priority Areas
+1. **Security**: Audit and hardening
+2. **Performance**: Optimization and benchmarking
+3. **Features**: Implement roadmap items
+4. **Documentation**: Tutorials and examples
+5. **Testing**: Cross-platform validation
+
+### Getting Started
+1. Check [open issues](https://github.com/anivar/dotfiles-plus/issues)
+2. Read [CONTRIBUTING.md](CONTRIBUTING.md)
+3. Join discussions in [Discussions](https://github.com/anivar/dotfiles-plus/discussions)
+4. Submit PRs with tests
+
+## 💬 Feedback
+
+Your input shapes this roadmap! Please:
+- 👍 Vote on features in [Discussions](https://github.com/anivar/dotfiles-plus/discussions)
+- 🐛 Report issues on [GitHub](https://github.com/anivar/dotfiles-plus/issues)
+- 💡 Suggest features via discussions
+- ⭐ Star the repo to show support
 
 ---
 
-*This roadmap is a living document. Features may be added, modified, or removed based on community feedback and practical usage patterns.*
+*Last updated: January 2025*
+*This is a living document - features and timelines may adjust based on community needs*
