@@ -99,6 +99,28 @@
 - [ ] Provider fallback chains
 - [ ] Cost tracking per provider
 
+## 🔐 Version 1.7 - Secure Configuration Management
+
+### Environment & Secrets (inspired by dotenvx)
+- [ ] Encrypted environment files (.env.vault)
+- [ ] Multi-environment support (work/home/dev/prod)
+- [ ] Secure vault for API keys and credentials
+- [ ] Variable expansion and references
+- [ ] Public-key cryptography for team sharing
+
+### Dotfiles Features (from popular managers)
+- [ ] Template engine for machine-specific configs
+- [ ] Symlink management with backup/restore
+- [ ] Bootstrap hooks (pre/post install)
+- [ ] Machine profiles and roles
+- [ ] Conflict resolution strategies
+
+### Advanced Security
+- [ ] Encrypted backup/restore
+- [ ] Secure credential rotation
+- [ ] Audit trail for sensitive operations
+- [ ] Zero-knowledge sync option
+
 ## 🔮 Future Considerations
 
 ### Potential Features (Research Phase)
@@ -130,7 +152,7 @@ These don't align with shell-based dotfiles management:
 3. **Performance**: Features cannot slow shell startup or basic operations
 4. **Privacy**: All data local by default, explicit opt-in for sharing
 5. **Simplicity**: Intuitive commands that follow Unix philosophy
-6. **Compatibility**: Support bash 3.2+ and zsh without requiring upgrades
+6. **Compatibility**: Support bash 4.0+ and zsh (modern shells only)
 7. **Practical**: Focus on real developer workflow improvements
 
 ## 🤝 Contributing

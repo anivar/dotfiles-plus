@@ -1,12 +1,13 @@
 # 🚀 Dotfiles Plus
 
-A security-focused dotfiles manager with built-in AI integration, smart context awareness, and seamless migration from existing setups. Works with bash 3.2+ and zsh.
+A security-focused dotfiles manager with built-in AI integration, smart context awareness, and seamless migration from existing setups. Requires bash 4.0+ or zsh.
 
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 [![GitHub Release](https://img.shields.io/github/v/release/anivar/dotfiles-plus)](https://github.com/anivar/dotfiles-plus/releases)
-[![Shell: Bash 3.2+/Zsh](https://img.shields.io/badge/Shell-Bash%203.2%2B%2FZsh-green.svg)](https://github.com/anivar/dotfiles-plus)
+[![Shell: Bash 4.0+/Zsh](https://img.shields.io/badge/Shell-Bash%204.0%2B%2FZsh-green.svg)](https://github.com/anivar/dotfiles-plus)
 [![Security: Hardened](https://img.shields.io/badge/Security-Hardened-red.svg)](https://github.com/anivar/dotfiles-plus)
 [![Sponsor](https://img.shields.io/badge/Sponsor-%E2%9D%A4-pink)](https://github.com/sponsors/anivar)
+[![Buy Me A Coffee](https://img.shields.io/badge/Buy%20Me%20A%20Coffee-☕-yellow)](https://buymeacoffee.com/anivar)
 
 ## 🎯 Why Dotfiles Plus?
 
@@ -15,19 +16,20 @@ Dotfiles Plus addresses common developer needs with a security-first approach:
 - **Security Hardened**: No eval commands, comprehensive input sanitization
 - **Smart Context Memory**: AI remembers context at repo, branch, and directory levels  
 - **Universal Migration**: Keep your existing setup, no need to start over
-- **Works Everywhere**: Compatible with bash 3.2+ (macOS default) and zsh
+- **Modern Shell Support**: Requires bash 4.0+ or zsh for advanced features
 
-### Two Versions Available
+### System Requirements
 
-1. **Shell-Compatible Version** (`dotfiles-plus.sh`) - Works with bash 3.2+/zsh
-   - All core features without requiring bash 4+ associative arrays
-   - Perfect for macOS and older systems
-   - Fully tested and production-ready
+- **Bash 4.0+** or **Zsh** (any version)
+- Git for version control
+- AI provider CLI (claude, gemini, etc.) for AI features
 
-2. **Full Version** (`dotfiles-plus-full.sh`) - Requires bash 4+
-   - Additional features like project management and bootstrap automation
-   - Modular architecture with lazy loading
-   - Extended performance optimizations
+**Note for macOS users**: macOS ships with bash 3.2. Install bash 4+ via Homebrew:
+```bash
+brew install bash
+echo "$(brew --prefix)/bin/bash" | sudo tee -a /etc/shells
+chsh -s "$(brew --prefix)/bin/bash"
+```
 
 ## 🚀 Features
 
@@ -226,7 +228,7 @@ $ ai stack
 
 | Feature | Dotfiles Plus | Oh My Zsh | Bash-it | Prezto |
 |---------|--------------|-----------|---------|--------|
-| **Bash 3.2 Support** | ✅ Yes | ✅ Yes | ✅ Yes | ❌ Zsh only |
+| **Shell Support** | Bash 4+/Zsh | Bash/Zsh | Zsh only | Zsh only |
 | **AI Integration** | ✅ Built-in | Via plugins | Via plugins | Via plugins |
 | **Multi-Level Context** | ✅ Built-in | ❌ No | ❌ No | ❌ No |
 | **Security Focus** | ✅ Primary | Standard | Standard | Standard |
@@ -245,7 +247,7 @@ $ ai stack
 git clone https://github.com/anivar/dotfiles-plus.git
 cd dotfiles-plus
 
-# For bash 3.2+ or zsh (recommended)
+# Quick install (requires bash 4+ or zsh)
 source dotfiles-plus.sh
 
 # For bash 4+ with all features
@@ -326,7 +328,7 @@ $ dotfiles health
 ### Common Issues
 
 **"declare: -A: invalid option"**
-- You're using bash 3.x. Use `dotfiles-plus.sh` instead of `dotfiles-plus-full.sh`
+- You're using bash 3.x. Please upgrade to bash 4+ or use zsh
 
 **AI commands not working**
 - Install an AI provider: [Claude](https://claude.ai/code) or [Gemini CLI](https://www.npmjs.com/package/@google/generative-ai-cli)
@@ -366,12 +368,15 @@ Your support helps keep the project active and motivates new features!
 
 ```
 dotfiles-plus/
-├── dotfiles-plus.sh          # Shell-compatible version (bash 3.2+)
-├── dotfiles-plus-full.sh     # Full version (bash 4+ only)
+├── dotfiles-plus.sh          # Main script (bash 4+/zsh)
+├── install.sh                # Installation script
+├── migrate.sh                # Migration tool
 ├── ai/
 │   ├── providers.sh          # AI provider management
-│   ├── context.sh            # Advanced context (bash 4+)
-│   └── context-compat.sh     # Context for bash 3.2+
+│   ├── context.sh            # Advanced context management
+│   ├── thinking.sh           # Extended thinking mode
+│   ├── import.sh             # Memory import system
+│   └── hints.sh              # Command suggestions
 ├── core/
 │   ├── security.sh           # Security functions
 │   ├── config.sh             # Configuration management

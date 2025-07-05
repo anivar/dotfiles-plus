@@ -38,7 +38,7 @@ log_error() {
 
 show_banner() {
     echo ""
-    echo "🚀 Dotfiles Plus v1.0 Installer"
+    echo "🚀 Dotfiles Plus v1.2.0 Installer"
     echo "================================="
     echo "✨ AI-powered dotfiles with enterprise security"
     echo ""
@@ -80,15 +80,26 @@ check_prerequisites() {
             ;;
     esac
     
-    # Check shell
+    # Check shell and version
     local shell_name=$(basename "$SHELL")
     case "$shell_name" in
-        bash|zsh)
+        bash)
+            # Check bash version
+            local bash_version="${BASH_VERSION%%.*}"
+            if [[ -n "$bash_version" ]] && [[ "$bash_version" -ge 4 ]]; then
+                log_info "✅ Bash ${BASH_VERSION} (4.0+ required)"
+            else
+                log_error "Bash 4.0+ required. Found: ${BASH_VERSION:-unknown}"
+                log_info "macOS users: Install bash 4+ with 'brew install bash'"
+                return 1
+            fi
+            ;;
+        zsh)
             log_info "✅ Supported shell: $shell_name"
             ;;
         *)
             log_warning "Shell may not be fully supported: $shell_name"
-            log_info "Recommended: bash or zsh"
+            log_info "Recommended: bash 4+ or zsh"
             ;;
     esac
     
