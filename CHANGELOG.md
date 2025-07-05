@@ -5,6 +5,36 @@ All notable changes to Dotfiles Plus will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [1.2.0] - 2025-07-05
+
+### Added
+- **AI Thinking Mode** (`ai think`)
+  - Extended thinking capabilities for complex problem solving
+  - Multi-step reasoning with progress tracking
+  - Automatic context preservation
+- **AI Import System** (`ai import`)
+  - Import memories from files and URLs
+  - Automatic project memory discovery
+  - Bulk import with intelligent parsing
+- **AI Hints System**
+  - Command suggestions and tips
+  - Context-aware command recommendations
+- **AI Templates** (`ai template`)
+  - Manage reusable prompt templates
+  - Custom prompts for repeated tasks
+- **Conversation Continuity**
+  - `ai continue` - Continue previous conversation
+  - `ai resume` - Resume with full context
+- **Documentation**
+  - BEST_PRACTICES.md - Comprehensive guide for optimal usage
+  - ROADMAP.md - Future development plans
+  - Example configurations in examples/ directory
+
+### Changed
+- Enhanced main script with new AI command integrations
+- Improved command routing for new features
+- Better error handling for unavailable features
+
 ## [1.1.0] - 2025-07-04
 
 ### Fixed

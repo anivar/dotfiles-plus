@@ -90,7 +90,7 @@ EOF
     
     # Set essential environment variables
     export DOTFILES_PLUS_HOME="$DOTFILES_CONFIG_HOME"
-    export DOTFILES_PLUS_VERSION="1.0"
+    export DOTFILES_PLUS_VERSION="1.2.0"
     export DOTFILES_PLUS_SESSION_ID="session_$(date +%s)_$$"
 }
 
