@@ -43,6 +43,9 @@ curl -sSL https://raw.githubusercontent.com/anivar/dotfiles-plus/main/install.sh
 # Or clone and source
 git clone https://github.com/anivar/dotfiles-plus.git ~/.dotfiles-plus
 source ~/.dotfiles-plus/dotfiles-plus.sh
+
+# Initialize existing project
+curl -sSL https://raw.githubusercontent.com/anivar/dotfiles-plus/main/init.sh | bash -s -- --project
 ```
 
 ### First Steps
