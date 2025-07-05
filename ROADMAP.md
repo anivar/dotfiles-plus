@@ -33,100 +33,64 @@ Dotfiles Plus aims to be the definitive solution for developers who want:
 - 🔄 Conversation continuity (continue/resume)
 - 👥 Context perspectives (architect/developer/tester)
 
-## 🎯 Next Release: v1.3.0 - File Context & Automation
+### v2.0.0 - Complete Architecture Refactor (Released)
+Major breaking release with complete rewrite:
 
-### Direct File Integration
-- `ai "explain @config.json"` - Include files in queries
-- `ai "compare @old.sh @new.sh"` - Multi-file analysis
-- `ai "review @src/*.js"` - Glob pattern support
-- Auto-detect project files (package.json, Makefile, etc.)
+#### Architecture
+- 🏗️ **Plugin-based architecture** - Modular design with lazy loading
+- 🎯 **Smart command routing** - Intelligent command dispatch system
+- 🪝 **Hook system** - Event-driven automation
+- 🔌 **Unified interface** - Consistent command structure
 
-### Shell Automation
-- `ai fix` - Auto-fix last command error
-- `ai explain-last` - Explain previous command output
-- `ai suggest` - Next command suggestions
-- `ai pipe` - Process piped input: `ls | ai "summarize"`
+#### Features from Roadmap v1.3-v1.6
+- 📁 **@file syntax** - Include files in AI queries (`ai "explain @config.json"`)
+- 🔧 **Shell automation** - `ai fix`, `ai explain-last`, `ai suggest`
+- 🤖 **AI-powered commands** - `aig`, `aif`, `ais`, `aih` for natural language CLI
+- ❄️ **Freeze/thaw states** - Save and restore conversation contexts
+- 🧪 **Test generation** - AI-powered unit test creation
+- 🔐 **Secure config** - Encrypted secrets, audit logging, permission management
+- ⚡ **Performance optimization** - Profiling, benchmarking, async jobs, smart caching
 
-### Quick Wins
-- Git diff auto-inclusion for relevant queries
-- Project type detection (Node, Python, Go)
-- Smart .gitignore awareness
-- Directory-specific AI personalities
+#### Breaking Changes
+- Requires Bash 5.0+ (dropped Bash 3.2 support)
+- New plugin system replaces monolithic structure
+- Configuration now in `~/.dotfiles-plus/` instead of scattered files
 
-## 🔧 v1.4.0 - Intelligent Shell Assistant
+## 🎯 Next Release: v2.1.0 - Enhanced Intelligence
 
-### AI-Powered Commands
-- `aig <query>` - Natural language grep
-- `aif <query>` - Smart file finding
-- `ais <transform>` - AI-powered sed/awk
-- `aih` - Intelligent history search
+### Workflow Automation
+- GitHub/GitLab integration for PR descriptions
+- Automated code review preparation
+- Smart branch naming suggestions
+- Commit message templates by project type
 
-### Command Intelligence
-- Error prediction and prevention
-- Command completion with AI
-- Workflow pattern detection
-- Performance optimization suggestions
+### Advanced AI Features
+- Multi-file refactoring support
+- Cross-repository search and analysis
+- AI pair programming mode
+- Voice input support (experimental)
 
-### Integration
-- Shell hook system for events
-- Background process monitoring
-- Automated command corrections
-- Context-aware aliases
+### Team Features
+- Shared memory pools (opt-in)
+- Team coding standards enforcement
+- Knowledge base integration
+- Collaborative debugging sessions
 
-## 🔐 v1.5.0 - Secure Configuration
-
-### Secret Management
-- Encrypted vault for API keys
-- Secure credential storage
-- Environment-specific secrets
-- Rotation reminders
-
-### Configuration Features
-- Machine-specific templates
-- Symlink management
-- Bootstrap automation
-- Conflict resolution
-
-### Security Enhancements
-- Audit trail for changes
-- Encrypted backups
-- Team sharing (opt-in)
-- Zero-knowledge sync
-
-## 🚀 v1.6.0 - Performance & Scale
-
-### Optimization
-- Lazy loading architecture
-- Indexed memory search
-- Async operations
-- Resource limits
-
-### Advanced Features
-- Multi-repo navigation
-- Time-travel for memories
-- Provider chain fallback
-- Cost tracking
-
-### Platform Support
-- OpenAI integration
-- Local LLM support (Ollama)
-- Custom provider plugins
-- Provider-specific features
-
-## 🔮 Future Ideas (2026+)
+## 🔮 Future Ideas (v3.0+)
 
 ### Under Consideration
-- Voice input for commands
-- Terminal multiplexer integration
-- IDE synchronization
-- Mobile companion app
-- Team collaboration features
+- IDE synchronization (VSCode, IntelliJ)
+- Mobile companion app for quick queries
+- Web dashboard for analytics
+- AI model fine-tuning on your codebase
+- Real-time collaboration features
 
 ### Community Requested
-- Public template repository
-- Workflow marketplace
-- Integration hub
-- Video tutorials
+- Windows PowerShell support
+- Public template marketplace
+- Integration with more AI providers
+- Workflow automation library
+- Video tutorial series
 
 ## ❌ Out of Scope
 
@@ -151,8 +115,8 @@ These features don't align with our shell-first philosophy:
 
 ## 📊 Success Metrics
 
-- Shell startup time < 100ms
-- Zero security vulnerabilities
+- Shell startup time < 100ms ✅
+- Zero security vulnerabilities ✅
 - 90%+ command success rate
 - Active community contributions
 - Cross-platform compatibility
@@ -160,11 +124,11 @@ These features don't align with our shell-first philosophy:
 ## 🤝 How to Contribute
 
 ### Priority Areas
-1. **Security**: Audit and hardening
-2. **Performance**: Optimization and benchmarking
-3. **Features**: Implement roadmap items
-4. **Documentation**: Tutorials and examples
-5. **Testing**: Cross-platform validation
+1. **Testing**: Cross-platform validation
+2. **Documentation**: More examples and tutorials
+3. **Integrations**: More AI providers and tools
+4. **Performance**: Further optimizations
+5. **Security**: Ongoing audits
 
 ### Getting Started
 1. Check [open issues](https://github.com/anivar/dotfiles-plus/issues)
@@ -179,6 +143,7 @@ Your input shapes this roadmap! Please:
 - 🐛 Report issues on [GitHub](https://github.com/anivar/dotfiles-plus/issues)
 - 💡 Suggest features via discussions
 - ⭐ Star the repo to show support
+- ☕ [Buy me a coffee](https://buymeacoffee.com/anivar) to support development
 
 ---
 

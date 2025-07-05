@@ -47,8 +47,8 @@ check_requirements() {
     # Check bash version
     if [[ -n "${BASH_VERSION:-}" ]]; then
         local bash_major="${BASH_VERSION%%.*}"
-        if [[ "$bash_major" -lt 4 ]]; then
-            log_error "Bash 4.0+ required (found: $BASH_VERSION)"
+        if [[ "$bash_major" -lt 5 ]]; then
+            log_error "Bash 5.0+ required (found: $BASH_VERSION)"
             log_info "macOS: brew install bash && chsh -s \$(brew --prefix)/bin/bash"
             has_error=true
         fi

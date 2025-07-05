@@ -1,192 +1,337 @@
-# 🚀 Dotfiles Plus
+# 🚀 Dotfiles Plus - AI-Powered Terminal Enhancement
 
-> AI-powered dotfiles management with enterprise-grade security
+> Transform your command line with AI integration, smart automation, and enterprise-grade security. Works with ChatGPT, Claude, Gemini, Ollama, and any OpenAI-compatible API.
 
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 [![GitHub Release](https://img.shields.io/github/v/release/anivar/dotfiles-plus)](https://github.com/anivar/dotfiles-plus/releases)
-[![Shell: Bash 4.0+/Zsh](https://img.shields.io/badge/Shell-Bash%204.0%2B%2FZsh-green.svg)](https://github.com/anivar/dotfiles-plus)
-[![Security: Hardened](https://img.shields.io/badge/Security-Hardened-red.svg)](https://github.com/anivar/dotfiles-plus)
-[![Sponsor](https://img.shields.io/badge/Sponsor-%E2%9D%A4-pink)](https://github.com/sponsors/anivar)
+[![Shell: Bash 5+/Zsh](https://img.shields.io/badge/Shell-Bash%205%2B%2FZsh-green.svg)](https://github.com/anivar/dotfiles-plus)
+[![AI: Multi-Provider](https://img.shields.io/badge/AI-Claude%20|%20GPT%20|%20Gemini%20|%20Ollama-blue.svg)](https://github.com/anivar/dotfiles-plus)
 [![Buy Me A Coffee](https://img.shields.io/badge/Buy%20Me%20A%20Coffee-☕-yellow)](https://buymeacoffee.com/anivar)
 
-## ✨ What is Dotfiles Plus?
+## 🎯 What is Dotfiles Plus?
 
-A modern dotfiles manager that brings AI intelligence directly into your terminal workflow. Built with security-first principles and designed for developers who want powerful automation without compromising safety.
+**Dotfiles Plus** is a revolutionary shell enhancement framework that brings the power of AI directly into your terminal. Whether you're using **Bash**, **Zsh**, **macOS**, **Linux**, or **WSL**, it seamlessly integrates with popular AI providers like **Claude**, **ChatGPT**, **Gemini**, and **Ollama** to supercharge your command-line productivity.
 
-### Key Features
+### 🔥 Why Dotfiles Plus?
 
-🤖 **AI Integration** - Natural language queries, smart context awareness, and intelligent automation  
-🔒 **Security Hardened** - No eval commands, sanitized inputs, encrypted secrets  
-🧠 **Smart Memory** - Remembers context across projects, branches, and directories  
-⚡ **Modern Shell** - Leverages bash 4+ and zsh features for optimal performance  
-🔄 **Easy Migration** - Keep your existing setup, enhance don't replace
+- **🤖 Universal AI Integration**: Works with Claude Code, ChatGPT, Google Gemini, Ollama, OpenRouter, and any OpenAI-compatible API
+- **🧠 Intelligent Memory System**: Context-aware AI that remembers your work across projects and sessions
+- **🔒 Enterprise Security**: No `eval`, input sanitization, encrypted secrets, audit logging
+- **⚡ Blazing Fast**: Shell startup under 100ms with lazy loading and smart caching
+- **🎨 Beautiful CLI**: Enhanced git commands, visual outputs, smart completions
+- **🔌 Extensible**: Plugin architecture, hooks system, custom commands
+- **📦 Zero Dependencies**: Pure shell script, works offline with local AI
 
-## 🚀 Quick Start
+## 🚀 Quick Install
 
-### Requirements
+### One-Line Install
 
-- **Shell**: Bash 4.0+ or Zsh
-- **OS**: macOS, Linux
-- **Tools**: Git, curl
-
-**macOS Note**: Install bash 4+ with Homebrew:
 ```bash
-brew install bash && chsh -s $(brew --prefix)/bin/bash
+# With curl
+curl -sSL https://dotfiles.plus/install | bash
+
+# With Homebrew
+brew tap anivar/dotfiles-plus && brew install dotfiles-plus
+
+# Docker try-out
+docker run -it anivar/dotfiles-plus
 ```
 
-### Installation
+### Manual Install
 
 ```bash
-# One-line install
-curl -sSL https://raw.githubusercontent.com/anivar/dotfiles-plus/main/install.sh | bash
-
-# Or clone and source
 git clone https://github.com/anivar/dotfiles-plus.git ~/.dotfiles-plus
-source ~/.dotfiles-plus/dotfiles-plus.sh
-
-# Initialize existing project
-curl -sSL https://raw.githubusercontent.com/anivar/dotfiles-plus/main/init.sh | bash -s -- --project
+cd ~/.dotfiles-plus
+./install.sh
 ```
 
-### First Steps
+## 💡 Features That Transform Your Terminal
+
+### 🤖 AI-Powered Commands
+
+Ask questions in natural language and get instant help:
 
 ```bash
-# Configure AI provider (optional - works with claude, gemini, etc.)
-dotfiles config
-
-# Try AI integration
-ai "how do I find large files in this directory?"
-
-# Remember context for later
-ai remember "working on authentication feature"
-
-# Use enhanced git commands
-gst  # Beautiful git status
-gc "feat: add login"  # Smart commit
-```
-
-## 🎯 Core Features
-
-### AI Assistant
-
-```bash
-# Ask questions naturally
+# Get help with any command
+ai "how do I find files larger than 100MB?"
 ai "explain this error: permission denied on port 80"
+ai "what's the git command to undo last commit?"
 
-# Include files in queries (coming in v1.3)
-ai "review @config.json and suggest improvements"
+# Smart command fixes
+ai fix                    # Auto-fix the last failed command
+ai explain-last          # Understand what just happened
+ai suggest               # Get next command suggestions
 
-# Smart context awareness
-cd ~/projects/api
-ai remember "using JWT for auth"
-ai recall  # Shows context for current location
+# Natural language tools
+aig "search for TODO"    # AI-powered grep
+aif "find config files"  # Smart file search
+ais "change var to let" app.js  # AI-powered sed
+aih "docker commands"    # Search command history with AI
 ```
 
-### Memory System
+### 🧠 Intelligent Context Memory
 
-The AI maintains hierarchical context awareness:
-
-```
-📦 Repository Level     (shared across all branches)
-└── 🌿 Branch Level    (isolated per branch)
-    └── 📁 Directory   (inherited by subdirectories)
-```
+The AI remembers your work context intelligently:
 
 ```bash
-# Remember with tags and importance
-ai remember --important --tag bug "users can't reset passwords"
+# Remember important information
+ai remember "using PostgreSQL 15 with TimescaleDB extension"
+ai remember --tag bug "users report slow login after 5pm"
+ai remember --important "API keys rotate every 30 days"
 
-# Smart recall with filtering
-ai recall --tag bug      # Show only bugs
-ai recall "password"     # Search memories
-ai stats                 # Memory statistics
+# Recall with smart filtering
+ai recall                 # Show all context
+ai recall --tag bug      # Filter by tags
+ai recall --important    # Show only important items
 
-# Extended features
-ai think "how to optimize this database schema"  # Deep analysis mode
-ai template list         # Reusable prompts
-ai continue             # Resume last conversation
+# Auto-discovery
+cd ~/projects/myapp
+ai discover              # Finds and imports .ai-memory files
 ```
 
-### Enhanced Git
+### 📁 File-Aware AI (v2.0)
+
+Include files directly in your AI queries:
 
 ```bash
-gst         # Status with icons
-gaa         # Add all with summary
-gc "msg"    # Commit with conventional format
-gp          # Push with branch tracking
-gl          # Pretty log graph
-gd          # Diff with syntax highlighting
+# Single file
+ai "explain @package.json"
+ai "find security issues in @server.js"
+
+# Multiple files
+ai "compare @old-config.json @new-config.json"
+
+# Glob patterns
+ai "review @src/*.js and suggest improvements"
+ai "generate tests for @lib/**/*.py"
 ```
 
-### System Management
+### ❄️ Conversation Management
+
+Save and restore AI conversation states:
 
 ```bash
-dotfiles status    # System health check
-dotfiles update    # Update to latest version
-dotfiles backup    # Create timestamped backup
-dotfiles migrate   # Import from other managers
+# Save current context
+ai freeze myproject-auth
+
+# List saved states
+ai freezelist
+
+# Restore later
+ai thaw myproject-auth
+ai continue "where were we?"
 ```
 
-## 📚 Documentation
+### 🔒 Secure Configuration
 
-- 📖 [Command Reference](COMMANDS.md) - All available commands
-- 🔧 [Configuration Guide](CONFIGURATION.md) - Setup and customization
-- 🛣️ [Roadmap](ROADMAP.md) - Future plans and vision
-- 💡 [Best Practices](BEST_PRACTICES.md) - Tips and workflows
-- 🤝 [Contributing](CONTRIBUTING.md) - How to help
+Enterprise-grade security built-in:
 
-## 🔒 Security
+```bash
+# Encrypted secrets management
+dotfiles secret set OPENAI_API_KEY "sk-..."
+dotfiles secret set DATABASE_URL "postgres://..."
+dotfiles secret list
 
-Dotfiles Plus prioritizes security:
+# Security audit
+dotfiles check-security    # Check file permissions
+dotfiles scan-secrets      # Scan for exposed secrets
+dotfiles fix-permissions   # Auto-fix security issues
 
-- ✅ **No eval** - Zero dynamic code execution
-- ✅ **Input sanitization** - All inputs validated and cleaned
-- ✅ **Encrypted storage** - Sensitive data protected (coming in v1.5)
-- ✅ **Session isolation** - Separate contexts per terminal
-- ✅ **Audit trails** - Track sensitive operations
+# Audit logging
+dotfiles audit-enable      # Track sensitive commands
+dotfiles audit-log         # View audit trail
+```
 
-## 🆚 Why Dotfiles Plus?
+### 🎨 Enhanced Git Experience
 
-| Feature | Dotfiles Plus | Traditional Managers |
-|---------|--------------|---------------------|
-| AI Integration | Built-in | ❌ None |
-| Security Focus | Primary concern | Basic |
-| Context Awareness | Multi-level hierarchy | ❌ None |
-| Shell Support | Bash 4+/Zsh | Varies |
-| Learning Curve | Minimal | Steep |
+Beautiful and intelligent git commands:
 
-## 🗺️ Roadmap Highlights
+```bash
+# Visual git status with icons
+gst
+📊 Git Status
+🌿 Branch: feature/auth
+⬆️  Ahead by 2 commits
 
-**v1.3** - Direct file inclusion in AI queries (@file syntax)  
-**v1.4** - AI-powered shell commands (aig, aif, ais)  
-**v1.5** - Encrypted secrets management  
-**v1.6** - Performance optimizations & local LLM support
+✏️  Modified: auth.js
+➕ Added: jwt-helper.js
+❓ Untracked: test.log
 
-See full [ROADMAP.md](ROADMAP.md) for details.
+# Smart commits with AI
+gc "add user authentication"
+# AI detects type: "feat: add user authentication"
+
+# AI-powered git workflow
+ai gitflow               # Get workflow suggestions
+ai gitignore            # Generate .gitignore
+```
+
+### ⚡ Performance Features
+
+Built for speed and scale:
+
+```bash
+# Profile commands
+dotfiles profile "npm install"
+
+# Benchmark performance
+dotfiles benchmark 10 "ai recall"
+
+# Async job management
+dotfiles async "npm run build"
+dotfiles jobs list
+dotfiles jobs status job_123
+
+# Cache management
+dotfiles cache stats
+dotfiles cache clear
+```
+
+### 🧪 Development Tools
+
+Boost your development workflow:
+
+```bash
+# Generate unit tests with AI
+ai testgen auth.js         # Auto-detect framework
+ai testgen user.py pytest  # Specify framework
+
+# Template system
+ai template save bug "I found a bug in {}: "
+ai template use bug "login system"
+
+# Project initialization
+curl -sSL https://dotfiles.plus/init | bash -s -- --project
+```
+
+## 📚 Advanced Usage
+
+### Custom AI Providers
+
+Configure any AI provider:
+
+```bash
+# Claude (auto-detected if installed)
+dotfiles config ai_provider claude
+
+# OpenAI API
+dotfiles secret set OPENAI_API_KEY "sk-..."
+dotfiles config ai_provider openai-api
+
+# Local Ollama
+brew install ollama
+ollama pull llama3
+dotfiles config ai_provider ollama
+
+# OpenRouter (multi-model)
+dotfiles secret set OPENROUTER_API_KEY "..."
+dotfiles config ai_provider openrouter
+```
+
+### Plugin Development
+
+Create custom plugins:
+
+```bash
+# Create plugin
+cat > ~/.dotfiles-plus/plugins/my.plugin.sh << 'EOF'
+#!/usr/bin/env bash
+my_command() {
+    echo "Hello from my plugin!"
+}
+command_register "mycommand" "my_command" "My custom command"
+EOF
+
+# Reload to activate
+dotfiles reload
+```
+
+### Hook System
+
+Automate workflows with hooks:
+
+```bash
+# Available hooks
+dotfiles hooks list
+
+# Example: Auto-save memory on directory change
+hook_register "directory_changed" "auto_save_context" 50
+```
+
+## 🛠️ System Requirements
+
+- **Shell**: Bash 5.0+ or Zsh
+- **OS**: macOS, Linux, BSD, WSL
+- **Optional**: AI provider (Claude, ChatGPT, Gemini, Ollama)
+
+### macOS Users
+
+macOS ships with Bash 3.2. Install Bash 5+:
+
+```bash
+brew install bash
+echo "$(brew --prefix)/bin/bash" | sudo tee -a /etc/shells
+chsh -s "$(brew --prefix)/bin/bash"
+```
 
 ## 🤝 Contributing
 
-We welcome contributions! Priority areas:
-- Security auditing
-- Cross-platform testing  
-- Documentation improvements
-- Feature implementation
+We love contributions! See [CONTRIBUTING.md](CONTRIBUTING.md) for guidelines.
 
-See [CONTRIBUTING.md](CONTRIBUTING.md) for guidelines.
+### Priority Areas
 
-## 💬 Support
+- 🔒 Security audits and hardening
+- 🚀 Performance optimizations  
+- 🌍 Internationalization
+- 📚 Documentation and examples
+- 🧪 Test coverage
 
-- 🐛 [Report Issues](https://github.com/anivar/dotfiles-plus/issues)
-- 💡 [Request Features](https://github.com/anivar/dotfiles-plus/discussions)
-- ⭐ [Star on GitHub](https://github.com/anivar/dotfiles-plus)
-- ☕ [Buy Me A Coffee](https://buymeacoffee.com/anivar)
+## 📖 Documentation
 
-## 📄 License
+- [Installation Guide](INSTALL.md)
+- [Configuration](docs/configuration.md)
+- [Plugin Development](docs/plugins.md)
+- [Security](docs/security.md)
+- [Roadmap](ROADMAP.md)
 
-MIT License - see [LICENSE](LICENSE) for details.
+## 🆘 Troubleshooting
+
+### AI not working?
+
+```bash
+# Check configuration
+dotfiles config ai_provider
+
+# Test connection
+dotfiles test_ai
+
+# View detailed help
+ai help
+```
+
+### Performance issues?
+
+```bash
+# Check startup time
+dotfiles optimize
+
+# Enable performance mode
+export DOTFILES_PERF_MODE=true
+```
+
+## 📜 License
+
+MIT © [anivar](https://github.com/anivar)
+
+## 🙏 Acknowledgments
+
+Built with inspiration from:
+- The amazing shell scripting community
+- Security best practices from OWASP
+- Modern CLI design principles
 
 ---
 
-<p align="center">
-  Made with ❤️ by <a href="https://github.com/anivar">anivar</a> and contributors
-</p>
+**Keywords**: dotfiles, shell enhancement, terminal AI, bash configuration, zsh plugins, command line productivity, CLI tools, terminal automation, shell scripting, developer tools, ChatGPT terminal, Claude CLI, Gemini shell, Ollama integration, AI coding assistant, smart terminal, bash productivity, zsh enhancement, terminal multiplexer, command line AI
+
+⭐ Star us on GitHub | 💬 [Join Discussions](https://github.com/anivar/dotfiles-plus/discussions) | 🐛 [Report Issues](https://github.com/anivar/dotfiles-plus/issues)
