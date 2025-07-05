@@ -23,18 +23,12 @@ keywords: ai terminal, claude cli, chatgpt terminal, gemini command line, ollama
 navigation:
   - title: Home
     url: /
-  - title: Installation
+  - title: Quick Start
     url: /installation
-  - title: Commands
-    url: /commands
-  - title: AI Features
+  - title: Features
     url: /ai-features
-  - title: Configuration
-    url: /configuration
-  - title: Plugins
-    url: /plugins
-  - title: Troubleshooting
-    url: /troubleshooting
+  - title: Docs
+    url: /docs
 
 # Social links
 social:
