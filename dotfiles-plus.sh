@@ -172,9 +172,95 @@ function ai() {
                 echo "❌ Memory clean not available in this version"
             fi
             ;;
+        think)
+            if declare -f _ai_think >/dev/null 2>&1; then
+                _ai_think "$@"
+            else
+                echo "❌ Thinking mode not available in this version"
+            fi
+            ;;
+        import)
+            if declare -f _ai_import_memory >/dev/null 2>&1; then
+                _ai_import_memory "$@"
+            else
+                echo "❌ Import system not available in this version"
+            fi
+            ;;
+        discover)
+            if declare -f _ai_discover_memories >/dev/null 2>&1; then
+                _ai_discover_memories "$@"
+            else
+                echo "❌ Memory discovery not available in this version"
+            fi
+            ;;
+        template)
+            if declare -f _ai_template >/dev/null 2>&1; then
+                _ai_template "$@"
+            else
+                echo "❌ Template system not available in this version"
+            fi
+            ;;
+        continue)
+            if declare -f _ai_continue >/dev/null 2>&1; then
+                _ai_continue "$@"
+            else
+                echo "❌ Continue conversation not available in this version"
+            fi
+            ;;
+        resume)
+            if declare -f _ai_resume >/dev/null 2>&1; then
+                _ai_resume "$@"
+            else
+                echo "❌ Resume conversation not available in this version"
+            fi
+            ;;
+        history)
+            if declare -f _ai_history >/dev/null 2>&1; then
+                _ai_history "$@"
+            else
+                echo "❌ Conversation history not available in this version"
+            fi
+            ;;
+        testgen)
+            if declare -f _ai_testgen >/dev/null 2>&1; then
+                _ai_testgen "$@"
+            else
+                echo "❌ Test generation not available in this version"
+            fi
+            ;;
+        freeze)
+            if declare -f _ai_freeze >/dev/null 2>&1; then
+                _ai_freeze "$@"
+            else
+                echo "❌ Freeze points not available in this version"
+            fi
+            ;;
+        thaw)
+            if declare -f _ai_thaw >/dev/null 2>&1; then
+                _ai_thaw "$@"
+            else
+                echo "❌ Freeze points not available in this version"
+            fi
+            ;;
+        freezelist)
+            if declare -f _ai_freeze_list >/dev/null 2>&1; then
+                _ai_freeze_list "$@"
+            else
+                echo "❌ Freeze points not available in this version"
+            fi
+            ;;
+        memory)
+            if declare -f _ai_memory_show >/dev/null 2>&1; then
+                _ai_memory_show "$@"
+            else
+                echo "❌ Memory scope view not available in this version"
+            fi
+            ;;
         help)
             echo "🤖 AI Commands:"
             echo "  ai \"query\"                  # Ask AI with secure execution"
+            echo ""
+            echo "📝 Memory Management:"
             echo "  ai remember [opts] \"info\"   # Save context (multi-level aware)"
             echo "    --important|-i            # Mark as important"
             echo "    --tag|-t <tag>           # Add tag (task, link, issue, etc.)"
@@ -186,6 +272,34 @@ function ai() {
             echo "  ai projects                 # Show cross-project contexts"
             echo "  ai stats                    # Show memory statistics"
             echo "  ai clean [days]            # Clean memories older than N days (default: 30)"
+            echo ""
+            echo "🤔 Extended Features:"
+            echo "  ai think \"complex problem\"  # Enter thinking mode for deep analysis"
+            echo "  ai import @path/to/file    # Import memory from external file"
+            echo "  ai discover                # Find and import memory files in parent dirs"
+            echo "  ai template <type>         # Create memory templates (bug-report, etc.)"
+            echo ""
+            echo "💬 Conversations:"
+            echo "  ai continue                # Continue last conversation"
+            echo "  ai resume                  # Pick conversation to resume"
+            echo "  ai history [limit]         # Show conversation history"
+            echo ""
+            echo "🧪 Development Tools:"
+            echo "  ai testgen <target>        # Generate tests for code/functions"
+            echo "  ai memory [--user|--project] # Show memory by scope"
+            echo ""
+            echo "❄️  Freeze Points (Save/Restore States):"
+            echo "  ai freeze [name]           # Save current conversation state"
+            echo "  ai thaw <name>             # Restore saved conversation state"
+            echo "  ai freezelist              # List available freeze points"
+            echo ""
+            echo "🎯 Context Perspectives (No State Collision):"
+            echo "  ai-arch \"question\"         # Ask as architect (design focus)"
+            echo "  ai-dev \"question\"          # Ask as developer (implementation)"
+            echo "  ai-fix \"question\"          # Ask as maintainer (minimal changes)"
+            echo "  ai-test \"question\"         # Ask as tester (quality focus)"
+            echo "  ai-review \"question\"       # Ask as reviewer (best practices)"
+            echo "  ai-debug \"question\"        # Ask as debugger (root cause)"
             ;;
         *)
             # Default: treat as query
@@ -480,10 +594,30 @@ if [[ -f "$HOME/.dotfiles-plus/ai/context-compat.sh" ]]; then
     source "$HOME/.dotfiles-plus/ai/context-compat.sh"
 fi
 
+# Source import system if available
+if [[ -f "$HOME/.dotfiles-plus/ai/import.sh" ]]; then
+    source "$HOME/.dotfiles-plus/ai/import.sh"
+fi
+
+# Source thinking mode if available
+if [[ -f "$HOME/.dotfiles-plus/ai/thinking.sh" ]]; then
+    source "$HOME/.dotfiles-plus/ai/thinking.sh"
+fi
+
+# Source context hints if available
+if [[ -f "$HOME/.dotfiles-plus/ai/hints.sh" ]]; then
+    source "$HOME/.dotfiles-plus/ai/hints.sh"
+fi
+
 # Initialize the system
 _secure_dotfiles_init() {
     # Initialize configuration
     _config_init
+    
+    # Setup auto-discovery if available
+    if declare -f _ai_setup_auto_discover >/dev/null 2>&1; then
+        _ai_setup_auto_discover
+    fi
     
     echo "✅ Dotfiles Plus v$(_config_get version) loaded successfully"
 }
