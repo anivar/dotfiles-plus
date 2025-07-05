@@ -119,12 +119,14 @@ $ ai "how should I implement the rate limiting?"
 - **Time Awareness**: Recent memories weighted higher
 - **Cross-Reference**: Find related memories across contexts
 
-**Coming Soon**: 
+**Coming Soon (v1.3+)**: 
+- Direct @file inclusion in AI queries (e.g., `ai "explain this @config.json"`)
+- Auto-context from project files (README, docs, configs)
 - Global knowledge base across all your projects
 - Team shared contexts (opt-in)
-- Context templates for common patterns
-- Automatic context from README/docs
 - Integration with issue trackers
+
+📖 **[See full roadmap →](ROADMAP.md)**
 
 ### 🔒 Security Features (Core Focus)
 - **No eval commands**: All dynamic execution eliminated
