@@ -9,7 +9,7 @@ layout: default
 **Born from a developer's need, built for developers everywhere** 🛠️
 
 <div style="text-align: center; margin: 2em 0;">
-  <a href="#quick-install" class="btn">Get Started</a>
+  <a href="#-quick-install-under-30-seconds" class="btn">Get Started</a>
   <a href="https://github.com/anivar/dotfiles-plus" class="btn-secondary">View on GitHub</a>
 </div>
 

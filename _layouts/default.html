@@ -41,6 +41,7 @@
         letter-spacing: 0.5px;
         position: relative;
         overflow: hidden;
+        white-space: nowrap;
       }
       
       .btn::before {
@@ -78,6 +79,7 @@
         box-shadow: var(--shadow-sm);
         font-weight: 600;
         letter-spacing: 0.5px;
+        white-space: nowrap;
       }
       
       .btn-secondary:hover {
@@ -129,6 +131,8 @@
       .support-links {
         display: flex;
         gap: 1rem;
+        align-items: center;
+        flex-wrap: nowrap;
       }
       
       .support-links a {
@@ -161,6 +165,19 @@
         
         .support-links {
           margin-top: 0.5rem;
+          white-space: nowrap;
+        }
+        
+        .support-links a {
+          padding: 0.25rem 0.5rem;
+          font-size: 0.85rem;
+        }
+        
+        /* Responsive buttons */
+        .btn, .btn-secondary {
+          padding: 0.6rem 1.5rem;
+          font-size: 0.95rem;
+          margin: 0.25rem;
         }
       }
       
