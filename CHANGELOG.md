@@ -5,7 +5,73 @@ All notable changes to Dotfiles Plus will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
-## [1.2.0] - 2025-07-05
+## [2.0.0] - 2025-01-05
+
+### 🚀 Major Breaking Release
+
+Complete architecture refactor with plugin-based system and advanced features from the roadmap.
+
+### Added
+
+#### Architecture
+- 🏗️ **Plugin-based architecture** - Modular design with lazy loading support
+- 🎯 **Smart command routing** - Intelligent command dispatch system
+- 🪝 **Hook system** - Event-driven automation with priority support
+- 🔌 **Unified interface** - Consistent `dotfiles` command structure
+
+#### AI Features (from v1.3-v1.6 roadmap)
+- 📁 **@file syntax** - Include files in AI queries (`ai "explain @config.json"`)
+- 🔧 **Shell automation** - `ai fix`, `ai explain-last`, `ai suggest`
+- 🤖 **AI-powered commands** - `aig`, `aif`, `ais`, `aih` for natural language CLI
+- ❄️ **Freeze/thaw states** - Save and restore conversation contexts
+- 🧪 **Test generation** - AI-powered unit test creation
+- 👥 **Context perspectives** - `ai-arch`, `ai-dev`, `ai-fix`, `ai-test`, `ai-review`, `ai-debug`
+
+#### Security Features
+- 🔐 **Encrypted secrets** - Secure credential storage with encryption
+- 📝 **Audit logging** - Track sensitive command execution
+- 🔍 **Secret scanning** - Detect exposed credentials in code
+- 🛡️ **Permission management** - Auto-fix file permissions
+
+#### Performance Features
+- ⚡ **Command profiling** - Profile and benchmark commands
+- 💾 **Smart caching** - TTL-based cache with garbage collection
+- 🚀 **Async jobs** - Background job execution and management
+- 📊 **Performance monitoring** - Track slow commands and optimize
+
+#### Installation & Setup
+- 🍺 **Homebrew support** - Official Homebrew formula
+- 🌐 **GitHub Pages site** - https://dotfiles.plus
+- 💰 **GitHub Sponsors** - Support development
+- 📦 **Easy installation** - Multiple installation methods
+
+### Changed
+
+#### Breaking Changes
+- **Requires Bash 5.0+** (upgraded from Bash 4.0+ requirement for modern features)
+- **New directory structure** - Configuration in `~/.dotfiles-plus/`
+- **Plugin system** - Replaces monolithic structure
+- **Command structure** - All commands now under `dotfiles` namespace
+
+#### Improvements
+- Better AI provider detection
+- Enhanced memory system with better filtering
+- Improved git commands with AI integration
+- Comprehensive test suite
+- Better documentation with SEO optimization
+
+### Fixed
+- All security vulnerabilities from v1.x
+- Memory leaks in long-running sessions
+- Context collision issues
+- Shell compatibility problems
+
+### Removed
+- Legacy configuration format
+- Bash 3.2 compatibility code
+- Deprecated commands
+
+## [1.2.0] - 2025-01-04
 
 ### Added
 - **AI Thinking Mode** (`ai think`)

@@ -86,11 +86,11 @@ check_prerequisites() {
         bash)
             # Check bash version
             local bash_version="${BASH_VERSION%%.*}"
-            if [[ -n "$bash_version" ]] && [[ "$bash_version" -ge 4 ]]; then
-                log_info "✅ Bash ${BASH_VERSION} (4.0+ required)"
+            if [[ -n "$bash_version" ]] && [[ "$bash_version" -ge 5 ]]; then
+                log_info "✅ Bash ${BASH_VERSION} (5.0+ required)"
             else
-                log_error "Bash 4.0+ required. Found: ${BASH_VERSION:-unknown}"
-                log_info "macOS users: Install bash 4+ with 'brew install bash'"
+                log_error "Bash 5.0+ required. Found: ${BASH_VERSION:-unknown}"
+                log_info "macOS users: Install bash 5+ with 'brew install bash'"
                 return 1
             fi
             ;;
