@@ -154,10 +154,10 @@ Dotfiles Plus prioritizes security:
 
 ## 🗺️ Roadmap Highlights
 
-**v1.3 (Q1 2025)** - Direct file inclusion in AI queries  
-**v1.4 (Q2 2025)** - AI-powered shell commands (aig, aif, ais)  
-**v1.5 (Q3 2025)** - Encrypted secrets management  
-**v1.6 (Q4 2025)** - Performance optimizations & local LLMs
+**v1.3** - Direct file inclusion in AI queries (@file syntax)  
+**v1.4** - AI-powered shell commands (aig, aif, ais)  
+**v1.5** - Encrypted secrets management  
+**v1.6** - Performance optimizations & local LLM support
 
 See full [ROADMAP.md](ROADMAP.md) for details.
 

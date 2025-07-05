@@ -35,8 +35,6 @@ Dotfiles Plus aims to be the definitive solution for developers who want:
 
 ## 🎯 Next Release: v1.3.0 - File Context & Automation
 
-**Target: Q1 2025**
-
 ### Direct File Integration
 - `ai "explain @config.json"` - Include files in queries
 - `ai "compare @old.sh @new.sh"` - Multi-file analysis
@@ -56,8 +54,6 @@ Dotfiles Plus aims to be the definitive solution for developers who want:
 - Directory-specific AI personalities
 
 ## 🔧 v1.4.0 - Intelligent Shell Assistant
-
-**Target: Q2 2025**
 
 ### AI-Powered Commands
 - `aig <query>` - Natural language grep
@@ -79,8 +75,6 @@ Dotfiles Plus aims to be the definitive solution for developers who want:
 
 ## 🔐 v1.5.0 - Secure Configuration
 
-**Target: Q3 2025**
-
 ### Secret Management
 - Encrypted vault for API keys
 - Secure credential storage
@@ -100,8 +94,6 @@ Dotfiles Plus aims to be the definitive solution for developers who want:
 - Zero-knowledge sync
 
 ## 🚀 v1.6.0 - Performance & Scale
-
-**Target: Q4 2025**
 
 ### Optimization
 - Lazy loading architecture
@@ -191,4 +183,4 @@ Your input shapes this roadmap! Please:
 ---
 
 *Last updated: January 2025*
-*This is a living document - features and timelines may adjust based on community needs*
+*This is a living document - features may be implemented faster or slower based on community needs and development progress. No rigid timelines!*
