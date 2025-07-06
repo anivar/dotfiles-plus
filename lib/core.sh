@@ -213,30 +213,12 @@ dotfiles_help() {
 
 # Self-update function
 dotfiles_update() {
-    log info "Checking for updates..."
-    
-    local current_version="$DOTFILES_VERSION"
-    local update_url="https://api.github.com/repos/anivar/dotfiles-plus/releases/latest"
-    
-    # Check latest version
-    if command_exists curl; then
-        local latest_info=$(curl -s "$update_url")
-        local latest_version=$(echo "$latest_info" | grep '"tag_name"' | cut -d'"' -f4 | sed 's/^v//')
-        
-        if [[ "$latest_version" != "$current_version" ]]; then
-            log info "New version available: $latest_version"
-            echo -n "Update now? [Y/n]: "
-            read -r response
-            
-            if [[ ! "$response" =~ ^[Nn]$ ]]; then
-                # Perform update
-                dotfiles_perform_update "$latest_version"
-            fi
-        else
-            log success "Already up to date!"
-        fi
+    # Use the autoupdate script
+    if [[ -f "$DOTFILES_ROOT/scripts/autoupdate.sh" ]]; then
+        bash "$DOTFILES_ROOT/scripts/autoupdate.sh" manual
     else
-        log error "curl not found. Cannot check for updates."
+        log error "Update script not found"
+        return 1
     fi
 }
 

@@ -51,52 +51,38 @@ fi
 SHA256=$(shasum -a 256 "$TEMP_FILE" | awk '{print $1}')
 echo -e "${GREEN}SHA256: ${SHA256}${NC}"
 
-# Check if homebrew-tap branch exists
-if ! git show-ref --verify --quiet refs/heads/homebrew-tap; then
-    echo -e "${RED}Error: homebrew-tap branch not found${NC}"
-    exit 1
-fi
-
-# Stash any current changes
-git stash push -m "Homebrew SHA update stash" --include-untracked --quiet || true
-
-# Switch to homebrew-tap branch
-git checkout homebrew-tap --quiet
-
 # Update the formula
-if [ -f Formula/dotfiles-plus.rb ]; then
+if [ -f homebrew/dotfiles-plus.rb ]; then
     # Update SHA256
-    sed -i.bak "s/sha256 \"[^\"]*\"/sha256 \"$SHA256\"/" Formula/dotfiles-plus.rb && rm Formula/dotfiles-plus.rb.bak
-    echo -e "${GREEN}✅ Updated SHA256 in Formula/dotfiles-plus.rb${NC}"
+    sed -i.bak "s/sha256 \"[^\"]*\"/sha256 \"$SHA256\"/" homebrew/dotfiles-plus.rb && rm homebrew/dotfiles-plus.rb.bak
+    echo -e "${GREEN}✅ Updated SHA256 in homebrew/dotfiles-plus.rb${NC}"
+    
+    # Also update version and URL
+    VERSION_NUM="${VERSION_TAG#v}"
+    sed -i.bak "s/version \"[^\"]*\"/version \"$VERSION_NUM\"/" homebrew/dotfiles-plus.rb && rm homebrew/dotfiles-plus.rb.bak
+    sed -i.bak "s|/v[0-9]\+\.[0-9]\+\.[0-9]\+\.tar\.gz|/${VERSION_TAG}.tar.gz|" homebrew/dotfiles-plus.rb && rm homebrew/dotfiles-plus.rb.bak
     
     # Show the changes
     echo ""
     echo -e "${BLUE}Changes made:${NC}"
-    git diff Formula/dotfiles-plus.rb
+    git diff homebrew/dotfiles-plus.rb
     
     # Commit the change
-    git add Formula/dotfiles-plus.rb
-    git commit -m "chore: update formula SHA256 for ${VERSION_TAG}" --quiet
+    git add homebrew/dotfiles-plus.rb
+    git commit -m "chore: update Homebrew formula for ${VERSION_TAG}" || echo "No changes to commit"
     echo ""
-    echo -e "${GREEN}✅ Committed changes${NC}"
+    echo -e "${GREEN}✅ Updated Homebrew formula${NC}"
 else
-    echo -e "${RED}Error: Formula/dotfiles-plus.rb not found${NC}"
-    git checkout - --quiet
+    echo -e "${RED}Error: homebrew/dotfiles-plus.rb not found${NC}"
     exit 1
 fi
-
-# Switch back to original branch
-git checkout - --quiet
-
-# Pop stash if it exists
-git stash pop --quiet 2>/dev/null || true
 
 echo ""
 echo -e "${GREEN}✨ Homebrew formula updated!${NC}"
 echo ""
 echo -e "${BLUE}Next steps:${NC}"
-echo "1. Push the homebrew-tap branch:"
-echo -e "   ${YELLOW}git push origin homebrew-tap${NC}"
-echo "2. Test the formula:"
-echo -e "   ${YELLOW}brew tap anivar/dotfiles-plus https://github.com/anivar/dotfiles-plus${NC}"
-echo -e "   ${YELLOW}brew reinstall dotfiles-plus${NC}"
+echo "1. Push the main branch:"
+echo -e "   ${YELLOW}git push origin main${NC}"
+echo ""
+echo "2. Test installation:"
+echo -e "   ${YELLOW}brew install --HEAD https://raw.githubusercontent.com/anivar/dotfiles-plus/main/homebrew/dotfiles-plus.rb${NC}"

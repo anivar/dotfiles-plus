@@ -1,6 +1,6 @@
 # 🚀 Dotfiles Plus - AI-Powered Terminal Enhancement
 
-> Transform your command line with AI integration, smart automation, and enterprise-grade security. Works with ChatGPT, Claude, Gemini, Ollama, and any OpenAI-compatible API.
+> One unified tool for all your environments. Whether on your MacBook, Linux server, or cloud instance - enjoy the same powerful AI-enhanced terminal experience everywhere. Seamlessly integrates with ChatGPT, Claude, Gemini, Ollama, and any OpenAI-compatible API.
 
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 [![GitHub Release](https://img.shields.io/github/v/release/anivar/dotfiles-plus)](https://github.com/anivar/dotfiles-plus/releases)
@@ -10,17 +10,19 @@
 
 ## 🎯 What is Dotfiles Plus?
 
-**Dotfiles Plus** is a revolutionary shell enhancement framework that brings the power of AI directly into your terminal. Whether you're using **Bash**, **Zsh**, **macOS**, **Linux**, or **WSL**, it seamlessly integrates with popular AI providers like **Claude**, **ChatGPT**, **Gemini**, and **Ollama** to supercharge your command-line productivity.
+**Dotfiles Plus** is a revolutionary shell enhancement framework that brings AI directly to your terminal. It's the same powerful tool whether you're SSH'd into a production server, working on your laptop, or managing cloud infrastructure. Compatible with **Bash 5+** and **Zsh** on **macOS**, **Linux**, **BSD**, and **WSL**, it transforms how you interact with the command line by seamlessly integrating **Claude**, **ChatGPT**, **Gemini**, **Ollama**, and more.
 
-### 🔥 Why Dotfiles Plus?
+### 🔥 Why Choose Dotfiles Plus?
 
-- **🤖 Universal AI Integration**: Works with Claude Code, ChatGPT, Google Gemini, Ollama, OpenRouter, and any OpenAI-compatible API
-- **🧠 Intelligent Memory System**: Context-aware AI that remembers your work across projects and sessions
-- **🔒 Enterprise Security**: No `eval`, input sanitization, encrypted secrets, audit logging
-- **⚡ Blazing Fast**: Shell startup under 100ms with lazy loading and smart caching
-- **🎨 Beautiful CLI**: Enhanced git commands, visual outputs, smart completions
-- **🔌 Extensible**: Plugin architecture, hooks system, custom commands
-- **📦 Zero Dependencies**: Pure shell script, works offline with local AI
+- **🌐 Universal Deployment**: Deploy once, use everywhere - from development laptops to production servers
+- **🤖 Multi-AI Support**: Seamlessly switch between Claude, ChatGPT, Gemini, Ollama, and OpenRouter in a single session
+- **🧠 Persistent Memory**: Your AI assistant remembers context across projects, sessions, and even system reboots
+- **🔒 Enterprise-Ready Security**: Built without `eval`, featuring input sanitization, encrypted secrets, and comprehensive audit logging
+- **⚡ Lightning Performance**: Sub-100ms shell startup with intelligent lazy loading and smart caching
+- **🎨 Beautiful Experience**: Enhanced git workflows, intuitive visual outputs, and intelligent command completions
+- **🔌 Fully Extensible**: Powerful plugin architecture with hooks for complete customization
+- **🔄 Always Up-to-Date**: Automatic updates keep you current across all your environments
+- **📦 True Portability**: Pure shell implementation works offline and requires no external dependencies
 
 ## 🚀 Quick Install
 
@@ -291,7 +293,23 @@ hook_register "directory_changed" "auto_save_context" 50
 
 - **Shell**: Bash 5.0+ or Zsh
 - **OS**: macOS, Linux, BSD, WSL
+- **Dependencies**: curl, tar, git (standard on most systems)
 - **Optional**: AI provider (Claude, ChatGPT, Gemini, Ollama)
+
+### 🔄 Auto-Update Support
+
+Dotfiles Plus includes automatic update checking that works on all platforms:
+
+```bash
+# Manual update check
+dotfiles update
+
+# Disable auto-updates
+export DOTFILES_AUTO_UPDATE=false
+
+# Check update interval (default: 24 hours)
+export DOTFILES_UPDATE_INTERVAL=86400
+```
 
 ### macOS Users
 
@@ -301,6 +319,21 @@ macOS ships with Bash 3.2. Install Bash 5+:
 brew install bash
 echo "$(brew --prefix)/bin/bash" | sudo tee -a /etc/shells
 chsh -s "$(brew --prefix)/bin/bash"
+```
+
+### Linux Users
+
+Most modern Linux distributions include Bash 5+ and all required tools. For package installation:
+
+```bash
+# Ubuntu/Debian
+sudo apt update && sudo apt install curl tar git
+
+# Fedora/RHEL
+sudo dnf install curl tar git
+
+# Arch
+sudo pacman -S curl tar git
 ```
 
 ## 🤝 Contributing

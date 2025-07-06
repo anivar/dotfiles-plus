@@ -2,14 +2,29 @@
 
 Choose your preferred installation method:
 
-## 🍺 Install with Homebrew (Coming Soon)
+## 🍺 Install with Homebrew (macOS/Linux)
 
-**Note**: Homebrew installation is being set up. For now, please use one of the other installation methods below.
-
+### macOS
 ```bash
-# Future installation method:
+# Direct installation from formula
+brew install --HEAD https://raw.githubusercontent.com/anivar/dotfiles-plus/main/homebrew/dotfiles-plus.rb
+
+# Or add the tap (when available)
 # brew tap anivar/dotfiles-plus
 # brew install dotfiles-plus
+```
+
+### Linux (with Linuxbrew/Homebrew)
+```bash
+# First install Homebrew on Linux if not already installed:
+/bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
+
+# Add Homebrew to PATH (for Ubuntu/Debian)
+echo 'eval "$(/home/linuxbrew/.linuxbrew/bin/brew shellenv)"' >> ~/.profile
+eval "$(/home/linuxbrew/.linuxbrew/bin/brew shellenv)"
+
+# Then install Dotfiles Plus
+brew install --HEAD https://raw.githubusercontent.com/anivar/dotfiles-plus/main/homebrew/dotfiles-plus.rb
 ```
 
 ## 📦 Quick Install (One-liner)

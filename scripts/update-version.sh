@@ -77,31 +77,16 @@ if git show-ref --verify --quiet refs/heads/gh-pages; then
     git stash pop --quiet 2>/dev/null || true
 fi
 
-# Update homebrew-tap branch if it exists
-if git show-ref --verify --quiet refs/heads/homebrew-tap; then
+# Update Homebrew formula if it exists
+if [ -f homebrew/dotfiles-plus.rb ]; then
     echo ""
-    echo -e "${BLUE}Updating Homebrew tap configuration...${NC}"
+    echo -e "${BLUE}Updating Homebrew formula...${NC}"
     
-    # Stash any current changes
-    git stash push -m "Version update stash for homebrew" --include-untracked --quiet || true
+    sed -i.bak "s/version \"[0-9]\+\.[0-9]\+\.[0-9]\+\"/version \"$NEW_VERSION\"/" homebrew/dotfiles-plus.rb && rm homebrew/dotfiles-plus.rb.bak
+    echo -e "  ✅ homebrew/dotfiles-plus.rb"
     
-    # Switch to homebrew-tap branch
-    git checkout homebrew-tap --quiet
-    
-    # Update Formula
-    if [ -f Formula/dotfiles-plus.rb ]; then
-        sed -i.bak "s/version \"[0-9]\+\.[0-9]\+\.[0-9]\+\"/version \"$NEW_VERSION\"/" Formula/dotfiles-plus.rb && rm Formula/dotfiles-plus.rb.bak
-        echo -e "  ✅ Formula/dotfiles-plus.rb"
-        
-        # Note: SHA256 will be updated by the release process
-        echo -e "  ℹ️  Note: SHA256 will be updated after release"
-    fi
-    
-    # Switch back to original branch
-    git checkout - --quiet
-    
-    # Pop stash if it exists
-    git stash pop --quiet 2>/dev/null || true
+    # Note: SHA256 will be updated by the release process
+    echo -e "  ℹ️  Note: SHA256 will be updated after release"
 fi
 
 # Update CHANGELOG template

@@ -439,12 +439,16 @@ dotfiles() {
         backup)
             _dotfiles_backup
             ;;
+        update)
+            _dotfiles_update
+            ;;
         help)
             echo "🚀 System Management:"
             echo "  dotfiles status   # Show system status"
             echo "  dotfiles health   # Run health check"
             echo "  dotfiles version  # Show version info"
             echo "  dotfiles backup   # Backup configuration"
+            echo "  dotfiles update   # Check for updates"
             ;;
         *)
             dotfiles help
@@ -528,6 +532,17 @@ _dotfiles_backup() {
         echo "✅ Backup created: $(basename "$backup_file")"
     else
         echo "❌ Backup failed" >&2
+        return 1
+    fi
+}
+
+# Update Dotfiles Plus
+_dotfiles_update() {
+    if [[ -f "$DOTFILES_CONFIG_HOME/scripts/autoupdate.sh" ]]; then
+        bash "$DOTFILES_CONFIG_HOME/scripts/autoupdate.sh" manual
+    else
+        echo "❌ Update script not found" >&2
+        echo "💡 Try reinstalling: curl -fsSL https://raw.githubusercontent.com/anivar/dotfiles-plus/main/install.sh | bash"
         return 1
     fi
 }
@@ -629,6 +644,12 @@ _secure_dotfiles_init() {
 
 # Initialize
 _secure_dotfiles_init
+
+# Check for updates automatically (if enabled)
+if [[ "${DOTFILES_AUTO_UPDATE:-true}" == "true" ]] && [[ -f "$DOTFILES_CONFIG_HOME/scripts/autoupdate.sh" ]]; then
+    # Run in background to not slow down shell startup
+    (bash "$DOTFILES_CONFIG_HOME/scripts/autoupdate.sh" auto &) 2>/dev/null
+fi
 
 # Show welcome message
 echo ""

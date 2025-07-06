@@ -121,13 +121,49 @@ check_prerequisites() {
     # Check if already installed
     if [[ -d "$INSTALL_DIR" ]]; then
         log_warning "Existing installation found at $INSTALL_DIR"
-        echo -n "Would you like to run migration instead? [Y/n] "
-        read -r response
-        if [[ ! "$response" =~ ^[Nn]$ ]]; then
-            log_info "Use the migration script for existing installations:"
-            echo "  curl -fsSL $GITHUB_URL/migrate-universal.sh | bash"
-            exit 0
+        
+        # Check if it's an old version
+        local current_version="unknown"
+        if [[ -f "$INSTALL_DIR/VERSION" ]]; then
+            current_version=$(cat "$INSTALL_DIR/VERSION")
+        elif [[ -f "$INSTALL_DIR/config/dotfiles.conf" ]]; then
+            current_version=$(grep "^version=" "$INSTALL_DIR/config/dotfiles.conf" 2>/dev/null | cut -d= -f2 || echo "unknown")
         fi
+        
+        log_info "Current version: $current_version"
+        
+        echo ""
+        echo "Options:"
+        echo "  1) Update existing installation"
+        echo "  2) Fresh install (backup current)"
+        echo "  3) Cancel"
+        echo ""
+        echo -n "Choose [1-3]: "
+        read -r choice
+        
+        case "$choice" in
+            1)
+                log_info "Updating existing installation..."
+                # Run autoupdate if available
+                if [[ -f "$INSTALL_DIR/scripts/autoupdate.sh" ]]; then
+                    bash "$INSTALL_DIR/scripts/autoupdate.sh" manual
+                    exit 0
+                else
+                    # Fall through to do fresh install as update
+                    log_info "Update script not found, performing fresh install..."
+                fi
+                ;;
+            2)
+                # Backup existing installation
+                local backup_dir="$INSTALL_DIR.backup-$(date +%Y%m%d-%H%M%S)"
+                log_info "Backing up to $backup_dir..."
+                mv "$INSTALL_DIR" "$backup_dir"
+                ;;
+            *)
+                log_info "Installation cancelled"
+                exit 0
+                ;;
+        esac
     fi
     
     log_success "Prerequisites check passed"

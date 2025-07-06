@@ -20,7 +20,7 @@ jobs:
       - name: Checkout repository
         uses: actions/checkout@v4
         with:
-          fetch-depth: 0
+          ref: main
           token: ${{ secrets.GITHUB_TOKEN }}
       
       - name: Configure Git
@@ -50,10 +50,6 @@ jobs:
           echo "SHA256=${SHA256}" >> $GITHUB_OUTPUT
           echo "Calculated SHA256: $SHA256"
       
-      - name: Checkout homebrew-tap branch
-        run: |
-          git checkout homebrew-tap
-      
       - name: Update Formula
         run: |
           TAG="${{ steps.get_tag.outputs.TAG }}"
@@ -61,20 +57,24 @@ jobs:
           VERSION="${TAG#v}"
           
           # Update SHA256 in formula
-          sed -i "s/sha256 \"[^\"]*\"/sha256 \"$SHA256\"/" Formula/dotfiles-plus.rb
+          sed -i "s/sha256 \"[^\"]*\"/sha256 \"$SHA256\"/" homebrew/dotfiles-plus.rb
           
           # Ensure version and URL are correct
-          sed -i "s/version \"[^\"]*\"/version \"$VERSION\"/" Formula/dotfiles-plus.rb
-          sed -i "s|/v[0-9]\+\.[0-9]\+\.[0-9]\+\.tar\.gz|/${TAG}.tar.gz|" Formula/dotfiles-plus.rb
+          sed -i "s/version \"[^\"]*\"/version \"$VERSION\"/" homebrew/dotfiles-plus.rb
+          sed -i "s|/v[0-9]\+\.[0-9]\+\.[0-9]\+\.tar\.gz|/${TAG}.tar.gz|" homebrew/dotfiles-plus.rb
           
-          echo "Updated Formula/dotfiles-plus.rb with SHA256: $SHA256"
+          echo "Updated homebrew/dotfiles-plus.rb with SHA256: $SHA256"
       
       - name: Commit and push changes
         run: |
           TAG="${{ steps.get_tag.outputs.TAG }}"
-          git add Formula/dotfiles-plus.rb
-          git commit -m "chore: update formula SHA256 for ${TAG}"
-          git push origin homebrew-tap
+          git add homebrew/dotfiles-plus.rb
+          if git diff --staged --quiet; then
+            echo "No changes to commit"
+          else
+            git commit -m "chore: update Homebrew formula SHA256 for ${TAG}"
+            git push origin main
+          fi
       
       - name: Create summary
         run: |
@@ -85,11 +85,10 @@ jobs:
           echo "" >> $GITHUB_STEP_SUMMARY
           echo "- **Tag**: ${TAG}" >> $GITHUB_STEP_SUMMARY
           echo "- **SHA256**: \`${SHA256}\`" >> $GITHUB_STEP_SUMMARY
-          echo "- **Branch**: homebrew-tap" >> $GITHUB_STEP_SUMMARY
+          echo "- **File**: homebrew/dotfiles-plus.rb" >> $GITHUB_STEP_SUMMARY
           echo "" >> $GITHUB_STEP_SUMMARY
           echo "### 🧪 Test Installation" >> $GITHUB_STEP_SUMMARY
           echo "\`\`\`bash" >> $GITHUB_STEP_SUMMARY
-          echo "brew untap anivar/dotfiles-plus" >> $GITHUB_STEP_SUMMARY
-          echo "brew tap anivar/dotfiles-plus https://github.com/${{ github.repository }}" >> $GITHUB_STEP_SUMMARY
-          echo "brew install dotfiles-plus" >> $GITHUB_STEP_SUMMARY
+          echo "# Direct install from formula" >> $GITHUB_STEP_SUMMARY
+          echo "brew install --HEAD https://raw.githubusercontent.com/${{ github.repository }}/main/homebrew/dotfiles-plus.rb" >> $GITHUB_STEP_SUMMARY
           echo "\`\`\`" >> $GITHUB_STEP_SUMMARY
