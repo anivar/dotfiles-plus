@@ -324,7 +324,7 @@ ai_test_connection() {
 
 # Version command
 dotfiles_version() {
-    echo "Dotfiles Plus v$DOTFILES_VERSION"
+    echo "Dotfiles Plus v2.0.2"
     echo "Shell: $DOTFILES_SHELL v$DOTFILES_SHELL_VERSION"
     echo "Platform: $(uname -s)"
 }

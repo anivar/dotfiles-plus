@@ -5,6 +5,27 @@ All notable changes to Dotfiles Plus will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [2.0.2] - 2025-01-06
+
+### Added
+- 🚀 Comprehensive release automation with GitHub Actions
+- 📝 Version update script handling all branches (main, gh-pages, homebrew-tap)
+- ✅ Release checklist and automation scripts
+- 🪝 Optional non-blocking git hooks for developers
+- 📚 SCRIPTS.md documenting all scripts and their purposes
+- 🧹 Repository cleanliness checker
+- 📖 Clear documentation explaining install.sh vs init.sh
+- 📂 REPOSITORY_STRUCTURE.md explaining what's included and why
+
+### Changed
+- 🔧 Enhanced .gitignore with comprehensive exclusions
+- 📝 Updated documentation to clarify script purposes
+- 🎯 Improved installation instructions with script explanations
+
+### Fixed
+- 🔢 Version consistency across all files (now 2.0.2)
+- 📄 All references updated from v1.2.0 to current version
+
 ## [2.0.1] - 2025-01-06
 
 ### Fixed
