@@ -1,10 +1,10 @@
 class DotfilesPlus < Formula
   desc "🚀 AI-powered terminal productivity suite"
   homepage "https://github.com/anivar/dotfiles-plus"
-  url "https://github.com/anivar/dotfiles-plus/archive/refs/tags/v2.0.2.tar.gz"
-  sha256 "bfd7d9cfc1537e11ba3a667a5781000f9453c3c615f16d0f0e56ce394bcb3515"
+  url "https://github.com/anivar/dotfiles-plus/archive/refs/tags/v2.0.3.tar.gz"
+  sha256 "placeholder_will_be_updated_after_release"
   license "MIT"
-  version "2.0.2"
+  version "2.0.3"
 
   depends_on "bash" => "5.0"
   

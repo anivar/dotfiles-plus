@@ -5,6 +5,36 @@ All notable changes to Dotfiles Plus will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [2.0.3] - 2025-01-06
+
+### Added
+- 🔄 Comprehensive autoupdate system
+  - Automatic background update checks every 24 hours
+  - Manual updates via `dotfiles update` command
+  - Cross-platform support (macOS, Linux, BSD, WSL)
+  - Configurable via DOTFILES_AUTO_UPDATE and DOTFILES_UPDATE_INTERVAL
+- 🍺 Homebrew formula integration in main branch
+  - Direct installation via brew install --HEAD
+  - Support for both macOS Homebrew and Linux Linuxbrew
+  - Automated SHA256 updates via GitHub Actions
+- ☕ Buy Me a Coffee links throughout installation and updates
+
+### Changed
+- 📝 Simplified version management - versions now only in VERSION file and git tags
+- 🌐 Enhanced cross-platform messaging: "One unified tool for all your environments"
+- 🔧 Improved installation handling for existing installations (update vs fresh install)
+- 📚 Better documentation with Linux-specific instructions
+- ✨ Updated welcome message: "AI-powered terminal productivity"
+
+### Fixed
+- 🐛 Fixed zsh regex compatibility in hints.sh
+- 📝 Updated shell compatibility note to "bash 5.0+ and zsh"
+- 🔧 Corrected version references in various files
+
+### Removed
+- 🗑️ Deleted separate homebrew-tap branch (formula now in main)
+- 📉 Removed hardcoded version numbers from most visible outputs
+
 ## [2.0.2] - 2025-01-06
 
 ### Added
