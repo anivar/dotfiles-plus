@@ -1,10 +1,10 @@
-# Claude AI Context - Dotfiles Plus v2.0.0
+# Claude AI Context - Dotfiles Plus v2.0.1
 
 ## Project Overview
-Dotfiles Plus is an AI-powered shell enhancement system with enterprise-grade security features. Currently undergoing a major refactor from v1.2.0 to v2.0.0 with a complete architecture overhaul.
+Dotfiles Plus is an AI-powered shell enhancement system with enterprise-grade security features. Version 2.0.1 features a complete plugin-based architecture with advanced AI capabilities.
 
 ## Current State (January 2025)
-- **Version**: Migrating from v1.2.0 to v2.0.0
+- **Version**: 2.0.1 (Latest stable release)
 - **Architecture**: Plugin-based with lazy loading (replacing monolithic structure)
 - **Shell Requirements**: Bash 5.0+ or Zsh (upgraded from Bash 4.0+)
 - **Status**: ~95% complete, minor Zsh compatibility issues remaining

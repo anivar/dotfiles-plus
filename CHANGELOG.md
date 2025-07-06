@@ -5,6 +5,20 @@ All notable changes to Dotfiles Plus will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [2.0.1] - 2025-01-06
+
+### Fixed
+- 🔧 Version number consistency across all files
+- 📝 Removed duplicate files from release
+- 🌐 GitHub Pages website with clean developer-friendly theme
+- 🍺 Homebrew tap integration on dedicated branch
+- 📚 Documentation sync workflow between main and gh-pages
+
+### Added
+- 🤖 Support for additional Ollama models (Gemma, Qwen 3, Qwen 2.5-coder)
+- 💝 Unified support page combining GitHub Sponsors and Buy Me a Coffee
+- 🎨 Professional GitHub-inspired website theme
+
 ## [2.0.0] - 2025-01-05
 
 ### 🚀 Major Breaking Release

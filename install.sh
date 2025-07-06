@@ -38,7 +38,7 @@ log_error() {
 
 show_banner() {
     echo ""
-    echo "🚀 Dotfiles Plus v1.2.0 Installer"
+    echo "🚀 Dotfiles Plus Installer"
     echo "================================="
     echo "✨ AI-powered dotfiles with enterprise security"
     echo ""

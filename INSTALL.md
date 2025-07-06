@@ -70,6 +70,35 @@ docker run -it anivar/dotfiles-plus
    dotfiles setup
    ```
 
+## 📝 Installation Scripts Explained
+
+### `install.sh` - Full System Installation
+- **Purpose**: Install Dotfiles Plus system-wide on your computer
+- **Use when**: First-time installation or reinstalling the entire system
+- **What it does**:
+  - Installs all Dotfiles Plus components to `~/.dotfiles-plus`
+  - Sets up shell integration (updates .bashrc/.zshrc)
+  - Creates directory structure and configuration
+  - Runs initial tests and verification
+
+### `init.sh` - Project Initialization
+- **Purpose**: Add AI memory/context to a specific project
+- **Use when**: You want to enhance an existing project with AI capabilities
+- **What it does**:
+  - Creates `.ai-memory` file for project context
+  - Sets up `.ai-templates/` for project-specific prompts
+  - Updates `.gitignore` appropriately
+  - Lightweight, project-specific setup
+
+```bash
+# Full system installation (first time)
+curl -sSL https://raw.githubusercontent.com/anivar/dotfiles-plus/main/install.sh | bash
+
+# Add AI to existing project (after installation)
+cd /path/to/your/project
+curl -sSL https://raw.githubusercontent.com/anivar/dotfiles-plus/main/init.sh | bash
+```
+
 ## 🎯 Quick Start After Installation
 
 ### 1. Setup AI Provider
@@ -91,11 +120,12 @@ dotfiles secret set OPENAI_API_KEY "your-key"
 dotfiles config ai_provider openai-api
 ```
 
-### 2. Initialize Your Project
+### 2. Initialize Your Projects
 
-For existing projects:
+Add AI memory to existing projects:
 ```bash
-curl -sSL https://dotfiles.plus/init | bash -s -- --project
+cd /path/to/your/project
+~/.dotfiles-plus/init.sh
 ```
 
 For new projects:

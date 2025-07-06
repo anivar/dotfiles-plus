@@ -213,9 +213,24 @@ ai testgen user.py pytest  # Specify framework
 # Template system
 ai template save bug "I found a bug in {}: "
 ai template use bug "login system"
+```
 
-# Project initialization
-curl -sSL https://dotfiles.plus/init | bash -s -- --project
+### Project vs System Installation
+
+**System Installation** (`install.sh`):
+- Installs Dotfiles Plus globally on your computer
+- One-time setup for all your projects
+- Use the installation methods above
+
+**Project Initialization** (`init.sh`):
+- Adds AI memory to a specific project
+- Creates `.ai-memory` and `.ai-templates/` in project
+- Use after Dotfiles Plus is installed:
+
+```bash
+# Initialize AI for existing project
+cd /path/to/your/project
+~/.dotfiles-plus/init.sh
 ```
 
 ## 📚 Advanced Usage
