@@ -38,37 +38,15 @@ echo -e "Current version: ${YELLOW}${CURRENT_VERSION}${NC}"
 echo -e "New version: ${GREEN}${NEW_VERSION}${NC}"
 echo ""
 
-# Files to update
-declare -A VERSION_FILES=(
-    ["VERSION"]="^.*$"
-    ["dotfiles-plus.sh"]='export DOTFILES_PLUS_VERSION="[^"]*"'
-    ["plugins/config.plugin.sh"]='echo "Dotfiles Plus v[^"]*"'
-)
-
 # Update VERSION file
 echo -e "${BLUE}Updating version in files...${NC}"
 echo "$NEW_VERSION" > VERSION
 echo -e "  ✅ VERSION"
 
-# Update dotfiles-plus.sh
-sed -i.bak "s/export DOTFILES_PLUS_VERSION=\"[^\"]*\"/export DOTFILES_PLUS_VERSION=\"$NEW_VERSION\"/" dotfiles-plus.sh && rm dotfiles-plus.sh.bak
-echo -e "  ✅ dotfiles-plus.sh"
-
-# Update config.plugin.sh if it has version display
-if grep -q 'echo "Dotfiles Plus v' plugins/config.plugin.sh 2>/dev/null; then
-    sed -i.bak "s/echo \"Dotfiles Plus v[^\"]*\"/echo \"Dotfiles Plus v$NEW_VERSION\"/" plugins/config.plugin.sh && rm plugins/config.plugin.sh.bak
-    echo -e "  ✅ plugins/config.plugin.sh"
-fi
-
-# Update CLAUDE.md
-if grep -q "# Claude AI Context - Dotfiles Plus v" CLAUDE.md 2>/dev/null; then
-    sed -i.bak "s/# Claude AI Context - Dotfiles Plus v.*/# Claude AI Context - Dotfiles Plus v$NEW_VERSION/" CLAUDE.md && rm CLAUDE.md.bak
-    echo -e "  ✅ CLAUDE.md (header)"
-fi
-
+# Update CLAUDE.md if it has version references
 if grep -q "Version [0-9]\+\.[0-9]\+\.[0-9]\+" CLAUDE.md 2>/dev/null; then
     sed -i.bak "s/Version [0-9]\+\.[0-9]\+\.[0-9]\+/Version $NEW_VERSION/" CLAUDE.md && rm CLAUDE.md.bak
-    echo -e "  ✅ CLAUDE.md (version references)"
+    echo -e "  ✅ CLAUDE.md"
 fi
 
 # Update _config.yml on gh-pages branch if it exists
@@ -99,28 +77,24 @@ if git show-ref --verify --quiet refs/heads/gh-pages; then
     git stash pop --quiet 2>/dev/null || true
 fi
 
-# Update Homebrew formula on homebrew-tap branch if it exists
+# Update homebrew-tap branch if it exists
 if git show-ref --verify --quiet refs/heads/homebrew-tap; then
     echo ""
-    echo -e "${BLUE}Updating Homebrew formula...${NC}"
-    echo -e "${YELLOW}  ⚠️  Note: You'll need to update the SHA256 after creating the release${NC}"
+    echo -e "${BLUE}Updating Homebrew tap configuration...${NC}"
     
     # Stash any current changes
-    git stash push -m "Version update stash" --include-untracked --quiet || true
+    git stash push -m "Version update stash for homebrew" --include-untracked --quiet || true
     
     # Switch to homebrew-tap branch
     git checkout homebrew-tap --quiet
     
-    # Update version in formula
+    # Update Formula
     if [ -f Formula/dotfiles-plus.rb ]; then
-        sed -i.bak "s/version \"[^\"]*\"/version \"$NEW_VERSION\"/" Formula/dotfiles-plus.rb && rm Formula/dotfiles-plus.rb.bak
-        sed -i.bak "s|/v[0-9]\+\.[0-9]\+\.[0-9]\+\.tar\.gz|/v$NEW_VERSION.tar.gz|" Formula/dotfiles-plus.rb && rm Formula/dotfiles-plus.rb.bak
-        echo -e "  ✅ Formula/dotfiles-plus.rb (version and URL)"
-        echo -e "  ❗ Remember to update SHA256 after release"
+        sed -i.bak "s/version \"[0-9]\+\.[0-9]\+\.[0-9]\+\"/version \"$NEW_VERSION\"/" Formula/dotfiles-plus.rb && rm Formula/dotfiles-plus.rb.bak
+        echo -e "  ✅ Formula/dotfiles-plus.rb"
         
-        # Commit the change
-        git add Formula/dotfiles-plus.rb
-        git commit -m "chore: update formula version to v$NEW_VERSION (SHA256 pending)" --quiet || true
+        # Note: SHA256 will be updated by the release process
+        echo -e "  ℹ️  Note: SHA256 will be updated after release"
     fi
     
     # Switch back to original branch
@@ -130,19 +104,10 @@ if git show-ref --verify --quiet refs/heads/homebrew-tap; then
     git stash pop --quiet 2>/dev/null || true
 fi
 
-echo ""
-echo -e "${BLUE}Preparing CHANGELOG entry...${NC}"
+# Update CHANGELOG template
+CHANGELOG_TEMPLATE="
 
-# Check if version already exists in CHANGELOG
-if grep -q "## \[$NEW_VERSION\]" CHANGELOG.md 2>/dev/null; then
-    echo -e "  ℹ️  Version $NEW_VERSION already exists in CHANGELOG.md"
-else
-    # Get today's date
-    TODAY=$(date +%Y-%m-%d)
-    
-    # Create a new changelog entry template
-    cat > /tmp/changelog_entry.tmp << EOF
-## [$NEW_VERSION] - $TODAY
+## [$NEW_VERSION] - $(date +%Y-%m-%d)
 
 ### Added
 - 
@@ -151,34 +116,30 @@ else
 - 
 
 ### Fixed
-- 
+- "
 
-### Removed
-- 
-
-EOF
-    
-    # Insert the new entry after the header section
-    awk '/^## \[/ && !found {print "'"$(cat /tmp/changelog_entry.tmp)"'"; found=1} 1' CHANGELOG.md > CHANGELOG.md.tmp
-    mv CHANGELOG.md.tmp CHANGELOG.md
-    rm /tmp/changelog_entry.tmp
-    
-    echo -e "  ✅ Added template for version $NEW_VERSION in CHANGELOG.md"
-    echo -e "  ${YELLOW}📝 Please update the CHANGELOG with your changes${NC}"
+if [ -f CHANGELOG.md ]; then
+    # Check if this version already exists
+    if ! grep -q "\[$NEW_VERSION\]" CHANGELOG.md; then
+        echo ""
+        echo -e "${BLUE}Adding version template to CHANGELOG.md...${NC}"
+        
+        # Create temp file with new entry after the header
+        awk -v template="$CHANGELOG_TEMPLATE" '
+            /^# Changelog/ { print; print template; next }
+            { print }
+        ' CHANGELOG.md > CHANGELOG.md.tmp
+        
+        mv CHANGELOG.md.tmp CHANGELOG.md
+        echo -e "  ✅ CHANGELOG.md template added"
+    fi
 fi
 
 echo ""
-echo -e "${GREEN}✨ Version update complete!${NC}"
+echo -e "${GREEN}✅ Version update complete!${NC}"
 echo ""
-echo -e "${BLUE}Next steps:${NC}"
-echo "1. Review and test the changes"
-echo "2. Update CHANGELOG.md with actual changes"
-echo "3. Commit the version updates:"
-echo -e "   ${YELLOW}git add -A${NC}"
-echo -e "   ${YELLOW}git commit -m \"chore: bump version to v$NEW_VERSION\"${NC}"
-echo "4. Create and push the tag:"
-echo -e "   ${YELLOW}git tag -a v$NEW_VERSION -m \"Release v$NEW_VERSION\"${NC}"
-echo -e "   ${YELLOW}git push origin main${NC}"
-echo -e "   ${YELLOW}git push origin v$NEW_VERSION${NC}"
-echo "5. After release, update Homebrew formula SHA256:"
-echo -e "   ${YELLOW}./scripts/update-homebrew-sha.sh v$NEW_VERSION${NC}"
+echo -e "${YELLOW}Next steps:${NC}"
+echo "1. Update CHANGELOG.md with actual changes"
+echo "2. Commit changes: git add -A && git commit -m \"chore: bump version to v$NEW_VERSION\""
+echo "3. Create tag: git tag -a v$NEW_VERSION -m \"Release v$NEW_VERSION\""
+echo "4. Push: git push origin main --tags"

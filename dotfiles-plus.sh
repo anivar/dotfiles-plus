@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
 # 🚀 Dotfiles Plus - Shell-Compatible Version
-# Version 1.0 - Complete rewrite addressing all security vulnerabilities
-# Compatible with bash 3.x and other shells without associative array support
+# Complete rewrite addressing all security vulnerabilities
+# Compatible with bash 5.0+ and zsh
 
 # ============================================================================
 # CORE SECURITY FUNCTIONS
@@ -90,7 +90,14 @@ EOF
     
     # Set essential environment variables
     export DOTFILES_PLUS_HOME="$DOTFILES_CONFIG_HOME"
-    export DOTFILES_PLUS_VERSION="2.0.2"
+    # Version is read from VERSION file or config
+    if [[ -f "$DOTFILES_CONFIG_HOME/VERSION" ]]; then
+        export DOTFILES_PLUS_VERSION=$(cat "$DOTFILES_CONFIG_HOME/VERSION" 2>/dev/null || echo "unknown")
+    elif [[ -f "$DOTFILES_CONFIG_HOME/../VERSION" ]]; then
+        export DOTFILES_PLUS_VERSION=$(cat "$DOTFILES_CONFIG_HOME/../VERSION" 2>/dev/null || echo "unknown")
+    else
+        export DOTFILES_PLUS_VERSION=$(_config_get version "unknown")
+    fi
     export DOTFILES_PLUS_SESSION_ID="session_$(date +%s)_$$"
 }
 
@@ -449,7 +456,6 @@ dotfiles() {
 _dotfiles_status() {
     echo "📊 Dotfiles Plus Status"
     echo "==============================="
-    echo "Version: $(_config_get version)"
     echo "Session: $DOTFILES_PLUS_SESSION_ID"
     echo "Platform: $(_config_get platform) $(_config_get arch)"
     echo "Shell: $(_config_get shell)"
@@ -502,7 +508,6 @@ _dotfiles_health_check() {
 # Version information
 _dotfiles_version() {
     echo "📦 Dotfiles Plus"
-    echo "Version: $(_config_get version)"
     echo "Session: $DOTFILES_PLUS_SESSION_ID"
     echo "Platform: $(_config_get platform) $(_config_get arch)"
     echo ""
@@ -619,7 +624,7 @@ _secure_dotfiles_init() {
         _ai_setup_auto_discover
     fi
     
-    echo "✅ Dotfiles Plus v$(_config_get version) loaded successfully"
+    echo "✅ Dotfiles Plus loaded successfully"
 }
 
 # Initialize
@@ -628,12 +633,12 @@ _secure_dotfiles_init
 # Show welcome message
 echo ""
 echo "  ┌─────────────────────────────────────────┐"
-echo "  │     🔒 Dotfiles Plus v$(_config_get version)     │"
-echo "  │   Enhanced dotfiles with security       │"
+echo "  │          🚀 Dotfiles Plus               │"
+echo "  │   AI-powered terminal productivity      │"
 echo "  └─────────────────────────────────────────┘"
 echo ""
 echo "💡 Try: ai help | dotfiles status | gst"
-echo "🔒 Security: All vulnerabilities addressed"
+echo "☕ Support: buymeacoffee.com/anivar"
 echo ""
 
 # Aliases

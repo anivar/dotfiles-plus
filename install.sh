@@ -40,7 +40,7 @@ show_banner() {
     echo ""
     echo "🚀 Dotfiles Plus Installer"
     echo "================================="
-    echo "✨ AI-powered dotfiles with enterprise security"
+    echo "✨ AI-powered terminal productivity suite"
     echo ""
     echo "🔒 Security Features:"
     echo "  • Command injection protection"
@@ -161,6 +161,11 @@ download_core_files() {
         return 1
     }
     
+    # Copy VERSION file
+    if [[ -f "$script_dir/VERSION" ]]; then
+        cp "$script_dir/VERSION" "$INSTALL_DIR/"
+    fi
+    
     # Make scripts executable
     chmod +x "$INSTALL_DIR"/*.sh
     chmod +x "$INSTALL_DIR"/core/*.sh
@@ -180,7 +185,6 @@ create_initial_configuration() {
 # Installed on $(date)
 
 # Core settings
-version=1.0
 session_id=session_$(date +%s)_$$
 platform=$(uname -s | tr '[:upper:]' '[:lower:]')
 arch=$(uname -m)
@@ -260,7 +264,7 @@ update_shell_configuration() {
         cat >> "$rc_file" << EOF
 
 # ============================================================================
-# SECURE DOTFILES PLUS v1.0
+# SECURE DOTFILES PLUS
 # Installed on $(date)
 # ============================================================================
 
@@ -340,6 +344,9 @@ show_next_steps() {
     echo ""
     echo "🤖 Try your first AI query (if providers are installed):"
     echo "      ai \"help me get started with this system\""
+    echo ""
+    echo "☕ Enjoying Dotfiles Plus? Support the project:"
+    echo "      https://buymeacoffee.com/anivar"
     echo ""
 }
 

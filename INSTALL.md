@@ -2,30 +2,15 @@
 
 Choose your preferred installation method:
 
-## 🍺 Install with Homebrew (Recommended)
+## 🍺 Install with Homebrew (Coming Soon)
+
+**Note**: Homebrew installation is being set up. For now, please use one of the other installation methods below.
 
 ```bash
-# Add the official tap from GitHub branch
-brew tap anivar/dotfiles-plus https://github.com/anivar/dotfiles-plus
-
-# Install Dotfiles Plus
-brew install dotfiles-plus
-
-# Add to your shell configuration:
-# For Bash:
-echo 'source $(brew --prefix)/opt/dotfiles-plus/bin/dotfiles-plus-init' >> ~/.bashrc
-
-# For Zsh:
-echo 'source $(brew --prefix)/opt/dotfiles-plus/bin/dotfiles-plus-init' >> ~/.zshrc
-
-# Reload your shell
-exec $SHELL
-
-# Run initial setup
-dotfiles setup
+# Future installation method:
+# brew tap anivar/dotfiles-plus
+# brew install dotfiles-plus
 ```
-
-**Note**: The Homebrew formula automatically installs Bash 5+ if needed.
 
 ## 📦 Quick Install (One-liner)
 
